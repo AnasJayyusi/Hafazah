@@ -1,8 +1,8 @@
 ﻿
 using Hafazah.DAL;
+using Hafazah.Model;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -33,6 +33,7 @@ namespace Hafazah.DAL
         }
 
         // DbSet here represent table in database
+        public virtual DbSet<Member> Members { get; set; }
 
     }
 }

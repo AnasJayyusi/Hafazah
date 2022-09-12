@@ -15,7 +15,7 @@ namespace Hafazah.Controllers
         private HafazahDbContext _dbContext;
         public RoleController()
         {
-            _dbContext=new HafazahDbContext();
+            _dbContext = new HafazahDbContext();
         }
         public ActionResult Index()
         {
