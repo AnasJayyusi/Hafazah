@@ -32,15 +32,15 @@ namespace Hafazah
             }
 
             // Creating Doctor role     
-            if (!IsRoleExists("Doctor"))
+            if (!IsRoleExists("Teacher"))
             {
-                CreateRole("Doctor");
+                CreateRole("Teacher");
             }
 
             //  Creating Reception role     
-            if (!IsRoleExists("Reception"))
+            if (!IsRoleExists("Student"))
             {
-                CreateRole("Reception");
+                CreateRole("Student");
             }
         }
 

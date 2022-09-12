@@ -1,4 +1,4 @@
-﻿namespace Hafazah.DAL.Migrations
+namespace Hafazah.DAL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -7,6 +7,36 @@
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Members",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(nullable: false, maxLength: 128),
+                        SecondName = c.String(maxLength: 128),
+                        ThirdName = c.String(maxLength: 128),
+                        LastName = c.String(nullable: false, maxLength: 128),
+                        Gender = c.Int(nullable: false),
+                        BirthDate = c.DateTime(),
+                        Country = c.String(maxLength: 128),
+                        Address = c.String(maxLength: 256),
+                        EducationLevel = c.String(maxLength: 128),
+                        JobTitle = c.String(maxLength: 128),
+                        Username = c.String(maxLength: 50),
+                        PhoneNumber = c.String(maxLength: 10),
+                        Email = c.String(maxLength: 128),
+                        QuranMemorized = c.String(),
+                        InterviewDate = c.DateTime(),
+                        KnownFrom = c.String(maxLength: 256),
+                        IsActive = c.Boolean(nullable: false),
+                        CreatedDate = c.DateTime(),
+                        UpdateDate = c.DateTime(),
+                        CreatedBy = c.String(),
+                        UpdatedBy = c.String(),
+                        IsDeleted = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -94,6 +124,7 @@
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Members");
         }
     }
 }
