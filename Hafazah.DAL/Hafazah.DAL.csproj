@@ -62,6 +62,14 @@
     <Compile Include="Migrations\202209121134245_InitialMigration.Designer.cs">
       <DependentUpon>202209121134245_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209192236203_AddLevelTableWithRelationShips.cs" />
+    <Compile Include="Migrations\202209192236203_AddLevelTableWithRelationShips.Designer.cs">
+      <DependentUpon>202209192236203_AddLevelTableWithRelationShips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209192331561_AddGloableValueTable.cs" />
+    <Compile Include="Migrations\202209192331561_AddGloableValueTable.Designer.cs">
+      <DependentUpon>202209192331561_AddGloableValueTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +86,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202209121134245_InitialMigration.resx">
       <DependentUpon>202209121134245_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209192236203_AddLevelTableWithRelationShips.resx">
+      <DependentUpon>202209192236203_AddLevelTableWithRelationShips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209192331561_AddGloableValueTable.resx">
+      <DependentUpon>202209192331561_AddGloableValueTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,11 @@
 ﻿using Hafazah.Model.Entities;
+using Hafazah.Model.Entities.Program;
+using Hafazah.Model.Entities.Users;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace Hafazah.Model
 {
@@ -38,7 +43,11 @@ namespace Hafazah.Model
         public string JobTitle { get; set; }
 
         [MaxLength(50)]
+        [PasswordPropertyText]
         public string Username { get; set; }
+
+        [MaxLength(50)]
+        public string SuggestPassword { get; set; }
 
         [MaxLength(10)]
         [RegularExpression("[0-0][7-7][7-9]")]
@@ -58,13 +67,24 @@ namespace Hafazah.Model
         public string KnownFrom { get; set; }
 
         #region Releated To The Program
-        //public int? CurrentLevel { get; set; }
-        //public string CurrentPath { get; set; }
+        public ProgramTypeEnum ProgramType { get; set; }
+        public string CurrentPath { get; set; }
+        public int? CurrentLevel { get; set; }
+        public int? WarningCounter { get; set; }
+        public int? AccomplishedPages { get; set; }
+        public DateTime? LastSent { get; set; }
         #endregion
 
         #region  Not Showing ON UI
         public bool IsActive { get; set; }
         #endregion
+
+        #region RelationShips
+        public int? InstrcutorId { get; set; }
+        public Instructor Instrcutor { get; set; }
+        public List<Level> Levels { get; set; }
+    
+        #endregion 
     }
 }
 
@@ -72,4 +92,10 @@ public enum Gender
 {
     Female,
     Male
+}
+
+public enum ProgramTypeEnum
+{
+    Hafazah,
+    Fursan
 }

@@ -4,21 +4,36 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Hafazah.DAL;
 using Hafazah.Model;
+using Microsoft.AspNet.Identity;
 
 namespace Hafazah.Controllers
 {
     public class MembersController : Controller
     {
-        private HafazahDbContext db = new HafazahDbContext();
+        private HafazahDbContext _db = new HafazahDbContext();
+
+        [HttpGet]
+        public ActionResult ChangeRegistrationStatus()
+        {
+            var key = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+            if (key.Value == "true")
+                key.Value = "false";
+            else
+                key.Value = "true";
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         // GET: Members
         public ActionResult Index()
         {
-            return View(db.Members.ToList());
+            var strCurrentUserId = User.Identity.GetUserName();
+            return View(_db.Members.ToList());
         }
 
         // GET: Members/Details/5
@@ -28,7 +43,7 @@ namespace Hafazah.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -51,8 +66,8 @@ namespace Hafazah.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Members.Add(member);
-                db.SaveChanges();
+                _db.Members.Add(member);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +81,7 @@ namespace Hafazah.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -83,8 +98,8 @@ namespace Hafazah.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(member).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(member);
@@ -97,7 +112,7 @@ namespace Hafazah.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -110,19 +125,22 @@ namespace Hafazah.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
+            Member member = _db.Members.Find(id);
+            _db.Members.Remove(member);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
+
+
         }
     }
 }
