@@ -13,7 +13,8 @@
     width: 100%;
     min-height: 100%;
     padding: 10%;
-    background-image: url("http://localhost/Hafazah/Images/background.png");
+
+    background-image: url("../Images/background.png");
     text-align: inherit;
     background-repeat: no-repeat;
     background-size: 100% 100%;

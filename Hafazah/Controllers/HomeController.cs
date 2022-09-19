@@ -11,7 +11,7 @@ namespace Hafazah.Controllers
         public ActionResult Index()
         {
             if (Request.IsAuthenticated)
-                return View();
+                return RedirectToAction("Index", "Members");
             else
                 return RedirectToAction("Login", "Account");
         }

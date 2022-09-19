@@ -82,7 +82,10 @@
   <ItemGroup>
     <Compile Include="Entities\Accounts\AccountViewModels.cs" />
     <Compile Include="Entities\Accounts\ManageViewModels.cs" />
+    <Compile Include="Entities\Common\GlobalValue.cs" />
     <Compile Include="Entities\IBaseEntity.cs" />
+    <Compile Include="Entities\Program\Level.cs" />
+    <Compile Include="Entities\Users\Instructor.cs" />
     <Compile Include="Entities\Users\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
