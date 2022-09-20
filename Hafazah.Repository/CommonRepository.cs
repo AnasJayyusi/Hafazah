@@ -7,6 +7,7 @@ namespace Hafazah.Repository
 {
     public class CommonRepository : DbContext
     {
+        
 
     }
 }

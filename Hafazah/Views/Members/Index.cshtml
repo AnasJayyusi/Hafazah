@@ -7,10 +7,18 @@
 
 <h2>Members</h2>
 @*    @Html.ActionLink("Create New", "Create")*@
-
-
-
-<input type="button" class="btn-primary" value="Change Registration Status" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+@if (ViewBag.IsRegistraionOpen)
+{
+    <label>The Registration status is On Do you want to set it off ?</label>
+    <input type="button" class="btn btn-danger btn-sm" style="background-color:red" value="Set it Off" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+}
+else
+{
+    <label>The Registration status is Off Do you want to set it off ?</label>
+    <input type="button" class="btn btn-danger btn-sm" style="background-color:green" value="Set it On" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+}
+<br />
+<br />
 
 <table class="table">
     <tr>
@@ -20,18 +28,9 @@
         <th>
             @Html.DisplayNameFor(model => model.LastName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.EducationLevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.JobTitle)
+            @Html.DisplayNameFor(model => model.BirthDate)
         </th>
 
         <th>
@@ -39,14 +38,13 @@
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.QuranMemorized)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InterviewDate)
-        </th>
-
-        <th>
             @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            Approve / Decline
+        </th>
+        <th>
+            Actions
         </th>
         <th></th>
     </tr>
@@ -57,69 +55,29 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ThirdName)
-            </td>
+
+
             <td>
                 @Html.DisplayFor(modelItem => item.LastName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EducationLevel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JobTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QuranMemorized)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InterviewDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KnownFrom)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
+                @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @style = "color:green" }) |
+                @Html.ActionLink("Decline", "Decline", new { id = item.Id }, new { @style = "color:red" })
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
-            </td>
+
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
@@ -129,3 +87,6 @@
     }
 
 </table>
+
+
+
