@@ -106,6 +106,7 @@ namespace Hafazah.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
+            
             // Require that the user has already logged in via username/password or external login    
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
@@ -162,6 +163,7 @@ namespace Hafazah.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -187,6 +189,28 @@ namespace Hafazah.Controllers
             return View(model);
         }
 
+
+        public async Task<bool> AddNewMember(Member data)
+        {
+            var user = new ApplicationUser { UserName = data.Username, Email = data.Email};
+            var result = await UserManager.CreateAsync(user, data.SuggestPassword);
+            if (result.Succeeded)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771    
+                // Send an email with this link    
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);    
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);    
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
+                //Assign Role to user Here       
+                await this.UserManager.AddToRoleAsync(user.Id, "Student");
+                //Ends Here
+                return true;
+            }
+            return false;
+
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

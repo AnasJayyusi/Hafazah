@@ -7,7 +7,6 @@ using Hangfire;
 using Hangfire.SqlServer;
 using System.Collections.Generic;
 using System;
-using System.Diagnostics;
 using System.Configuration;
 
 [assembly: OwinStartupAttribute(typeof(Hafazah.Startup))]
@@ -20,11 +19,13 @@ namespace Hafazah
         {
             ConfigureAuth(app);
             CreateRolesandUsers();
-            app.UseHangfireAspNet(GetHangfireServers);
-            app.UseHangfireDashboard();
-            // Let's also create a sample background job
-            BackgroundJob.Enqueue(() => Debug.WriteLine("New Run !!" + DateTime.Now));
-            RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+            if (ConfigurationManager.AppSettings["HangfireConnection"] != null)
+            {
+                app.UseHangfireAspNet(GetHangfireServers);
+                app.UseHangfireDashboard();
+                // Let's also create a sample background job
+                RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+            }
         }
 
         // In this method we will create default User roles and Admin user for login    
@@ -92,6 +93,7 @@ namespace Hafazah
         #region Hangfire
         private IEnumerable<IDisposable> GetHangfireServers()
         {
+
             GlobalConfiguration.Configuration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
