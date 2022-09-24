@@ -17,11 +17,11 @@ namespace Hafazah.Controllers
         [HttpGet]
         public ActionResult ChangeRegistrationStatus()
         {
-            var key = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
-            if (key.Value == "true")
-                key.Value = "false";
+            var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+            if (obj.Value == "true")
+                obj.Value = "false";
             else
-                key.Value = "true";
+                obj.Value = "true";
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -54,13 +54,39 @@ namespace Hafazah.Controllers
             if (member == null)
             {
                 return HttpNotFound();
+
             }
             return View(member);
+        }
+
+        public ActionResult Approve(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = _db.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            return RedirectToAction("AddNewMember", "Account", member);
+            //using (var accountController = new AccountController())
+            //    await accountController.AddNewMember(member.Username, member.Email, member.SuggestPassword="P@ssword");
+            return RedirectToAction("Index");
         }
 
         // GET: Members/Create
         public ActionResult Create()
         {
+            var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+
+            if (obj.Value == "true")
+                ViewBag.IsRegistraionOpen = true;
+            else
+                ViewBag.IsRegistraionOpen = false;
             return View();
         }
 

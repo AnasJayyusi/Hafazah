@@ -7,7 +7,6 @@ using Hangfire;
 using Hangfire.SqlServer;
 using System.Collections.Generic;
 using System;
-using System.Diagnostics;
 using System.Configuration;
 
 [assembly: OwinStartupAttribute(typeof(Hafazah.Startup))]
@@ -94,6 +93,7 @@ namespace Hafazah
         #region Hangfire
         private IEnumerable<IDisposable> GetHangfireServers()
         {
+
             GlobalConfiguration.Configuration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
