@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Hafazah.DAL;
 using Hafazah.Model;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace Hafazah.Controllers
 {
@@ -32,7 +29,17 @@ namespace Hafazah.Controllers
         // GET: Members
         public ActionResult Index()
         {
+            ViewBag.IsRegistraionOpen = false;
             var strCurrentUserId = User.Identity.GetUserName();
+            ViewBag.IsAdmin = User.IsInRole("Admin");
+
+            if (ViewBag.IsAdmin)
+            {
+                var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+
+                if (obj.Value == "true")
+                    ViewBag.IsRegistraionOpen = true;
+            }
             return View(_db.Members.ToList());
         }
 
@@ -73,6 +80,9 @@ namespace Hafazah.Controllers
 
             return View(member);
         }
+
+       
+
 
         // GET: Members/Edit/5
         public ActionResult Edit(int? id)
@@ -143,4 +153,9 @@ namespace Hafazah.Controllers
 
         }
     }
+}
+
+public class Membertest
+{
+    public string Id { get; set; }
 }

@@ -20,11 +20,13 @@ namespace Hafazah
         {
             ConfigureAuth(app);
             CreateRolesandUsers();
-            app.UseHangfireAspNet(GetHangfireServers);
-            app.UseHangfireDashboard();
-            // Let's also create a sample background job
-            BackgroundJob.Enqueue(() => Debug.WriteLine("New Run !!" + DateTime.Now));
-            RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+            if (ConfigurationManager.AppSettings["HangfireConnection"] != "HangFireDataBaseNotExists")
+            {
+                app.UseHangfireAspNet(GetHangfireServers);
+                app.UseHangfireDashboard();
+                // Let's also create a sample background job
+                RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+            }
         }
 
         // In this method we will create default User roles and Admin user for login    

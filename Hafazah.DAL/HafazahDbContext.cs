@@ -2,6 +2,7 @@
 using Hafazah.DAL;
 using Hafazah.Model;
 using Hafazah.Model.Entities.Common;
+using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Program;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -37,6 +38,11 @@ namespace Hafazah.DAL
         // DbSet here represent table in database
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<EducationLevel> EducationLevels { get; set; }
+        public virtual DbSet<LevelName> LevelNames { get; set; }
+        public virtual DbSet<QuranMemorized> QuranMemorized { get; set; }
+
         public virtual DbSet<GlobalValue> GlobalValues { get; set; }
     }
 }

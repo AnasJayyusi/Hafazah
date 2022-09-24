@@ -135,7 +135,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>13397</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Hafazah.API</IISUrl>
+          <IISUrl>http://localhost/Hafazah/API</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

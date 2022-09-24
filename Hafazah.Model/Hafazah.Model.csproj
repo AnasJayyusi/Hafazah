@@ -83,6 +83,10 @@
     <Compile Include="Entities\Accounts\AccountViewModels.cs" />
     <Compile Include="Entities\Accounts\ManageViewModels.cs" />
     <Compile Include="Entities\Common\GlobalValue.cs" />
+    <Compile Include="Entities\DropDownListOptions\Country.cs" />
+    <Compile Include="Entities\DropDownListOptions\EducationLevel.cs" />
+    <Compile Include="Entities\DropDownListOptions\LevelName.cs" />
+    <Compile Include="Entities\DropDownListOptions\QuranMemorized.cs" />
     <Compile Include="Entities\IBaseEntity.cs" />
     <Compile Include="Entities\Program\Level.cs" />
     <Compile Include="Entities\Users\Instructor.cs" />

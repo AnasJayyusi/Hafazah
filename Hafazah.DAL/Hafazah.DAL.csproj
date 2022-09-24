@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202209192331561_AddGloableValueTable.Designer.cs">
       <DependentUpon>202209192331561_AddGloableValueTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209231518197_AddDropDownListOptionsTables.cs" />
+    <Compile Include="Migrations\202209231518197_AddDropDownListOptionsTables.Designer.cs">
+      <DependentUpon>202209231518197_AddDropDownListOptionsTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209192331561_AddGloableValueTable.resx">
       <DependentUpon>202209192331561_AddGloableValueTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209231518197_AddDropDownListOptionsTables.resx">
+      <DependentUpon>202209231518197_AddDropDownListOptionsTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

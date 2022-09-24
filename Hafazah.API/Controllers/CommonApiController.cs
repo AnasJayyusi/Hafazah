@@ -4,7 +4,7 @@ using System.Web.Http;
 
 namespace Hafazah.API.Controllers
 {
-    [RoutePrefix("api/common")]
+    [RoutePrefix("common")]
     public class CommonApiController : ApiController
     {
         CommonService _commonService;
