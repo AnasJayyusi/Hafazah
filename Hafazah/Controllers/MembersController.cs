@@ -75,7 +75,6 @@ namespace Hafazah.Controllers
             return RedirectToAction("AddNewMember", "Account", member);
             //using (var accountController = new AccountController())
             //    await accountController.AddNewMember(member.Username, member.Email, member.SuggestPassword="P@ssword");
-            return RedirectToAction("Index");
         }
 
         // GET: Members/Create
