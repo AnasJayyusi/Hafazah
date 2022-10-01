@@ -8,6 +8,7 @@ using Hangfire.SqlServer;
 using System.Collections.Generic;
 using System;
 using System.Configuration;
+using Hafazah.Services;
 
 [assembly: OwinStartupAttribute(typeof(Hafazah.Startup))]
 namespace Hafazah
@@ -24,9 +25,12 @@ namespace Hafazah
                 app.UseHangfireAspNet(GetHangfireServers);
                 app.UseHangfireDashboard();
                 // Let's also create a sample background job
-                RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+                //RecurringJob.AddOrUpdate(() => TestRecurringJob(), "0 0 * * *");
+                RecurringJob.AddOrUpdate(() => UpdateWarningCounter(), "0 0 * * *");
             }
         }
+
+
 
         // In this method we will create default User roles and Admin user for login    
         private void CreateRolesandUsers()
@@ -43,9 +47,9 @@ namespace Hafazah
             }
 
             // Creating Doctor role     
-            if (!IsRoleExists("Teacher"))
+            if (!IsRoleExists("Instrcutor"))
             {
-                CreateRole("Teacher");
+                CreateRole("Instrcutor");
             }
 
             //  Creating Reception role     
@@ -113,6 +117,16 @@ namespace Hafazah
         public void TestRecurringJob()
         {
 
+        }
+
+        public void UpdateWarningCounter()
+        {
+            var sharedServices = new SharedServices();
+            var lazyMembers = sharedServices.GettingLazyMemberWithCounter();
+            foreach (var member in lazyMembers)
+            {
+                sharedServices.UpdateCounter(member.Username);
+            }
         }
         #endregion
     }

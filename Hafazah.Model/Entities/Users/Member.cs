@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 
 namespace Hafazah.Model
@@ -42,15 +43,18 @@ namespace Hafazah.Model
         [MaxLength(128)]
         public string JobTitle { get; set; }
 
+        [Required]
         [MaxLength(50)]
         [PasswordPropertyText]
         public string Username { get; set; }
 
+        [Required]
         [MaxLength(50)]
+        [DataType(DataType.Password)]
         public string SuggestPassword { get; set; }
 
         [MaxLength(10)]
-        [RegularExpression("[0-0][7-7][7-9]")]
+        [RegularExpression("[0-0][7-7][7-9]\\d{7}")]
         public string PhoneNumber { get; set; }
 
         [EmailAddress]
@@ -77,14 +81,36 @@ namespace Hafazah.Model
 
         #region  Not Showing ON UI
         public bool IsActive { get; set; }
+
+        public string NotificationToken { get; set; }
+        public string ProfilePictureBase64 { get; set; }
         #endregion
 
         #region RelationShips
         public int? InstrcutorId { get; set; }
         public Instructor Instrcutor { get; set; }
         public List<Level> Levels { get; set; }
-    
-        #endregion 
+
+        #endregion
+
+        #region Not Mapped Member
+        public int Age
+        {
+            get
+            {
+                int age = 0;
+                DateTime now = DateTime.Today;
+                if (BirthDate.HasValue)
+                {
+                    age = now.Year - BirthDate.Value.Year;
+                    if (BirthDate > now.AddYears(-age)) age--;
+                }
+                return age;
+            }
+        }
+        [NotMapped]
+        public RoleEnum Role { get; set; }
+        #endregion
     }
 }
 
@@ -98,4 +124,11 @@ public enum ProgramTypeEnum
 {
     Hafazah,
     Fursan
+}
+
+public enum RoleEnum
+{
+    Admin,
+    Instrcutor,
+    Student
 }

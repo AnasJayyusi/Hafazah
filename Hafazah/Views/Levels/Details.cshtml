@@ -1,0 +1,123 @@
+﻿@model Hafazah.Model.Entities.Program.Level
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Level</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPageNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPageNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PageTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SurahFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SurahFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SurahTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SurahTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxNumberOfExcuses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxNumberOfExcuses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

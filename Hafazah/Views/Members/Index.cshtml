@@ -7,19 +7,6 @@
 
 
 @*    @Html.ActionLink("Create New", "Create")*@
-@if (ViewBag.IsRegistraionOpen)
-{
-    <label>The Registration status is On Do you want to set it off ?</label>
-    <input type="button" class="btn btn-danger btn-sm" style="background-color:red" value="Set it Off" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
-}
-else
-{
-    <label>The Registration status is Off Do you want to set it off ?</label>
-    <input type="button" class="btn btn-danger btn-sm" style="background-color:green" value="Set it On" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
-}
-<br />
-<br />
-
 
 @if (ViewBag.IsAdmin)
 {
@@ -34,76 +21,99 @@ else
         <label>The Registration status is Off Do you want to set it off ?</label>
         <input type="button" class="btn btn-danger btn-sm" style="background-color:green" value="Set it On" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
     }
-    <br />
-    <br />
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
+    <hr />
 
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
+    using (Html.BeginForm("Index", "Members", FormMethod.Get))
+    {
+        <text> Show Members Whom </text> @Html.DropDownList("filterMembers", new SelectList(ViewBag.MembersDDLFilter))
+        <text> Search in Phone Number </text>
+        {@Html.TextBox("phoneNumber", null, new { id = "SearchBox", @class = "SearchBox" })}
+    <input type="submit" value="Search" />
+}
+<br />
+<br />
 
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
 
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+
+
+        @if (ViewBag.ShowIsActiveColumn)
+        {
+            <th>
+                Approve
+            </th>
+        }
+
+        @if (!ViewBag.ShowIsActiveColumn)
+        {
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
-            <th>
-                Approve / Decline
-            </th>
-            <th>
-                Actions
-            </th>
-            <th></th>
-        </tr>
+        }
+        <th>
+            Actions
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
 
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+
+            @if (!ViewBag.ShowIsActiveColumn)
+            {
 
                 <td>
                     @Html.DisplayFor(modelItem => item.IsActive)
                 </td>
-
+            }
+            @if (ViewBag.ShowIsActiveColumn)
+            {
                 <td>
-                    @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @style = "color:green" }) |
-                    @Html.ActionLink("Decline", "Decline", new { id = item.Id }, new { @style = "color:red" })
+                    @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @style = "color:green" })
+                    @*|@Html.ActionLink("Decline", "Decline", new { id = item.Id }, new { @style = "color:red" })*@
                 </td>
+            }
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
-            </tr>
-        }
-
-    </table>
+</table>
 
 }
 
