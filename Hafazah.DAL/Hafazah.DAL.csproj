@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202209231518197_AddDropDownListOptionsTables.Designer.cs">
       <DependentUpon>202209231518197_AddDropDownListOptionsTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210011235450_AddTokenAndProfilePicture.cs" />
+    <Compile Include="Migrations\202210011235450_AddTokenAndProfilePicture.Designer.cs">
+      <DependentUpon>202210011235450_AddTokenAndProfilePicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209231518197_AddDropDownListOptionsTables.resx">
       <DependentUpon>202209231518197_AddDropDownListOptionsTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210011235450_AddTokenAndProfilePicture.resx">
+      <DependentUpon>202210011235450_AddTokenAndProfilePicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

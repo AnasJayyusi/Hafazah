@@ -28,7 +28,7 @@ namespace Hafazah.Model.Entities.Users
         public DateTime? BirthDate { get; set; }
 
         [MaxLength(10)]
-        [RegularExpression("[0-0][7-7][7-9]")]
+        [RegularExpression("[0-0][7-7][7-9]\\d{7}")]
         public string PhoneNumber { get; set; }
 
         public List<Member> Members { get; set; }

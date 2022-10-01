@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Hafazah.Model.Entities.Program.Level>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPageNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurahFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurahTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxNumberOfExcuses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPageNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurahFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurahTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxNumberOfExcuses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

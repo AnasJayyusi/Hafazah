@@ -1,12 +1,14 @@
-﻿using System.Data.Entity;
-using System.IO;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
+using System.Web.Management;
 using System.Web.Mvc;
 using Hafazah.DAL;
 using Hafazah.Model;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
 namespace Hafazah.Controllers
 {
@@ -26,13 +28,47 @@ namespace Hafazah.Controllers
             return RedirectToAction("Index");
         }
 
+
         // GET: Members
-        public ActionResult Index()
+        public ActionResult Index(string filterMembers = "Registered Members", string phoneNumber = "")
+        {
+            if (IsLoggedIn())
+            {
+                InitializationValues();
+                FillingDDL();
+                SetRegistrationStatus();
+                return View(GetFilteredList(filterMembers, phoneNumber));
+            }
+            else if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("UnAuthorized");
+            }
+            else
+                return RedirectToAction("Login", "Account");
+        }
+
+        private bool IsLoggedIn()
+        {
+            string currentUsername = User.Identity.GetUserName();
+            return !string.IsNullOrEmpty(currentUsername);
+        }
+        private void InitializationValues()
         {
             ViewBag.IsRegistraionOpen = false;
-            var strCurrentUserId = User.Identity.GetUserName();
             ViewBag.IsAdmin = User.IsInRole("Admin");
+        }
+        private void FillingDDL()
+        {
+            var memberSearchedFilter = new List<string>()
+            {
+                 "Registered Members",
+                 "Pending Requests",
+            };
 
+            ViewBag.MembersDDLFilter = memberSearchedFilter;
+        }
+        private void SetRegistrationStatus()
+        {
             if (ViewBag.IsAdmin)
             {
                 var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
@@ -40,8 +76,34 @@ namespace Hafazah.Controllers
                 if (obj.Value == "true")
                     ViewBag.IsRegistraionOpen = true;
             }
-            return View(_db.Members.ToList());
         }
+
+        public ActionResult UnAuthorized()
+        {
+            return View();
+        }
+        public List<Member> GetFilteredList(string filterMembers, string phoneNumber)
+        {
+            IQueryable<Member> query = Enumerable.Empty<Member>().AsQueryable();
+
+            if (filterMembers == "Registered Members")
+            {
+                query = _db.Members.Where(x => x.IsActive == true);
+                ViewBag.ShowIsActiveColumn = false;
+            }
+
+            if (filterMembers == "Pending Requests")
+            {
+                query = _db.Members.Where(x => x.IsActive == false);
+                ViewBag.ShowIsActiveColumn = true;
+            }
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+                query = _db.Members.Where(x => x.PhoneNumber.Contains(phoneNumber.Trim()));
+
+            return query.ToList();
+        }
+
 
         // GET: Members/Details/5
         public ActionResult Details(int? id)
@@ -94,20 +156,38 @@ namespace Hafazah.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,SecondName,ThirdName,LastName,Gender,BirthDate,Country,Address,EducationLevel,JobTitle,Username,PhoneNumber,Email,QuranMemorized,InterviewDate,KnownFrom,IsActive,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Member member)
+        public ActionResult Create(Member member)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !IsUserNameExists(member.Username) && !IsEmailExists(member.Email))
             {
                 _db.Members.Add(member);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ThankYou");
             }
-
-            return View(member);
+            return View();
         }
 
-       
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
 
+        public ActionResult SomeErrorHappend()
+        {
+            return View();
+        }
+
+        private bool IsUserNameExists(string username)
+        {
+            var user = _db.Users.Where(x => x.UserName.ToLower() == username).FirstOrDefault();
+            return user != null;
+        }
+
+        private bool IsEmailExists(string email)
+        {
+            var user = _db.Users.Where(x => x.Email.ToLower() == email).FirstOrDefault();
+            return user != null;
+        }
 
         // GET: Members/Edit/5
         public ActionResult Edit(int? id)
