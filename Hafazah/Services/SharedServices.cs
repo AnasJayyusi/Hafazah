@@ -1,15 +1,10 @@
 ﻿using Hafazah.DAL;
-using Hafazah.Model;
 using Hafazah.Model.Dtos;
-using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Program;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
 using Member = Hafazah.Model.Member;
 
 namespace Hafazah.Services
@@ -21,11 +16,14 @@ namespace Hafazah.Services
         {
             _db = new HafazahDbContext();
         }
-        internal void AddNewMember(Member member)
+        internal void AddNewMember(Member member, out List<string> validations)
         {
-
-            _db.Members.Add(member);
-            _db.SaveChanges();
+            validations = GetValidationsErrors(member);
+            if (!validations.Any())
+            {
+                _db.Members.Add(member);
+                _db.SaveChanges();
+            }
         }
 
         internal void SetToken(string username, string token)
@@ -80,17 +78,59 @@ namespace Hafazah.Services
             return _db.Levels.ToList();
         }
 
-        internal void SetPageNumberWithSentDate(int pageNumber, DateTime sendDate, string username)
+        internal string SetPageNumberWithSentDate(int pageNumber, DateTime sendDate, string username)
         {
+            if (string.IsNullOrEmpty(username))
+                return "UnAuthorized";
+
+            if (username.Equals("Administrator"))
+                return "You Don't have access to a program";
+
+
             Member member = _db.Members.Single(x => x.Username == username);
-            member.AccomplishedPages = pageNumber;
-            member.LastSent = sendDate;
-            _db.SaveChanges();
+            if (member.IsActive)
+            {
+                member.AccomplishedPages = pageNumber;
+                member.LastSent = sendDate;
+                _db.SaveChanges();
+                return @"'isSucceeded':'true'";
+            }
+            else
+                return "Your account is deactivated ";
+        }
+
+        internal bool GetRegistrationStatus()
+        {
+            var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+            return obj.Value == "true";
         }
 
         #region Helpers
         // Validations
+        private List<string> GetValidationsErrors(Member m)
+        {
+            List<string> errors = new List<string>();
 
+            if (string.IsNullOrEmpty(m.FirstName))
+                errors.Add("Missing First Name");
+
+            if (string.IsNullOrEmpty(m.LastName))
+                errors.Add("Missing Last Name");
+
+            if (string.IsNullOrEmpty(m.Username))
+                errors.Add("Missing Username");
+
+            if (string.IsNullOrEmpty(m.SuggestPassword))
+                errors.Add("Missing Password");
+
+            if (string.IsNullOrEmpty(m.PhoneNumber))
+                errors.Add("Missing Phone Number");
+
+            if (string.IsNullOrEmpty(m.Email))
+                errors.Add("Missing Email");
+
+            return errors;
+        }
         #endregion
     }
 }

@@ -53,8 +53,7 @@ namespace Hafazah.Model
         [DataType(DataType.Password)]
         public string SuggestPassword { get; set; }
 
-        [MaxLength(10)]
-        [RegularExpression("[0-0][7-7][7-9]\\d{7}")]
+        [MaxLength(50)]
         public string PhoneNumber { get; set; }
 
         [EmailAddress]

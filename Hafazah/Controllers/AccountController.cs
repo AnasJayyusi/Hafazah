@@ -253,7 +253,7 @@ namespace Hafazah.Controllers
         }
 
 
-        public async Task<ActionResult> AddNewMember(Member data)
+        public async Task<ActionResult> ApproveNewMember(Member data)
         {
             var user = new ApplicationUser { UserName = data.Username, Email = data.Email, PhoneNumber = data.PhoneNumber };
             var result = await UserManager.CreateAsync(user, data.SuggestPassword);
@@ -269,7 +269,8 @@ namespace Hafazah.Controllers
                 await this.UserManager.AddToRoleAsync(user.Id, "Student");
                 //Ends Here
                 _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
-                return RedirectToAction("Member", "ThankYou");
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Members");
             }
             return RedirectToAction("SomeErrorHappend", "Member");
         }

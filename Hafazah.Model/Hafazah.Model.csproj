@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\CustomError.cs" />
     <Compile Include="Dtos\DropDownListOptionsDto.cs" />
     <Compile Include="Entities\Accounts\AccountViewModels.cs" />
     <Compile Include="Entities\Accounts\ManageViewModels.cs" />

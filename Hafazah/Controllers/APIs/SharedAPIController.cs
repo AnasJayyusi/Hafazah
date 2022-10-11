@@ -1,9 +1,12 @@
 ﻿using Hafazah.Model;
+using Hafazah.Model.Dtos;
 using Hafazah.Model.Entities.Program;
 using Hafazah.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace Hafazah.Controllers.APIs
@@ -16,13 +19,31 @@ namespace Hafazah.Controllers.APIs
             _svc = new SharedServices();
         }
 
+        [HttpGet]
+        [Route("GetRegistrationStatus")]
+        public IHttpActionResult GetRegistrationStatus()
+        {
+            try
+            {
+                return Ok(_svc.GetRegistrationStatus());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpPost]
         [Route("RegisterNewMember")]
         public IHttpActionResult RegisterNewMember(Member member)
         {
             try
             {
-                _svc.AddNewMember(member);
+                _svc.AddNewMember(member, out List<string> validations);
+
+                if (validations.Any())
+                    return Content(HttpStatusCode.NotAcceptable, new ValidationError() { ErrorList = validations });
+
                 return Ok(@"'isSucceeded':'true'");
             }
             catch (Exception ex)
@@ -37,8 +58,7 @@ namespace Hafazah.Controllers.APIs
         {
             try
             {
-                _svc.SetPageNumberWithSentDate(pageNumber, sendDate, User.Identity.GetUserName());
-                return Ok(@"'isSucceeded':'true'");
+                return Ok(_svc.SetPageNumberWithSentDate(pageNumber, sendDate, User.Identity.GetUserName()));
             }
             catch (Exception ex)
             {

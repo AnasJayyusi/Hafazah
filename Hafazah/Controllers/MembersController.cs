@@ -54,7 +54,7 @@ namespace Hafazah.Controllers
         }
         private void InitializationValues()
         {
-            ViewBag.IsRegistraionOpen = false;
+            ViewBag.IsRegistrationOpen = false;
             ViewBag.IsAdmin = User.IsInRole("Admin");
         }
         private void FillingDDL()
@@ -74,7 +74,7 @@ namespace Hafazah.Controllers
                 var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
 
                 if (obj.Value == "true")
-                    ViewBag.IsRegistraionOpen = true;
+                    ViewBag.IsRegistrationOpen = true;
             }
         }
 
@@ -134,7 +134,7 @@ namespace Hafazah.Controllers
             }
 
 
-            return RedirectToAction("AddNewMember", "Account", member);
+            return RedirectToAction("ApproveNewMember", "Account", member);
             //using (var accountController = new AccountController())
             //    await accountController.AddNewMember(member.Username, member.Email, member.SuggestPassword="P@ssword");
         }
@@ -145,9 +145,9 @@ namespace Hafazah.Controllers
             var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
 
             if (obj.Value == "true")
-                ViewBag.IsRegistraionOpen = true;
+                ViewBag.IsRegistrationOpen = true;
             else
-                ViewBag.IsRegistraionOpen = false;
+                ViewBag.IsRegistrationOpen = false;
             return View();
         }
 
