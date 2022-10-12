@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Hafazah.Common;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Hafazah.Controllers
 {
-    public class ControlPanelController : Controller
+    public class ControlPanelController : BaseController
     {
         // GET: ControlPanel
+        [Route("ControlPanel")]
         public ActionResult Index()
         {
             return View();

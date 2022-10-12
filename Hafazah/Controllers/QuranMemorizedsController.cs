@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
+using Hafazah.Model.Entities.DropDownListOptions;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Hafazah.DAL;
-using Hafazah.Model.Entities.DropDownListOptions;
 
 namespace Hafazah.Controllers
 {
-    public class QuranMemorizedsController : Controller
+    public class QuranMemorizedsController : BaseController
     {
         private HafazahDbContext db = new HafazahDbContext();
 

@@ -90,6 +90,7 @@
     <Compile Include="Entities\DropDownListOptions\LevelName.cs" />
     <Compile Include="Entities\DropDownListOptions\QuranMemorized.cs" />
     <Compile Include="Entities\IBaseEntity.cs" />
+    <Compile Include="Entities\Localizations.cs" />
     <Compile Include="Entities\Program\Level.cs" />
     <Compile Include="Entities\Users\Instructor.cs" />
     <Compile Include="Entities\Users\Member.cs" />

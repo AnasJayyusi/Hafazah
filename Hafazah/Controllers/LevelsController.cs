@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
+using Hafazah.Model.Entities.Program;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Hafazah.DAL;
-using Hafazah.Model.Entities.Program;
 
 namespace Hafazah.Controllers
 {
-    public class LevelsController : Controller
+    public class LevelsController : BaseController
     {
         private HafazahDbContext db = new HafazahDbContext();
 

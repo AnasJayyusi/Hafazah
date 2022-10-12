@@ -82,6 +82,10 @@
     <Compile Include="Migrations\202210110822156_ChangeMaxLengthOfPhoneNumber.Designer.cs">
       <DependentUpon>202210110822156_ChangeMaxLengthOfPhoneNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210111011069_AddLocalizationTable.cs" />
+    <Compile Include="Migrations\202210111011069_AddLocalizationTable.Designer.cs">
+      <DependentUpon>202210111011069_AddLocalizationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -113,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210110822156_ChangeMaxLengthOfPhoneNumber.resx">
       <DependentUpon>202210110822156_ChangeMaxLengthOfPhoneNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210111011069_AddLocalizationTable.resx">
+      <DependentUpon>202210111011069_AddLocalizationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

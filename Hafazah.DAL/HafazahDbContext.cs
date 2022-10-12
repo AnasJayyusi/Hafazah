@@ -1,6 +1,7 @@
 ﻿
 using Hafazah.DAL;
 using Hafazah.Model;
+using Hafazah.Model.Entities;
 using Hafazah.Model.Entities.Common;
 using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Program;
@@ -42,8 +43,8 @@ namespace Hafazah.DAL
         public virtual DbSet<EducationLevel> EducationLevels { get; set; }
         public virtual DbSet<LevelName> LevelNames { get; set; }
         public virtual DbSet<QuranMemorized> QuranMemorized { get; set; }
-
         public virtual DbSet<GlobalValue> GlobalValues { get; set; }
+        public virtual DbSet<Localization> Localizations { get; set; }
     }
 }
 

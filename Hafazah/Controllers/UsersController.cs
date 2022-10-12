@@ -1,17 +1,15 @@
-﻿using Hafazah.DAL;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Hafazah.Controllers
 {
 
     [Authorize]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         // GET: Users
         public ActionResult Index()

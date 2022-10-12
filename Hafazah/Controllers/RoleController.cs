@@ -1,15 +1,14 @@
-﻿using Hafazah.DAL;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Hafazah.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : BaseController
     {
         // GET: Role
         private HafazahDbContext _dbContext;

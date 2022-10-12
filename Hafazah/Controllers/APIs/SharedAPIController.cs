@@ -139,5 +139,19 @@ namespace Hafazah.Controllers.APIs
                 return InternalServerError(ex);
             }
         }
+
+        [HttpPost]
+        [Route("UpdateProfilePicture")]
+        public IHttpActionResult UpdateProfilePicture(string username, string imgBase64)
+        {
+            try
+            {
+                return Ok(_svc.UpdateProfilePicture(username,imgBase64));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
 }

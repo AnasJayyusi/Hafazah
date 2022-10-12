@@ -1,23 +1,22 @@
-﻿using System.Linq;
+﻿using DemoAccount.Utility;
+using Hafazah.Common;
+using Hafazah.DAL;
+using Hafazah.Model;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Data.Entity;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Hafazah.Model;
-using Hafazah.DAL;
-using System.Web.Script.Serialization;
-using Hafazah.Model.Entities.Users;
-using System.Data.Entity;
-using DemoAccount.Utility;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.IO;
 
 namespace Hafazah.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -60,6 +59,7 @@ namespace Hafazah.Controllers
 
         //
         // GET: /Account/Login
+
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -67,7 +67,6 @@ namespace Hafazah.Controllers
             return View();
         }
 
-        // GET: /Account/test
         [AllowAnonymous]
         public async Task<JsonResult> MobileLogin(string param, string pass)
         {
@@ -146,15 +145,15 @@ namespace Hafazah.Controllers
 
         private string GetUserNameFromEmailOrPhoneNumber(string param)
         {
+            string actualUsername = string.Empty;
+            if (param != "Administrator")
+            {
+                actualUsername = _db.Users
+                                        .SingleOrDefault(x => x.Email.Equals(param) || x.PhoneNumber.Equals(param))
+                                        .UserName;
+            }
 
-            if (param.Contains("07"))
-                return _db.Users.Single(x => x.PhoneNumber == param).UserName;
-
-            else if (IsValidEmail(param))
-                return _db.Users.Single(x => x.Email == param).UserName;
-
-            else return param;
-
+            return string.IsNullOrEmpty(actualUsername) ? param : actualUsername;
         }
         //    
         // GET: /Account/VerifyCode    
@@ -311,10 +310,10 @@ namespace Hafazah.Controllers
                 }
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                 //Send an email with this link
-                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                 //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //Send an email with this link
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 bool IsSendEmail = SendEmail.EmailSend(model.Email, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>", true);
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }

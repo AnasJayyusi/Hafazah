@@ -6,12 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model.Entities.DropDownListOptions;
 
 namespace Hafazah.Controllers
 {
-    public class CountriesController : Controller
+    public class CountriesController : BaseController
     {
         private HafazahDbContext db = new HafazahDbContext();
 

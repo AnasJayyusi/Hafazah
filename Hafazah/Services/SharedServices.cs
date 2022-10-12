@@ -96,13 +96,25 @@ namespace Hafazah.Services
                 return @"'isSucceeded':'true'";
             }
             else
-                return "Your account is deactivated ";
+                return "Your account is deactivated";
         }
 
         internal bool GetRegistrationStatus()
         {
             var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
             return obj.Value == "true";
+        }
+
+        internal string UpdateProfilePicture(string username, string imgBase64)
+        {
+            var user = _db.Members.SingleOrDefault(x => x.Username == username);
+            if (user != null)
+            {
+                user.ProfilePictureBase64 = imgBase64;
+                _db.SaveChanges();
+                return "Uploaded Successfully";
+            }
+            return "User Not Exists";
         }
 
         #region Helpers
@@ -129,7 +141,53 @@ namespace Hafazah.Services
             if (string.IsNullOrEmpty(m.Email))
                 errors.Add("Missing Email");
 
+            if (m.SuggestPassword.Length < 6)
+                errors.Add("Password must have at least 6 non letter or digit character");
+
+            if (IsUserNameExists(m.Username.ToLower()))
+                errors.Add("User already token");
+
+            if (IsValidEmail(m.Email.ToLower()))
+                errors.Add("Email not valid");
+
+            if (IsEmailExists(m.Email.ToLower()))
+                errors.Add("Email already exists");
+            
             return errors;
+        }
+
+
+        private bool IsUserNameExists(string username)
+        {
+            var user = _db.Users
+                                .Where(x => x.UserName.ToLower() == username).FirstOrDefault();
+            return user != null;
+        }
+
+        private bool IsEmailExists(string email)
+        {
+            var user = _db.Users
+                                .Where(x => x.Email.ToLower() == email).FirstOrDefault();
+            return user != null;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false; // suggested by @TK-421
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
         }
         #endregion
     }

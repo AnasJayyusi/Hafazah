@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.EnterpriseServices;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Web.Management;
-using System.Web.Mvc;
+﻿using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
 
 namespace Hafazah.Controllers
 {
-    public class MembersController : Controller
+    public class MembersController : BaseController
     {
         private HafazahDbContext _db = new HafazahDbContext();
 

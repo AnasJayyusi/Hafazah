@@ -74,6 +74,7 @@ namespace Hafazah.Model
         public string CurrentPath { get; set; }
         public int? CurrentLevel { get; set; }
         public int? WarningCounter { get; set; }
+        [DefaultValue(0)]
         public int? AccomplishedPages { get; set; }
         public DateTime? LastSent { get; set; }
         #endregion
