@@ -28,6 +28,7 @@ namespace Hafazah.Controllers
 
 
         // GET: Members
+        [Route("Dashboard")]
         public ActionResult Index(string filterMembers = "Registered Members", string phoneNumber = "")
         {
             if (IsLoggedIn())
@@ -138,6 +139,7 @@ namespace Hafazah.Controllers
         }
 
         // GET: Members/Create
+        [Route("Registration")]
         public ActionResult Create()
         {
             var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
@@ -154,7 +156,7 @@ namespace Hafazah.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Member member)
+        public ActionResult Submit(Member member)
         {
             if (ModelState.IsValid && !IsUserNameExists(member.Username) && !IsEmailExists(member.Email))
             {

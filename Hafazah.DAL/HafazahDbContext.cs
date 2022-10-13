@@ -45,6 +45,8 @@ namespace Hafazah.DAL
         public virtual DbSet<QuranMemorized> QuranMemorized { get; set; }
         public virtual DbSet<GlobalValue> GlobalValues { get; set; }
         public virtual DbSet<Localization> Localizations { get; set; }
+
+        public System.Data.Entity.DbSet<Hafazah.Model.Entities.Users.Instructor> Instructors { get; set; }
     }
 }
 

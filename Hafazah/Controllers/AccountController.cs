@@ -68,6 +68,8 @@ namespace Hafazah.Controllers
         }
 
         [AllowAnonymous]
+        [HttpGet]
+        [Route("MobileLogin")]
         public async Task<JsonResult> MobileLogin(string param, string pass)
         {
             string actualUsername = GetUserNameFromEmailOrPhoneNumber(param);
@@ -145,15 +147,15 @@ namespace Hafazah.Controllers
 
         private string GetUserNameFromEmailOrPhoneNumber(string param)
         {
-            string actualUsername = string.Empty;
+            var member = new Member();
             if (param != "Administrator")
             {
-                actualUsername = _db.Users
-                                        .SingleOrDefault(x => x.Email.Equals(param) || x.PhoneNumber.Equals(param))
-                                        .UserName;
+                member = _db.Members
+                                        .FirstOrDefault(x => x.Email.Equals(param) || x.PhoneNumber.Equals(param));
+
             }
 
-            return string.IsNullOrEmpty(actualUsername) ? param : actualUsername;
+            return member == null ? param : member.Username;
         }
         //    
         // GET: /Account/VerifyCode    

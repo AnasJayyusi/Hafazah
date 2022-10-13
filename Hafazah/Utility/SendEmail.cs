@@ -34,7 +34,7 @@ namespace DemoAccount.Utility
                 status = true;
                 return status;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return status;
             }

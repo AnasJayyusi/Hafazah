@@ -347,9 +347,7 @@
     <Content Include="Styles\font-awesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Styles\font-awesome\webfonts\fa-solid-900.woff" />
     <Content Include="Styles\font-awesome\webfonts\fa-solid-900.woff2" />
-    <Content Include="Views\Members\Create.cshtml" />
     <Content Include="Views\Members\Delete.cshtml" />
-    <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\ThankYou.cshtml" />
@@ -380,11 +378,12 @@
     <Content Include="Views\Levels\Details.cshtml" />
     <Content Include="Views\Levels\Edit.cshtml" />
     <Content Include="Views\Levels\Index.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\libs\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
