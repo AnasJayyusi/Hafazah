@@ -2,6 +2,7 @@
 using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model;
+using Hafazah.Model.Enums;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -22,6 +23,7 @@ namespace Hafazah.Controllers
         private ApplicationUserManager _userManager;
         private HafazahDbContext _db;
 
+        #region Get Set + Ctor
         public AccountController()
         {
             _db = new HafazahDbContext();
@@ -56,77 +58,20 @@ namespace Hafazah.Controllers
                 _userManager = value;
             }
         }
+        #endregion
 
-        //
-        // GET: /Account/Login
-
-        [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("MobileLogin")]
-        public async Task<JsonResult> MobileLogin(string param, string pass)
-        {
-            string actualUsername = GetUserNameFromEmailOrPhoneNumber(param);
-
-            var result = await SignInManager.PasswordSignInAsync(actualUsername, pass, false, shouldLockout: false);
-            if (result == SignInStatus.Success)
-            {
-                Member userInfo = _db.Members
-                                            .Include(x => x.Instrcutor)
-                                            .Include(x => x.Levels)
-                                            .SingleOrDefault(x => x.Username.ToLower() == param.ToLower());
-
-                if (User.IsInRole("Admin"))
-                    userInfo.Role = RoleEnum.Admin;
-                if (User.IsInRole("Instrcutor"))
-                    userInfo.Role = RoleEnum.Instrcutor;
-                if (User.IsInRole("Student"))
-                    userInfo.Role = RoleEnum.Student;
-
-
-                return Json(userInfo, JsonRequestBehavior.AllowGet);
-            }
-            return Json("UnAuthorized", JsonRequestBehavior.AllowGet);
-        }
-
-
-        private bool IsValidEmail(string email)
-        {
-            var trimmedEmail = email.Trim();
-
-            if (trimmedEmail.EndsWith("."))
-            {
-                return false; // suggested by @TK-421
-            }
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == trimmedEmail;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        //
-        // POST: /Account/Login    
+        #region Main Microsoft Methods 
         [HttpPost]
         [AllowAnonymous]
+        [Route("Login")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             string actualUsername = GetUserNameFromEmailOrPhoneNumber(model.UserName);
+
             // This doesn't count login failures towards account lockout    
             // To enable password failures to trigger account lockout, change to shouldLockout: true    
             var result = await SignInManager.PasswordSignInAsync(actualUsername, model.Password, model.RememberMe, shouldLockout: false);
@@ -140,25 +85,19 @@ namespace Hafazah.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    //ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
         }
 
-        private string GetUserNameFromEmailOrPhoneNumber(string param)
+        [AllowAnonymous]
+        [Route("Login")]
+        public ActionResult Login(string returnUrl)
         {
-            var member = new Member();
-            if (param != "Administrator")
-            {
-                member = _db.Members
-                                        .FirstOrDefault(x => x.Email.Equals(param) || x.PhoneNumber.Equals(param));
-
-            }
-
-            return member == null ? param : member.Username;
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
         }
-        //    
-        // GET: /Account/VerifyCode    
+
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
@@ -170,8 +109,7 @@ namespace Hafazah.Controllers
             }
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
-        //
-        // POST: /Account/VerifyCode
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -200,8 +138,6 @@ namespace Hafazah.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -210,8 +146,6 @@ namespace Hafazah.Controllers
             return View();
         }
 
-        //
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -254,28 +188,6 @@ namespace Hafazah.Controllers
         }
 
 
-        public async Task<ActionResult> ApproveNewMember(Member data)
-        {
-            var user = new ApplicationUser { UserName = data.Username, Email = data.Email, PhoneNumber = data.PhoneNumber };
-            var result = await UserManager.CreateAsync(user, data.SuggestPassword);
-            if (result.Succeeded)
-            {
-                //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771    
-                // Send an email with this link    
-                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);    
-                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);    
-                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
-                //Assign Role to user Here       
-                await this.UserManager.AddToRoleAsync(user.Id, "Student");
-                //Ends Here
-                _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
-                _db.SaveChanges();
-                return RedirectToAction("Index", "Members");
-            }
-            return RedirectToAction("SomeErrorHappend", "Member");
-        }
-        // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
@@ -287,16 +199,12 @@ namespace Hafazah.Controllers
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
-        // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -325,25 +233,18 @@ namespace Hafazah.Controllers
         }
 
 
-
-        //
-        // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
 
-        //
-        // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
 
-        //
-        // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -368,16 +269,12 @@ namespace Hafazah.Controllers
             return View();
         }
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -387,8 +284,6 @@ namespace Hafazah.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        //
-        // GET: /Account/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -402,8 +297,6 @@ namespace Hafazah.Controllers
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
-        // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -422,8 +315,6 @@ namespace Hafazah.Controllers
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
-        //
-        // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -452,8 +343,6 @@ namespace Hafazah.Controllers
             }
         }
 
-        //
-        // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -490,8 +379,6 @@ namespace Hafazah.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -500,8 +387,6 @@ namespace Hafazah.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
@@ -527,8 +412,9 @@ namespace Hafazah.Controllers
 
             base.Dispose(disposing);
         }
+        #endregion
 
-        #region Helpers
+        #region Helpers Microsoft Methods
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -584,6 +470,73 @@ namespace Hafazah.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+        }
+        #endregion
+
+        #region Custom Methods
+        // Mobile APIs
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("MobileLogin")]
+        public async Task<JsonResult> MobileLogin(string user, string pass)
+        {
+            string actualUsername = GetUserNameFromEmailOrPhoneNumber(user);
+
+            var result = await SignInManager.PasswordSignInAsync(actualUsername, pass, false, shouldLockout: false);
+            if (result == SignInStatus.Success)
+            {
+                Member userInfo = _db.Members
+                                            .Include(x => x.Instrcutor)
+                                            .Include(x => x.Levels)
+                                            .SingleOrDefault(x => x.Username.ToLower() == actualUsername.ToLower());
+
+                if (User.IsInRole("Admin"))
+                    userInfo.Role = RoleEnum.Admin;
+
+                if (User.IsInRole("Instrcutor"))
+                    userInfo.Role = RoleEnum.Instrcutor;
+
+                if (User.IsInRole("Student"))
+                    userInfo.Role = RoleEnum.Student;
+
+
+                return Json(userInfo, JsonRequestBehavior.AllowGet);
+            }
+            return Json("UnAuthorized", JsonRequestBehavior.AllowGet);
+        }
+
+        // Helpers
+        private string GetUserNameFromEmailOrPhoneNumber(string user)
+        {
+            if (Users.Administrator.ToString() == user)
+                return user;
+
+            Member member = _db.Members.SingleOrDefault(x => x.Email.Equals(user) || x.PhoneNumber.Equals(user));
+
+            return member == null ? user : member.Username;
+        }
+
+        public async Task<ActionResult> ApproveNewMember(Member data)
+        {
+            var user = new ApplicationUser { UserName = data.Username, Email = data.Email, PhoneNumber = data.PhoneNumber };
+            var result = await UserManager.CreateAsync(user, data.SuggestPassword);
+            if (result.Succeeded)
+            {
+                #region To Enable Confirmation
+                //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771    
+                // Send an email with this link    
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);    
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);    
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
+                //Assign Role to user Here
+                #endregion
+                await UserManager.AddToRoleAsync(user.Id, "Student");
+                _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Members");
+            }
+            return RedirectToAction("SomeErrorHappend", "Member");
         }
         #endregion
     }

@@ -7,7 +7,9 @@ namespace Hafazah.Controllers
     public class ControlPanelController : BaseController
     {
         // GET: ControlPanel
+
         [Route("ControlPanel")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();

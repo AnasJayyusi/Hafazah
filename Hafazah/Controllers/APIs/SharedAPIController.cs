@@ -19,6 +19,11 @@ namespace Hafazah.Controllers.APIs
             _svc = new SharedServices();
         }
 
+        #region Login 
+
+      
+        #endregion
+
         [HttpGet]
         [Route("GetRegistrationStatus")]
         public IHttpActionResult GetRegistrationStatus()
@@ -74,7 +79,6 @@ namespace Hafazah.Controllers.APIs
             return Ok(token);
         }
 
-
         [HttpGet]
         [Route("SetTokenByUserName")]
         public IHttpActionResult SetTokenByUserName(string username, string token)
@@ -92,7 +96,6 @@ namespace Hafazah.Controllers.APIs
             return Ok(@"{'isSucceeded':'true'}");
         }
 
-
         [HttpGet]
         [Route("GetDDLsOptions")]
         public IHttpActionResult GetDDLsOptions()
@@ -107,7 +110,6 @@ namespace Hafazah.Controllers.APIs
                 return InternalServerError(ex);
             }
         }
-
 
         [HttpGet]
         [Route("GettingLazyMemberWithCounter")]
@@ -146,7 +148,7 @@ namespace Hafazah.Controllers.APIs
         {
             try
             {
-                return Ok(_svc.UpdateProfilePicture(username,imgBase64));
+                return Ok(_svc.UpdateProfilePicture(username, imgBase64));
             }
             catch (Exception ex)
             {

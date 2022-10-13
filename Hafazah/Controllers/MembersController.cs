@@ -33,14 +33,15 @@ namespace Hafazah.Controllers
         {
             if (IsLoggedIn())
             {
-                InitializationValues();
-                FillingDDL();
-                SetRegistrationStatus();
-                return View(GetFilteredList(filterMembers, phoneNumber));
-            }
-            else if (!User.IsInRole("Admin"))
-            {
-                return RedirectToAction("UnAuthorized");
+                if (User.IsInRole("Admin"))
+                {
+                    InitializationValues();
+                    FillingDDL();
+                    SetRegistrationStatus();
+                    return View(GetFilteredList(filterMembers, phoneNumber));
+                }
+                else
+                    return RedirectToAction("UnAuthorized");
             }
             else
                 return RedirectToAction("Login", "Account");
@@ -77,6 +78,7 @@ namespace Hafazah.Controllers
             }
         }
 
+        [Route("UnAuthorized")]
         public ActionResult UnAuthorized()
         {
             return View();

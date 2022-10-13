@@ -94,6 +94,7 @@
     <Compile Include="Entities\Program\Level.cs" />
     <Compile Include="Entities\Users\Instructor.cs" />
     <Compile Include="Entities\Users\Member.cs" />
+    <Compile Include="Enums\SharedEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

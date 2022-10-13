@@ -147,15 +147,12 @@ namespace Hafazah.Services
             if (IsUserNameExists(m.Username.ToLower()))
                 errors.Add("User already token");
 
-            if (IsValidEmail(m.Email.ToLower()))
-                errors.Add("Email not valid");
 
             if (IsEmailExists(m.Email.ToLower()))
                 errors.Add("Email already exists");
-            
+
             return errors;
         }
-
 
         private bool IsUserNameExists(string username)
         {
@@ -171,24 +168,6 @@ namespace Hafazah.Services
             return user != null;
         }
 
-        private bool IsValidEmail(string email)
-        {
-            var trimmedEmail = email.Trim();
-
-            if (trimmedEmail.EndsWith("."))
-            {
-                return false; // suggested by @TK-421
-            }
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == trimmedEmail;
-            }
-            catch
-            {
-                return false;
-            }
-        }
         #endregion
     }
 }
