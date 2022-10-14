@@ -26,7 +26,6 @@ namespace Hafazah.Controllers
             return RedirectToAction("Index");
         }
 
-
         // GET: Members
         [Route("Dashboard")]
         public ActionResult Index(string filterMembers = "Registered Members", string phoneNumber = "")
@@ -105,8 +104,6 @@ namespace Hafazah.Controllers
             return query.ToList();
         }
 
-
-        // GET: Members/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -140,7 +137,6 @@ namespace Hafazah.Controllers
             //    await accountController.AddNewMember(member.Username, member.Email, member.SuggestPassword="P@ssword");
         }
 
-        // GET: Members/Create
         [Route("Registration")]
         public ActionResult Create()
         {
@@ -153,9 +149,6 @@ namespace Hafazah.Controllers
             return View();
         }
 
-        // POST: Members/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Submit(Member member)
@@ -191,7 +184,6 @@ namespace Hafazah.Controllers
             return user != null;
         }
 
-        // GET: Members/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -206,9 +198,6 @@ namespace Hafazah.Controllers
             return View(member);
         }
 
-        // POST: Members/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,SecondName,ThirdName,LastName,Gender,BirthDate,Country,Address,EducationLevel,JobTitle,Username,PhoneNumber,Email,QuranMemorized,InterviewDate,KnownFrom,IsActive,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Member member)
@@ -222,7 +211,6 @@ namespace Hafazah.Controllers
             return View(member);
         }
 
-        // GET: Members/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -237,7 +225,6 @@ namespace Hafazah.Controllers
             return View(member);
         }
 
-        // POST: Members/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -247,7 +234,6 @@ namespace Hafazah.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
-
 
         protected override void Dispose(bool disposing)
         {

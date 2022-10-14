@@ -139,53 +139,35 @@ namespace Hafazah.Controllers
         }
 
         [AllowAnonymous]
+        [Route("RegisterNewUser")]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(_db.Roles.Where(u => !u.Name.Contains("Admin"))
-                                   .ToList(), "Name", "Name");
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
+        [Route("RegisterNewUser")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            model.ConfirmPassword = model.Password;
+            model.UserRoles = RoleEnum.Instrcutor.ToString();
+            if (!string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.Password))
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(_db));
-                if (!roleManager.RoleExists("Admin"))
-                {
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                    role.Name = "Admin";
-                    roleManager.Create(role);
-                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");  
-                    string body = string.Empty;
-                    using (StreamReader reader = new StreamReader(Server.MapPath("~/MailTemplate/AccountConfirmation.html")))
-                    {
-                        body = reader.ReadToEnd();
-                    }
-                    body = body.Replace("{ConfirmationLink}", callbackUrl);
-                    body = body.Replace("{UserName}", model.Email);
-                    bool IsSendEmail = SendEmail.EmailSend(model.Email, "Confirm your account", body, true);
-                    if (IsSendEmail)
-                        return RedirectToAction("Login", "Account");
+                    await UserManager.AddToRoleAsync(user.Id, RoleEnum.Instrcutor.ToString());
+                    return RedirectToAction("Index", "Members");
                 }
-                AddErrors(result);
+                else
+                    return View("SomeErrorHappend", "Members");
             }
-            // If we got this far, something failed, redisplay form  
-            //return View(model);  
-            return RedirectToAction("Login", "Account");
+            return View();
         }
+
 
 
         [AllowAnonymous]
@@ -531,13 +513,29 @@ namespace Hafazah.Controllers
                 // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
                 //Assign Role to user Here
                 #endregion
-                await UserManager.AddToRoleAsync(user.Id, "Student");
+                await UserManager.AddToRoleAsync(user.Id, RoleEnum.Student.ToString());
                 _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Members");
             }
             return RedirectToAction("SomeErrorHappend", "Member");
         }
+
+        private async Task SendEmailConfirmation(ApplicationUser user, RegisterViewModel model)
+        {
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");  
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/MailTemplate/AccountConfirmation.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{ConfirmationLink}", callbackUrl);
+            body = body.Replace("{UserName}", model.Email);
+            bool IsSendEmail = SendEmail.EmailSend(model.Email, "Confirm your account", body, true);
+        }
+
         #endregion
     }
 }
