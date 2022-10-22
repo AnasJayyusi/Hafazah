@@ -1,7 +1,7 @@
 ﻿
 namespace Hafazah.Model.Entities
 {
-    public class Localization : IBaseEntity
+    public class Localization : BaseEntity
     {
         public string ResourceId { get; set; }
         public string ResourceSet { get; set; }

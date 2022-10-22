@@ -1,6 +1,7 @@
 ﻿using Hafazah.Model.Entities;
 using Hafazah.Model.Entities.Program;
 using Hafazah.Model.Entities.Users;
+using Hafazah.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hafazah.Model
 {
-    public class Member : IBaseEntity
+    public class Member : BaseEntity
     {
         #region Main Information
         [Required]
@@ -69,7 +70,7 @@ namespace Hafazah.Model
         public string KnownFrom { get; set; }
 
         #region Releated To The Program
-        public ProgramTypeEnum ProgramType { get; set; }
+        public ProgramType ProgramType { get; set; }
         public string CurrentPath { get; set; }
         public int? CurrentLevel { get; set; }
         public int? WarningCounter { get; set; }
@@ -88,8 +89,6 @@ namespace Hafazah.Model
         #region RelationShips
         public int? InstrcutorId { get; set; }
         public Instructor Instrcutor { get; set; }
-        public List<Level> Levels { get; set; }
-
         #endregion
 
         #region Not Mapped Member
@@ -108,27 +107,12 @@ namespace Hafazah.Model
             }
         }
         [NotMapped]
-        public RoleEnum Role { get; set; }
+        public Role Role { get; set; }
         #endregion
 
     }
 }
 
-public enum Gender
-{
-    Female,
-    Male
-}
 
-public enum ProgramTypeEnum
-{
-    Hafazah,
-    Fursan
-}
 
-public enum RoleEnum
-{
-    Admin,
-    Instrcutor,
-    Student
-}
+

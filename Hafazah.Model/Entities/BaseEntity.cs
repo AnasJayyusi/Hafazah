@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Hafazah.Model.Entities
 {
-    public class IBaseEntity
+    public class BaseEntity
     {
         [Key]
         public int Id { get; set; }

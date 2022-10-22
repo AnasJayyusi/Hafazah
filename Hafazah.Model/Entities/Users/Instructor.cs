@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Hafazah.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hafazah.Model.Entities.Users
 {
-    public class Instructor : IBaseEntity
+    public class Instructor : BaseEntity
     {
         [Required]
         [MaxLength(128)]

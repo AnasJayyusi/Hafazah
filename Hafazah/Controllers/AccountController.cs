@@ -152,14 +152,14 @@ namespace Hafazah.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             model.ConfirmPassword = model.Password;
-            model.UserRoles = RoleEnum.Instrcutor.ToString();
+            model.UserRoles = Role.Instrcutor.ToString();
             if (!string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.Email) && !string.IsNullOrEmpty(model.Password))
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, RoleEnum.Instrcutor.ToString());
+                    await UserManager.AddToRoleAsync(user.Id, Role.Instrcutor.ToString());
                     return RedirectToAction("Index", "Members");
                 }
                 else
@@ -469,17 +469,16 @@ namespace Hafazah.Controllers
             {
                 Member userInfo = _db.Members
                                             .Include(x => x.Instrcutor)
-                                            .Include(x => x.Levels)
                                             .SingleOrDefault(x => x.Username.ToLower() == actualUsername.ToLower());
 
                 if (User.IsInRole("Admin"))
-                    userInfo.Role = RoleEnum.Admin;
+                    userInfo.Role = Role.Admin;
 
                 if (User.IsInRole("Instrcutor"))
-                    userInfo.Role = RoleEnum.Instrcutor;
+                    userInfo.Role = Role.Instrcutor;
 
                 if (User.IsInRole("Student"))
-                    userInfo.Role = RoleEnum.Student;
+                    userInfo.Role = Role.Student;
 
 
                 return Json(userInfo, JsonRequestBehavior.AllowGet);
@@ -490,7 +489,7 @@ namespace Hafazah.Controllers
         // Helpers
         private string GetUserNameFromEmailOrPhoneNumber(string user)
         {
-            if (Users.Administrator.ToString() == user)
+            if (MagicString.Administrator.ToString() == user)
                 return user;
 
             Member member = _db.Members.SingleOrDefault(x => x.Email.Equals(user) || x.PhoneNumber.Equals(user));
@@ -513,7 +512,7 @@ namespace Hafazah.Controllers
                 // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
                 //Assign Role to user Here
                 #endregion
-                await UserManager.AddToRoleAsync(user.Id, RoleEnum.Student.ToString());
+                await UserManager.AddToRoleAsync(user.Id, Role.Student.ToString());
                 _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Members");

@@ -86,6 +86,10 @@
     <Compile Include="Migrations\202210111011069_AddLocalizationTable.Designer.cs">
       <DependentUpon>202210111011069_AddLocalizationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210222253373_AddProgramStractureTables.cs" />
+    <Compile Include="Migrations\202210222253373_AddProgramStractureTables.Designer.cs">
+      <DependentUpon>202210222253373_AddProgramStractureTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210111011069_AddLocalizationTable.resx">
       <DependentUpon>202210111011069_AddLocalizationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210222253373_AddProgramStractureTables.resx">
+      <DependentUpon>202210222253373_AddProgramStractureTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

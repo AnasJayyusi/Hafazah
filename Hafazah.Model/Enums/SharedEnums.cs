@@ -6,13 +6,44 @@ using System.Threading.Tasks;
 
 namespace Hafazah.Model.Enums
 {
-    public enum ErrorEnum
-    {
 
+    public enum ProgramType
+    {
+        Hafazah,
+        Fursan
     }
 
-    public enum Users
+    public enum Role
+    {
+        Admin,
+        Instrcutor,
+        Student
+    }
+
+    public enum Gender
+    {
+        Female,
+        Male
+    }
+
+
+    public enum MagicString
     {
         Administrator
     }
+
+
+    enum ErrorCode : ushort
+    {
+        None = 0,
+        Unknown = 1,
+        ConnectionLost = 100,
+        OutlierReading = 200
+    }
+
+
+
+
+
+
 }

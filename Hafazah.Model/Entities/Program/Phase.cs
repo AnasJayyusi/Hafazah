@@ -1,8 +1,8 @@
 ﻿namespace Hafazah.Model.Entities.Program
 {
-    public class Level : Common
+    public class Phase : Common
     {
-        public int? LevelNumber { get; set; }
+        public int? PhaseNumber { get; set; }
 
         #region RelationShips
         public int PathId { get; set; }
