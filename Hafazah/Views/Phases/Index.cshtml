@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Hafazah.Model.Entities.Program.Level>
+﻿@model IEnumerable<Hafazah.Model.Entities.Program.Phase>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Path.Name)
+            @Html.DisplayName("PhaseNumber")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LevelNumber)
+            @Html.DisplayNameFor(model => model.PhaseNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalPageNumber)
@@ -39,6 +39,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+
         <th></th>
     </tr>
 
@@ -48,7 +49,7 @@
             @Html.DisplayFor(modelItem => item.Path.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LevelNumber)
+            @Html.DisplayFor(modelItem => item.PhaseNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalPageNumber)
@@ -71,6 +72,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

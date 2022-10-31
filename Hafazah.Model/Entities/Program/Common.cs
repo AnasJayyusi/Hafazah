@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hafazah.Model.Entities.Program
 {
@@ -11,11 +13,13 @@ namespace Hafazah.Model.Entities.Program
         public string SurahFrom { get; set; }
         [MaxLength(50)]
         public string SurahTo { get; set; }
-        [MaxLength(50)]
-        public string QuranicVerseFrom { get; set; }
-        [MaxLength(50)]
-        public string QuranicVerseTo { get; set; }
         public int MaxNumberOfExcuses { get; set; }
         public string Description { get; set; }
+        public int HomeWorkTotalCount { get; set; }
+        
+        #region RelationShips
+        public int PathId { get; set; }
+        public Path Path { get; set; }
+        #endregion
     }
 }

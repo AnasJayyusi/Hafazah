@@ -90,6 +90,10 @@
     <Compile Include="Migrations\202210222253373_AddProgramStractureTables.Designer.cs">
       <DependentUpon>202210222253373_AddProgramStractureTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202210312106481_AddHomeWorkTables.cs" />
+    <Compile Include="Migrations\202210312106481_AddHomeWorkTables.Designer.cs">
+      <DependentUpon>202210312106481_AddHomeWorkTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202210222253373_AddProgramStractureTables.resx">
       <DependentUpon>202210222253373_AddProgramStractureTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202210312106481_AddHomeWorkTables.resx">
+      <DependentUpon>202210312106481_AddHomeWorkTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

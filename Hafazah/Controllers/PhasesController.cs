@@ -6,118 +6,117 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model.Entities.Program;
 
 namespace Hafazah.Controllers
 {
-    public class LevelsController : BaseController
+    public class PhasesController : Controller
     {
         private HafazahDbContext db = new HafazahDbContext();
 
-        // GET: Levels
+        // GET: Phases
         public ActionResult Index()
         {
-            var levels = db.Levels.Include(l => l.Path);
-            return View(levels.ToList());
+            var phases = db.Phases.Include(p => p.Path);
+            return View(phases.ToList());
         }
 
-        // GET: Levels/Details/5
+        // GET: Phases/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Level level = db.Levels.Find(id);
-            if (level == null)
+            Phase phase = db.Phases.Find(id);
+            if (phase == null)
             {
                 return HttpNotFound();
             }
-            return View(level);
+            return View(phase);
         }
 
-        // GET: Levels/Create
+        // GET: Phases/Create
         public ActionResult Create()
         {
             ViewBag.PathId = new SelectList(db.Paths, "Id", "Name");
             return View();
         }
 
-        // POST: Levels/Create
+        // POST: Phases/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LevelNumber,PathId,TotalPageNumber,PageFrom,PageTo,SurahFrom,SurahTo,QuranicVerseFrom,QuranicVerseTo,MaxNumberOfExcuses,Description,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Level level)
+        public ActionResult Create([Bind(Include = "Id,PhaseNumber,PathId,TotalPageNumber,PageFrom,PageTo,SurahFrom,SurahTo,QuranicVerseFrom,QuranicVerseTo,MaxNumberOfExcuses,Description,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Phase phase)
         {
             if (ModelState.IsValid)
             {
-                db.Levels.Add(level);
+                db.Phases.Add(phase);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", level.PathId);
-            return View(level);
+            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", phase.PathId);
+            return View(phase);
         }
 
-        // GET: Levels/Edit/5
+        // GET: Phases/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Level level = db.Levels.Find(id);
-            if (level == null)
+            Phase phase = db.Phases.Find(id);
+            if (phase == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", level.PathId);
-            return View(level);
+            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", phase.PathId);
+            return View(phase);
         }
 
-        // POST: Levels/Edit/5
+        // POST: Phases/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LevelNumber,PathId,TotalPageNumber,PageFrom,PageTo,SurahFrom,SurahTo,QuranicVerseFrom,QuranicVerseTo,MaxNumberOfExcuses,Description,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Level level)
+        public ActionResult Edit([Bind(Include = "Id,PhaseNumber,PathId,TotalPageNumber,PageFrom,PageTo,SurahFrom,SurahTo,QuranicVerseFrom,QuranicVerseTo,MaxNumberOfExcuses,Description,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Phase phase)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(level).State = EntityState.Modified;
+                db.Entry(phase).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", level.PathId);
-            return View(level);
+            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name", phase.PathId);
+            return View(phase);
         }
 
-        // GET: Levels/Delete/5
+        // GET: Phases/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Level level = db.Levels.Find(id);
-            if (level == null)
+            Phase phase = db.Phases.Find(id);
+            if (phase == null)
             {
                 return HttpNotFound();
             }
-            return View(level);
+            return View(phase);
         }
 
-        // POST: Levels/Delete/5
+        // POST: Phases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Level level = db.Levels.Find(id);
-            db.Levels.Remove(level);
+            Phase phase = db.Phases.Find(id);
+            db.Phases.Remove(phase);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

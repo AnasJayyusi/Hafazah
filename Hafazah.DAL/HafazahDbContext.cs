@@ -38,7 +38,6 @@ namespace Hafazah.DAL
 
         // DbSet here represent table in database
         public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<EducationLevel> EducationLevels { get; set; }
         public virtual DbSet<LevelName> LevelNames { get; set; }
@@ -46,7 +45,12 @@ namespace Hafazah.DAL
         public virtual DbSet<GlobalValue> GlobalValues { get; set; }
         public virtual DbSet<Localization> Localizations { get; set; }
 
-        public System.Data.Entity.DbSet<Hafazah.Model.Entities.Users.Instructor> Instructors { get; set; }
+        public virtual DbSet<Model.Entities.Users.Instructor> Instructors { get; set; }
+                
+        public virtual DbSet<Path> Paths { get; set; }
+                
+        public virtual DbSet<Level> Levels { get; set; }
+        public virtual DbSet<Phase> Phases { get; set; }
     }
 }
 

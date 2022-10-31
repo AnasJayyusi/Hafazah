@@ -92,9 +92,11 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Localizations.cs" />
     <Compile Include="Entities\Program\Common.cs" />
+    <Compile Include="Entities\Program\LevelHomework.cs" />
     <Compile Include="Entities\Program\Level.cs" />
     <Compile Include="Entities\Program\Path.cs" />
     <Compile Include="Entities\Program\Phase.cs" />
+    <Compile Include="Entities\Program\PhaseHomework.cs" />
     <Compile Include="Entities\Users\Instructor.cs" />
     <Compile Include="Entities\Users\Member.cs" />
     <Compile Include="Enums\SharedEnums.cs" />
