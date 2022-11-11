@@ -8,6 +8,7 @@
         public int? AbilityConnectTo { get; set; }
         public int? ReviewFrom { get; set; }
         public int? ReviewTo { get; set; }
+        public int OrderNumber { get; set; }
 
         #region RelationShips
         public int? LevelId { get; set; }

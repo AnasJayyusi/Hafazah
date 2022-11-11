@@ -33,7 +33,10 @@
         <th>
             @Html.DisplayNameFor(model => model.ProgramType)
         </th>
-        <th></th>
+
+        <th>
+            @Html.Label("Actions")
+        </th>
     </tr>
 
 @foreach (var item in Model) {

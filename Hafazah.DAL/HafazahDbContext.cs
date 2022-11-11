@@ -52,9 +52,9 @@ namespace Hafazah.DAL
         public virtual DbSet<Level> Levels { get; set; }
         public virtual DbSet<Phase> Phases { get; set; }
 
-        public System.Data.Entity.DbSet<Hafazah.Model.Entities.Program.PhaseHomework> PhaseHomeworks { get; set; }
+        public DbSet<PhaseHomework> PhaseHomeworks { get; set; }
 
-        public System.Data.Entity.DbSet<Hafazah.Model.Entities.Program.LevelHomework> LevelHomeworks { get; set; }
+        public DbSet<LevelHomework> LevelHomeworks { get; set; }
     }
 }
 

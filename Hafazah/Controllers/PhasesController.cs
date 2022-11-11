@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Hafazah.DAL;
+using Hafazah.Model.Entities.Program;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Hafazah.DAL;
-using Hafazah.Model.Entities.Program;
 
 namespace Hafazah.Controllers
 {
@@ -18,7 +16,7 @@ namespace Hafazah.Controllers
         // GET: Phases
         public ActionResult Index()
         {
-            var phases = db.Phases.Include(p => p.Path);
+            var phases = db.Phases.Include(p => p.Path).Where(p => p.Path.ProgramType == Model.Enums.ProgramType.Hafazah);
             return View(phases.ToList());
         }
 
@@ -40,7 +38,7 @@ namespace Hafazah.Controllers
         // GET: Phases/Create
         public ActionResult Create()
         {
-            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name");
+            ViewBag.PathId = new SelectList(db.Paths.Where(p => p.ProgramType == Model.Enums.ProgramType.Hafazah), "Id", "Name");
             return View();
         }
 
@@ -110,6 +108,7 @@ namespace Hafazah.Controllers
             return View(phase);
         }
 
+
         // POST: Phases/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -129,5 +128,50 @@ namespace Hafazah.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region Homeworks Section
+        public ActionResult Homeworks(int? id)
+        {
+            ViewBag.BindPhaseId = id;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var homeworks = db.PhaseHomeworks.Where(h => h.PhaseId == id).ToList();
+            if (homeworks == null)
+            {
+                return HttpNotFound();
+            }
+            return View(homeworks);
+        }
+
+        [HttpGet]
+        public JsonResult GetHomeworks(int phaseId)
+        {
+            var homeworks = db.PhaseHomeworks.Where(l => l.PhaseId == phaseId).ToList();
+            return Json(homeworks, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult InsertHomeWorks(List<PhaseHomework> homeworks)
+        {
+            //Truncate Table to delete all old records.
+            db.Database.ExecuteSqlCommand("DELETE FROM [PhaseHomeworks] WHERE PhaseId =" + homeworks[0].PhaseId);
+            db.SaveChanges();
+            //Check for NULL.
+            if (homeworks == null)
+            {
+                homeworks = new List<PhaseHomework>();
+            }
+
+            //Loop and insert records.
+            foreach (var homework in homeworks)
+            {
+                db.PhaseHomeworks.Add(homework);
+            }
+            int insertedRecords = db.SaveChanges();
+            return Json(insertedRecords);
+        }
+        #endregion
     }
 }
