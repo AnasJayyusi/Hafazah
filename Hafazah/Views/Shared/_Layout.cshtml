@@ -9,23 +9,23 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-        .btn {
+/*        .btn {
             background-color: DodgerBlue;
             border: none;
             color: white;
             padding: 12px 16px;
             font-size: 16px;
             cursor: pointer;
-        }
+        }*/
 
-        a {
+    /*    a {
             color: black
-        }
+        }*/
 
         /* Darker background on mouse-over */
-        .btn:hover {
+      /*  .btn:hover {
             background-color: RoyalBlue;
-        }
+        }*/
     </style>
 </head>
 
@@ -33,9 +33,9 @@
     <div style="background-color: #266d13; " class="navbar navbar-inverse navbar-fixed-top">
         <div>
             <div>
-                <a class="navbar-brand" href="~/" style="padding-left: 100px;" >
+                <a class="navbar-brand" href="~/" style="padding-left: 100px;">
                     <span class="glyphicon glyphicon-home">Home</span>
-                    
+
                 </a>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -51,6 +51,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

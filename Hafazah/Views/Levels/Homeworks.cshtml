@@ -16,6 +16,7 @@
         <thead>
             <tr>
                 <th>OrderNumber</th>
+                <th>SurahName</th>
                 <th>RequiredMemorizedFrom</th>
                 <th>RequiredMemorizedTo</th>
                 <th>AbilityConnectFrom</th>
@@ -27,39 +28,43 @@
         <tbody>
             @foreach (var homework in Model)
             {
-                <tr>
-                    <td>@homework.OrderNumber</td>
-                    <td>@homework.RequiredMemorizedFrom</td>
-                    <td>@homework.RequiredMemorizedTo</td>
-                    <td>@homework.AbilityConnectFrom</td>
-                    <td>@homework.AbilityConnectTo</td>
-                    <td>@homework.ReviewFrom</td>
-                    <td>@homework.ReviewTo</td>
-                    <td><input type="button" class="btn-danger btn-sm" value="Remove" onclick="Remove(this)" /></td>
-                </tr>
+            <tr>
+                <td>@homework.OrderNumber</td>
+                <td>@homework.SurahName</td>
+                <td>@homework.RequiredMemorizedFrom</td>
+                <td>@homework.RequiredMemorizedTo</td>
+                <td>@homework.AbilityConnectFrom</td>
+                <td>@homework.AbilityConnectTo</td>
+                <td>@homework.ReviewFrom</td>
+                <td>@homework.ReviewTo</td>
+                <td><input type="button" class="btn btn-danger" value="Remove" onclick="Remove(this)" /></td>
+                <td> @Html.ActionLink("Edit", "EditHomeWork", new { id = homework.Id }, htmlAttributes: new { @class = "btn btn-warning" }) </td>
+            </tr>
             }
         </tbody>
         <tfoot>
             <tr>
                 <td><input class="form-control" type="text" id="txtOrderNumber" /></td>
+                <td><input class="form-control" type="text" id="txtSurahName" /></td>
                 <td><input class="form-control" type="text" id="txtRequiredMemorizedFrom" /></td>
                 <td><input class="form-control" type="text" id="txtRequiredMemorizedTo" /></td>
                 <td><input class="form-control" type="text" id="txtAbilityConnectFrom" /></td>
                 <td><input class="form-control" type="text" id="txtAbilityConnectTo" /></td>
                 <td><input class="form-control" type="text" id="txtReviewFrom" /></td>
                 <td><input class="form-control" type="text" id="txtReviewTo" /></td>
-                <td>  <input type="button" class="btn-primary" id="btnAdd" value="Add" /></td>
+                <td><input type="button" class="btn btn-primary" id="btnAdd" value="Add" /></td>
             </tr>
         </tfoot>
     </table>
     <br />
-    <input type="button" id="btnSave" class="btn-success" value="Save All" />
+    <input type="button" id="btnSave" class="btn btn-success  btn-lg" value="Save All" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script type="text/javascript">
         $("body").on("click", "#btnAdd", function () {
             //Reference the Name and Country TextBoxes.
             var txtOrderNumber = $("#txtOrderNumber");
+            var txtSurahName = $("#txtSurahName");
             var txtRequiredMemorizedFrom = $("#txtRequiredMemorizedFrom");
             var txtRequiredMemorizedTo = $("#txtRequiredMemorizedTo");
             var txtAbilityConnectFrom = $("#txtAbilityConnectFrom");
@@ -77,9 +82,13 @@
             var cell = $(row.insertCell(-1));
             cell.html(txtOrderNumber.val());
 
+            //Add SurahName cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtSurahName.val());
+
             //Add RequiredMemorizedTo cell.
             cell = $(row.insertCell(-1));
-            cell.html(txtRequiredMemorizedTo.val());
+            cell.html(txtRequiredMemorizedFrom.val());
 
             //Add RequiredMemorizedTo cell.
             cell = $(row.insertCell(-1));
@@ -97,7 +106,6 @@
             cell = $(row.insertCell(-1));
             cell.html(txtReviewFrom.val());
 
-
             //Add ReviewTo cell.
             cell = $(row.insertCell(-1));
             cell.html(txtReviewTo.val());
@@ -107,12 +115,13 @@
             var btnRemove = $("<input />");
             btnRemove.attr("type", "button");
             btnRemove.attr("onclick", "Remove(this);");
-            btnRemove.attr("class", "btn-danger btn-sm");
+            btnRemove.attr("class", "btn btn-danger");
             btnRemove.val("Remove");
             cell.append(btnRemove);
 
             //Clear the TextBoxes.
             txtOrderNumber.val("");
+            txtSurahName.val("");
             txtRequiredMemorizedFrom.val("");
             txtRequiredMemorizedTo.val("");
             txtAbilityConnectFrom.val("");
@@ -142,12 +151,13 @@
                 var row = $(this);
                 var homework = {};
                 homework.OrderNumber = row.find("TD").eq(0).html();
-                homework.RequiredMemorizedFrom = row.find("TD").eq(1).html();
-                homework.RequiredMemorizedTo = row.find("TD").eq(2).html();
-                homework.AbilityConnectFrom = row.find("TD").eq(3).html();
-                homework.AbilityConnectTo = row.find("TD").eq(4).html();
-                homework.ReviewFrom = row.find("TD").eq(5).html();
-                homework.ReviewTo = row.find("TD").eq(6).html();
+                homework.SurahName = row.find("TD").eq(1).html();
+                homework.RequiredMemorizedFrom = row.find("TD").eq(2).html();
+                homework.RequiredMemorizedTo = row.find("TD").eq(3).html();
+                homework.AbilityConnectFrom = row.find("TD").eq(4).html();
+                homework.AbilityConnectTo = row.find("TD").eq(5).html();
+                homework.ReviewFrom = row.find("TD").eq(6).html();
+                homework.ReviewTo = row.find("TD").eq(7).html();
                 homework.LevelId=@ViewBag.BindLevelId
                 homeworks.push(homework);
             });

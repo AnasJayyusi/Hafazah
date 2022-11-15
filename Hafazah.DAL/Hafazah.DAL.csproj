@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202211111257520_AddOrderNumber.Designer.cs">
       <DependentUpon>202211111257520_AddOrderNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211152143476_AddSurahName.cs" />
+    <Compile Include="Migrations\202211152143476_AddSurahName.Designer.cs">
+      <DependentUpon>202211152143476_AddSurahName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211111257520_AddOrderNumber.resx">
       <DependentUpon>202211111257520_AddOrderNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211152143476_AddSurahName.resx">
+      <DependentUpon>202211152143476_AddSurahName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

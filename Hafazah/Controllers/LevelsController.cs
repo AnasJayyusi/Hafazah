@@ -173,6 +173,36 @@ namespace Hafazah.Controllers
             int insertedRecords = db.SaveChanges();
             return Json(insertedRecords);
         }
+
+        public ActionResult EditHomeWork(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var homework = db.LevelHomeworks.Include(p => p.Level).SingleOrDefault(x => x.Id == id);
+            if (homework == null)
+            {
+                return HttpNotFound();
+            }
+            return View(homework);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHomeWork(LevelHomework homework)
+        {
+            if (ModelState.IsValid)
+            {
+              
+                db.Entry(homework).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["msg"] = TempData["msg"] = "<span class=\"label label-success\"> Updated Successfully </span>";
+            }
+            return View(homework);
+        }
         #endregion
     }
 }

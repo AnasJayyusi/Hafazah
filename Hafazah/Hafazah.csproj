@@ -262,6 +262,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastrImp.js" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\calendar\calendar.component.css" />
@@ -387,6 +388,8 @@
     <Content Include="Views\Phases\Index.cshtml" />
     <Content Include="Views\Levels\Homeworks.cshtml" />
     <Content Include="Views\Phases\Homeworks.cshtml" />
+    <Content Include="Views\Phases\EditHomeWork.cshtml" />
+    <Content Include="Views\Levels\EditHomeWork.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

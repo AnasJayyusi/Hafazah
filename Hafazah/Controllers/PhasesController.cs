@@ -120,20 +120,9 @@ namespace Hafazah.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-
         #region Homeworks Section
         public ActionResult Homeworks(int? id)
         {
-            ViewBag.BindPhaseId = id;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -172,6 +161,37 @@ namespace Hafazah.Controllers
             int insertedRecords = db.SaveChanges();
             return Json(insertedRecords);
         }
+
+        public ActionResult EditHomeWork(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var homework = db.PhaseHomeworks.Include(p => p.Phase).SingleOrDefault(x => x.Id == id);
+            if (homework == null)
+            {
+                return HttpNotFound();
+            }
+            return View(homework);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHomeWork(PhaseHomework homework)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(homework).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["msg"] = "<span class=\"label label-success\"> Updated Successfully </span>";
+
+            }
+            return View(homework);
+        }
+
         #endregion
     }
 }
