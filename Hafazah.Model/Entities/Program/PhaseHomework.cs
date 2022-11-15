@@ -12,6 +12,8 @@
 
         public int? ReviewTo { get; set; }
 
+        public int OrderNumber { get; set; }
+
         #region RelationShips
         public int? PhaseId { get; set; }
         public Phase Phase { get; set; }

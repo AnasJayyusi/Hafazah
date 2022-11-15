@@ -14,12 +14,12 @@
     if (ViewBag.IsRegistrationOpen)
     {
         <label>The Registration status is On Do you want to set it off ?</label>
-        <input type="button" class="btn btn-danger btn-sm" style="background-color:red" value="Set it Off" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+        <input type="button" class="btn btn-danger btn-sm"  value="Set it Off" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
     }
     else
     {
         <label>The Registration status is Off Do you want to set it off ?</label>
-        <input type="button" class="btn btn-danger btn-sm" style="background-color:green" value="Set it On" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+        <input type="button" class="btn btn-success btn-sm"  value="Set it On" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
     }
 
     <hr />

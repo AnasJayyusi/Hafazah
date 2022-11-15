@@ -215,13 +215,10 @@
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\EducationLevelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LevelHomeworksController.cs" />
-    <Compile Include="Controllers\LevelNamesController.cs" />
     <Compile Include="Controllers\LevelsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PathsController.cs" />
-    <Compile Include="Controllers\PhaseHomeworksController.cs" />
     <Compile Include="Controllers\PhasesController.cs" />
     <Compile Include="Controllers\QuranMemorizedsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -265,6 +262,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastrImp.js" />
     <Content Include="src\app\app.component.css" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\calendar\calendar.component.css" />
@@ -371,11 +369,6 @@
     <Content Include="Views\EducationLevels\Details.cshtml" />
     <Content Include="Views\EducationLevels\Edit.cshtml" />
     <Content Include="Views\EducationLevels\Index.cshtml" />
-    <Content Include="Views\LevelNames\Create.cshtml" />
-    <Content Include="Views\LevelNames\Delete.cshtml" />
-    <Content Include="Views\LevelNames\Details.cshtml" />
-    <Content Include="Views\LevelNames\Edit.cshtml" />
-    <Content Include="Views\LevelNames\Index.cshtml" />
     <Content Include="Views\Levels\Create.cshtml" />
     <Content Include="Views\Levels\Delete.cshtml" />
     <Content Include="Views\Levels\Details.cshtml" />
@@ -393,16 +386,10 @@
     <Content Include="Views\Phases\Details.cshtml" />
     <Content Include="Views\Phases\Edit.cshtml" />
     <Content Include="Views\Phases\Index.cshtml" />
-    <Content Include="Views\PhaseHomeworks\Create.cshtml" />
-    <Content Include="Views\PhaseHomeworks\Delete.cshtml" />
-    <Content Include="Views\PhaseHomeworks\Details.cshtml" />
-    <Content Include="Views\PhaseHomeworks\Edit.cshtml" />
-    <Content Include="Views\PhaseHomeworks\Index.cshtml" />
-    <Content Include="Views\LevelHomeworks\Create.cshtml" />
-    <Content Include="Views\LevelHomeworks\Delete.cshtml" />
-    <Content Include="Views\LevelHomeworks\Details.cshtml" />
-    <Content Include="Views\LevelHomeworks\Edit.cshtml" />
-    <Content Include="Views\LevelHomeworks\Index.cshtml" />
+    <Content Include="Views\Levels\Homeworks.cshtml" />
+    <Content Include="Views\Phases\Homeworks.cshtml" />
+    <Content Include="Views\Phases\EditHomeWork.cshtml" />
+    <Content Include="Views\Levels\EditHomeWork.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

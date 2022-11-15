@@ -1,9 +1,7 @@
 ﻿using Hafazah.Model.Entities;
-using Hafazah.Model.Entities.Program;
 using Hafazah.Model.Entities.Users;
 using Hafazah.Model.Enums;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

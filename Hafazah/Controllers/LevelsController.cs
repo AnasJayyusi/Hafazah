@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Hafazah.Common;
 using Hafazah.DAL;
@@ -19,7 +17,7 @@ namespace Hafazah.Controllers
         // GET: Levels
         public ActionResult Index()
         {
-            var levels = db.Levels.Include(l => l.Path);
+            var levels = db.Levels.Include(l => l.Path).Where(l=>l.Path.ProgramType == Model.Enums.ProgramType.Fursan);
             return View(levels.ToList());
         }
 
@@ -41,7 +39,7 @@ namespace Hafazah.Controllers
         // GET: Levels/Create
         public ActionResult Create()
         {
-            ViewBag.PathId = new SelectList(db.Paths, "Id", "Name");
+            ViewBag.PathId = new SelectList(db.Paths.Where(p=>p.ProgramType == Model.Enums.ProgramType.Fursan), "Id", "Description");
             return View();
         }
 
@@ -111,6 +109,7 @@ namespace Hafazah.Controllers
             return View(level);
         }
 
+    
         // POST: Levels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -130,5 +129,80 @@ namespace Hafazah.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        #region Homeworks Section
+        public ActionResult Homeworks(int? id)
+        {
+            ViewBag.BindLevelId = id;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var homeworks = db.LevelHomeworks.Where(h => h.LevelId == id).ToList();
+            if (homeworks == null)
+            {
+                return HttpNotFound();
+            }
+            return View(homeworks);
+        }
+
+        [HttpGet]
+        public JsonResult GetHomeworks(int levelId)
+        {
+            var homeworks = db.LevelHomeworks.Where(l => l.LevelId == levelId).ToList();
+            return Json(homeworks, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult InsertHomeWorks(List<LevelHomework> homeworks)
+        {
+            //Truncate Table to delete all old records.
+            db.Database.ExecuteSqlCommand("DELETE FROM [LevelHomeworks] WHERE LevelId =" + homeworks[0].LevelId);
+            db.SaveChanges();
+            //Check for NULL.
+            if (homeworks == null)
+            {
+                homeworks = new List<LevelHomework>();
+            }
+
+            //Loop and insert records.
+            foreach (var homework in homeworks)
+            {
+                db.LevelHomeworks.Add(homework);
+            }
+            int insertedRecords = db.SaveChanges();
+            return Json(insertedRecords);
+        }
+
+        public ActionResult EditHomeWork(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var homework = db.LevelHomeworks.Include(p => p.Level).SingleOrDefault(x => x.Id == id);
+            if (homework == null)
+            {
+                return HttpNotFound();
+            }
+            return View(homework);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHomeWork(LevelHomework homework)
+        {
+            if (ModelState.IsValid)
+            {
+              
+                db.Entry(homework).State = EntityState.Modified;
+                db.SaveChanges();
+                TempData["msg"] = TempData["msg"] = "<span class=\"label label-success\"> Updated Successfully </span>";
+            }
+            return View(homework);
+        }
+        #endregion
     }
 }
