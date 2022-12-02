@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hafazah.DAL", "Hafazah.DAL\Hafazah.DAL.csproj", "{6411C9C6-C5DC-4B68-B0C5-D55B539BA5CB}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hafazah.Repository", "Hafazah.Repository\Hafazah.Repository.csproj", "{47670144-E9FA-4E7E-9525-D5391D2BB54C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hafazah", "Hafazah\Hafazah.csproj", "{709C868D-C5BE-4264-9579-30EE94C5C1D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{CF283A5F-796C-4089-93D3-710036BF1DEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{709C868D-C5BE-4264-9579-30EE94C5C1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709C868D-C5BE-4264-9579-30EE94C5C1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709C868D-C5BE-4264-9579-30EE94C5C1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF283A5F-796C-4089-93D3-710036BF1DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF283A5F-796C-4089-93D3-710036BF1DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF283A5F-796C-4089-93D3-710036BF1DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF283A5F-796C-4089-93D3-710036BF1DEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

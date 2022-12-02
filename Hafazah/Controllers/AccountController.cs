@@ -4,12 +4,13 @@ using Hafazah.DAL;
 using Hafazah.Model;
 using Hafazah.Model.Enums;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Data.Entity;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -27,6 +28,7 @@ namespace Hafazah.Controllers
         public AccountController()
         {
             _db = new HafazahDbContext();
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -92,7 +94,7 @@ namespace Hafazah.Controllers
 
         [AllowAnonymous]
         [Route("Login")]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl = null, string culture = "")
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -534,7 +536,6 @@ namespace Hafazah.Controllers
             body = body.Replace("{UserName}", model.Email);
             bool IsSendEmail = SendEmail.EmailSend(model.Email, "Confirm your account", body, true);
         }
-
         #endregion
     }
 }

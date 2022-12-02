@@ -226,8 +226,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Localization\DbRes.cs" />
-    <Compile Include="Localization\Resources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\SharedServices.cs" />
     <Compile Include="Startup.cs" />
@@ -416,6 +414,10 @@
     <ProjectReference Include="..\Hafazah.Model\Hafazah.Model.csproj">
       <Project>{D83B72DE-9BE9-4EF9-8C34-F2B2EB287D34}</Project>
       <Name>Hafazah.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{cf283a5f-796c-4089-93d3-710036bf1deb}</Project>
+      <Name>Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
