@@ -7,11 +7,15 @@
 <div>
 
     <a class="navbar-brand" href="~/ControlPanel" style="font-size:unset">
-        <span class="glyphicon glyphicon-wrench">Settings</span>
+        <span class="glyphicon glyphicon-wrench">
+            <label style="font-family: auto;">@Resources.GetResource.T("Settings")</label>
+        </span>
     </a>
 
-    <a class="navbar-brand" href="javascript:document.getElementById('logoutForm').submit()" style="padding-right: 100px;">
-        <span class="glyphicon glyphicon-log-out" >Logout</span>
+    <a class="navbar-brand" href="javascript:document.getElementById('logoutForm').submit()" style="font-family: Helvetica, Arial, sans-serif; font-size: unset; padding-right: 100px; ">
+        <span class="glyphicon glyphicon-log-out">
+            <label style="font-family: auto;">@Resources.GetResource.T("Logout") </label>
+        </span>
     </a>
 </div>
 

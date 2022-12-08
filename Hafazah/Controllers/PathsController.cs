@@ -6,12 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model.Entities.Program;
 
 namespace Hafazah.Controllers
 {
-    public class PathsController : Controller
+    public class PathsController : BaseController
     {
         private HafazahDbContext db = new HafazahDbContext();
 

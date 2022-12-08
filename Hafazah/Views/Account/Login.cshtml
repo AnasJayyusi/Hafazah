@@ -58,14 +58,14 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @*  *@
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = @Resources.GetResource.T("Username") })
                                     @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     @*  *@
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = @Resources.GetResource.T("Password") })
                                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                             </div>
 
                             <p>
-                                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                                @Html.ActionLink(@Resources.GetResource.T("ForgotPassword"), "ForgotPassword")
                             </p>
 
 

@@ -18,14 +18,16 @@ namespace Hafazah.Common
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
+            object cultureRequest = null;
+            filterContext.ActionParameters.TryGetValue("culture", out cultureRequest);
+            var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
+
             // If sessiong was empty so maybe it is First Login  
-            if (Session["userCultureInfo"] == null)
+            if (Session["userCultureInfo"] == null || (cultureRequest != null ? cultureRequest.ToString() != currentCulture : false))
             {
                 // Check The Link If some culture Exists 
-                object parameter = null;
-                filterContext.ActionParameters.TryGetValue("culture", out parameter);
-                var culture = parameter as string;
-
+                var culture = cultureRequest as string;
                 if (!string.IsNullOrEmpty(culture))
                 {
                     Session["userCultureInfo"] = CultureInfo.GetCultureInfo(culture);

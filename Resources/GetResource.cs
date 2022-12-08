@@ -34,18 +34,4 @@ namespace Resources
     }
 }
 
-public class GetApplicationLang
-{
-    public static string Lang
-    {
-        get
-        {
-            //return SysContext.Language == Language.Arabic ? "ar" : "en";
-            var cult = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
-            if (cult.StartsWith("ar"))
-                return "ar";
 
-            return "en";
-        }
-    }
-}

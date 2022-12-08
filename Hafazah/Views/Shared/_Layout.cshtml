@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-       Hafazah
+        Hafazah
     </title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-/*        .btn {
+        /*        .btn {
             background-color: DodgerBlue;
             border: none;
             color: white;
@@ -18,12 +18,12 @@
             cursor: pointer;
         }*/
 
-    /*    a {
+        /*    a {
             color: black
         }*/
 
         /* Darker background on mouse-over */
-      /*  .btn:hover {
+        /*  .btn:hover {
             background-color: RoyalBlue;
         }*/
     </style>
@@ -34,8 +34,9 @@
         <div>
             <div>
                 <a class="navbar-brand" href="~/" style="padding-left: 100px;">
-                    <span class="glyphicon glyphicon-home">Home</span>
-
+                    <span class="glyphicon glyphicon-home">
+                        <label style="font-family: auto;">@Resources.GetResource.T("Home")</label>
+                    </span>
                 </a>
                 @Html.Partial("_LoginPartial")
             </div>

@@ -1,4 +1,5 @@
-﻿using Hafazah.DAL;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
 using Hafazah.Model.Entities.Program;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Hafazah.Controllers
 {
-    public class PhasesController : Controller
+    public class PhasesController : BaseController
     {
         private HafazahDbContext db = new HafazahDbContext();
 

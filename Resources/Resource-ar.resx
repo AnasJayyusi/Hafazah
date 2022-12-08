@@ -117,7 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Actions" xml:space="preserve">
+    <value>الإجرات</value>
+    <comment>Common</comment>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>تفعيل </value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>العمر</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة التحكم </value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Deactivate" xml:space="preserve">
+    <value>ايقاف</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+    <comment>Common</comment>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>التفاصيل</value>
+    <comment>Common</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+    <comment>Common</comment>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>الإسم الاول</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>هل نسيت كلمة السر؟</value>
+    <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+    <comment>Views\Shared\_Layout.cshtml</comment>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>مفعل</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>الإسم الاخير</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
   <data name="Login" xml:space="preserve">
-    <value>دخول</value>
+    <value>تـسجيل الدخول</value>
+    <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+    <comment>Views\Shared\_LoginPartial.cshtml</comment>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة السر</value>
+    <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="RegistrationStatusOff" xml:space="preserve">
+    <value>التسجيل متوقف الان هل تريد بدء عمله</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="RegistrationStatusOn" xml:space="preserve">
+    <value>التسجيل مفتوح الان هل تريد إيقاف عمله</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+    <comment>Common</comment>
+  </data>
+  <data name="SearchPhoneNumber" xml:space="preserve">
+    <value>بحث برقم الهاتف</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+    <comment>Views\Shared\_LoginPartial.cshtml</comment>
+  </data>
+  <data name="ShowMembers" xml:space="preserve">
+    <value>اظهار الاعضاء فقط الذين هم</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>اسم المستخدم</value>
+    <comment>Views\Account\Login.cshtml</comment>
   </data>
 </root>
