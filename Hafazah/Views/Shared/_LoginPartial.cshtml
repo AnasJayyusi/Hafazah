@@ -1,23 +1,43 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = @Resources.GetResource.GetLang() == "ar" ? "navbar-left" : "navbar-right" }))
     {
         @Html.AntiForgeryToken()
 <div>
+    @if (@Resources.GetResource.GetLang() == "ar")
+    {
 
-    <a class="navbar-brand" href="~/ControlPanel" style="font-size:unset">
-        <span class="glyphicon glyphicon-wrench">
-            <label style="font-family: auto;">@Resources.GetResource.T("Settings")</label>
-        </span>
-    </a>
+        <a class="navbar-brand" href="javascript:document.getElementById('logoutForm').submit()" style="font-family: Helvetica, Arial, sans-serif; font-size: unset; padding-left: 100px; ">
+            <span class="glyphicon glyphicon-log-out">
+                <label style="font-family: auto;">@Resources.GetResource.T("Logout") </label>
+            </span>
+        </a>
 
-    <a class="navbar-brand" href="javascript:document.getElementById('logoutForm').submit()" style="font-family: Helvetica, Arial, sans-serif; font-size: unset; padding-right: 100px; ">
-        <span class="glyphicon glyphicon-log-out">
-            <label style="font-family: auto;">@Resources.GetResource.T("Logout") </label>
-        </span>
-    </a>
+        <a class="navbar-brand" href="~/ControlPanel" style="font-size:unset">
+            <span class="glyphicon glyphicon-wrench">
+                <label style="font-family: auto;">@Resources.GetResource.T("Settings")</label>
+            </span>
+        </a>
+
+
+
+    }
+    else
+    {
+        <a class="navbar-brand" href="~/ControlPanel" style="font-size:unset">
+            <span class="glyphicon glyphicon-wrench">
+                <label style="font-family: auto;">@Resources.GetResource.T("Settings")</label>
+            </span>
+        </a>
+
+
+        <a class="navbar-brand" href="javascript:document.getElementById('logoutForm').submit()" style="font-family: Helvetica, Arial, sans-serif; font-size: unset; padding-right: 100px; ">
+            <span class="glyphicon glyphicon-log-out">
+                <label style="font-family: auto;">@Resources.GetResource.T("Logout") </label>
+            </span>
+        </a>
+    }
 </div>
-
     }
 }

@@ -31,6 +31,13 @@ namespace Resources
                 return rm.GetString(resourcesName, resourceCulture);
             }
         }
+
+
+        public static string GetLang()
+        {
+            var cult = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
+            return cult;
+        }
     }
 }
 

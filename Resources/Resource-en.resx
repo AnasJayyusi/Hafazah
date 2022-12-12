@@ -129,6 +129,13 @@
     <value>Age</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+    <comment>Settings</comment>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -177,13 +184,55 @@
     <value>Logout</value>
     <comment>\Views\Shared\_LoginPartial.cshtml</comment>
   </data>
+  <data name="ManageCountriesOptions" xml:space="preserve">
+    <value>Manage Countries Options</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManageEducationLevelsOptions" xml:space="preserve">
+    <value>Manage Education Levels Options</value>
+  </data>
+  <data name="ManageLevels" xml:space="preserve">
+    <value>Manage Levels</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManagePaths" xml:space="preserve">
+    <value>Manage Paths</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManagePhases" xml:space="preserve">
+    <value>Manage Phases</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManageQuranMemorizedsOptions" xml:space="preserve">
+    <value>Manage Quran Memorizeds Options</value>
+    <comment>Settings</comment>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
+  <data name="PendingRequests" xml:space="preserve">
+    <value>Pending Requests</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone No.</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="ProgramSettings" xml:space="preserve">
+    <value>Program Settings</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="RegisteredMembers" xml:space="preserve">
+    <value>Registered Members</value>
+    <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Register New User</value>
+  </data>
+  <data name="RegistrationSettings" xml:space="preserve">
+    <value>Registration Settings</value>
+    <comment>Settings</comment>
   </data>
   <data name="RegistrationStatusOff" xml:space="preserve">
     <value>The Registration status is Off Do you want to set it on?</value>
@@ -212,5 +261,9 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
     <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>User Settings</value>
+    <comment>Settings</comment>
   </data>
 </root>

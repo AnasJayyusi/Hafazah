@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace Hafazah.Controllers
 {
@@ -60,8 +61,8 @@ namespace Hafazah.Controllers
         {
             var memberSearchedFilter = new List<string>()
             {
-                 "Registered Members",
-                 "Pending Requests",
+                 @Resources.GetResource.T("RegisteredMembers"),
+                 @Resources.GetResource.T("PendingRequests")
             };
 
             ViewBag.MembersDDLFilter = memberSearchedFilter;
@@ -86,13 +87,13 @@ namespace Hafazah.Controllers
         {
             IQueryable<Member> query = Enumerable.Empty<Member>().AsQueryable();
 
-            if (filterMembers == "Registered Members")
+            if (filterMembers == "Registered Members" || filterMembers == Resources.GetResource.T("RegisteredMembers"))
             {
                 query = _db.Members.Where(x => x.IsActive == true);
                 ViewBag.ShowIsActiveColumn = false;
             }
 
-            if (filterMembers == "Pending Requests")
+            if (filterMembers == "Pending Requests" || filterMembers == Resources.GetResource.T("PendingRequests"))
             {
                 query = _db.Members.Where(x => x.IsActive == false);
                 ViewBag.ShowIsActiveColumn = true;
@@ -184,6 +185,8 @@ namespace Hafazah.Controllers
             return user != null;
         }
 
+
+        [Route("EditMember")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

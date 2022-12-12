@@ -129,6 +129,13 @@
     <value>العمر</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="Approve" xml:space="preserve">
+    <value>موافقة</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير كلمة السر</value>
+    <comment>Settings</comment>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم </value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -177,13 +184,53 @@
     <value>تسجيل الخروج</value>
     <comment>Views\Shared\_LoginPartial.cshtml</comment>
   </data>
+  <data name="ManageCountriesOptions" xml:space="preserve">
+    <value>إدارة خيارات البلدان</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManageEducationLevelsOptions" xml:space="preserve">
+    <value>إدارة خيارات مستويات التعليم</value>
+  </data>
+  <data name="ManageLevels" xml:space="preserve">
+    <value>إدارة المستويات</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManagePaths" xml:space="preserve">
+    <value>إدارة المسارات</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManagePhases" xml:space="preserve">
+    <value>إدارة المراحل</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="ManageQuranMemorizedsOptions" xml:space="preserve">
+    <value>إدارة خيارات حفظ القرآن</value>
+    <comment>Settings</comment>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>كلمة السر</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
+  <data name="PendingRequests" xml:space="preserve">
+    <value>الطلبات المعلقة</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>رقم الهاتف</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="ProgramSettings" xml:space="preserve">
+    <value>إعدادات البرنامج</value>
+    <comment>Settings</comment>
+  </data>
+  <data name="RegisteredMembers" xml:space="preserve">
+    <value>الاعضاء المسجلين</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>تسجيل عضو جديد</value>
+  </data>
+  <data name="RegistrationSettings" xml:space="preserve">
+    <value>إعدادات التسجيل</value>
+    <comment>Settings</comment>
   </data>
   <data name="RegistrationStatusOff" xml:space="preserve">
     <value>التسجيل متوقف الان هل تريد بدء عمله</value>
@@ -212,5 +259,9 @@
   <data name="Username" xml:space="preserve">
     <value>اسم المستخدم</value>
     <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>إعدادات المستخدم</value>
+    <comment>Settings</comment>
   </data>
 </root>

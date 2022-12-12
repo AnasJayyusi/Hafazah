@@ -42,59 +42,61 @@
 
 
 <h2>@ViewBag.Title</h2>
-<div class="mainBox">
-    <div class="LoginBox">
-        <div style="text-align:center" class="Title">
-            <img src="~/Images/LoginLogo.png" alt="Avatar" style="width: 200px; border-radius: 50%; text-align: center ">
-        </div>
-        <div>
-            <div class="row">
-                <div class="col-md-12">
-                    <section id="loginForm">
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @*  *@
-                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = @Resources.GetResource.T("Username") })
-                                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+@if (Resources.GetResource.GetLang() == "ar")
+{
+    <div class="mainBox" dir="rtl" lang="ar">
+        <div class="LoginBox">
+            <div style="text-align:center" class="Title">
+                <img src="~/Images/LoginLogo.png" alt="Avatar" style="width: 200px; border-radius: 50%; text-align: center ">
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @*  *@
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = @Resources.GetResource.T("Username") })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    @*  *@
-                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = @Resources.GetResource.T("Password") })
-                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @*  *@
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = @Resources.GetResource.T("Password") })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div>
                                 <div>
-                                    <input value="@Resources.GetResource.T("Login")" type="submit" formmethod="post" style="background-color: #266d13 " class="btn btn-primary btn-lg btn-block" />
+                                    <div>
+                                        <input value="@Resources.GetResource.T("Login")" type="submit" formmethod="post" style="background-color: #266d13 " class="btn btn-primary btn-lg btn-block" />
+                                    </div>
+
                                 </div>
 
-                            </div>
-
-                            <p>
-                                @Html.ActionLink(@Resources.GetResource.T("ForgotPassword"), "ForgotPassword")
-                            </p>
+                                <p>
+                                    @Html.ActionLink(@Resources.GetResource.T("ForgotPassword"), "ForgotPassword")
+                                </p>
 
 
 
 
-                            <div style="text-align: center">
-                                @Html.ActionLink(
-                                "English",
-                                ViewContext.RouteData.Values["action"].ToString(),
-                                new { culture = "en" }) |
-                                @Html.ActionLink(
-                            "اللغة العربية",
-                            ViewContext.RouteData.Values["action"].ToString(),
-                            new { culture = "ar" })
-                            </div>
-                        }
+                                <div style="text-align: center">
+                                    @Html.ActionLink(
+         "English",
+         ViewContext.RouteData.Values["action"].ToString(),
+         new { culture = "en" }) |
+                                    @Html.ActionLink(
+     "اللغة العربية",
+     ViewContext.RouteData.Values["action"].ToString(),
+     new { culture = "ar" })
+                                </div>
+                            }
 
 
 
@@ -102,12 +104,86 @@
 
 
 
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+}
+
+
+else
+{
+    <div class="mainBox">
+        <div class="LoginBox">
+            <div style="text-align:center" class="Title">
+                <img src="~/Images/LoginLogo.png" alt="Avatar" style="width: 200px; border-radius: 50%; text-align: center ">
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <section id="loginForm">
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @*  *@
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = @Resources.GetResource.T("Username") })
+                                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        @*  *@
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = @Resources.GetResource.T("Password") })
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div>
+                                        <input value="@Resources.GetResource.T("Login")" type="submit" formmethod="post" style="background-color: #266d13 " class="btn btn-primary btn-lg btn-block" />
+                                    </div>
+
+                                </div>
+
+                                <p>
+                                    @Html.ActionLink(@Resources.GetResource.T("ForgotPassword"), "ForgotPassword")
+                                </p>
+
+
+
+
+                                <div style="text-align: center">
+                                    @Html.ActionLink(
+         "English",
+         ViewContext.RouteData.Values["action"].ToString(),
+         new { culture = "en" }) |
+                                    @Html.ActionLink(
+     "اللغة العربية",
+     ViewContext.RouteData.Values["action"].ToString(),
+     new { culture = "ar" })
+                                </div>
+                            }
+
+
+
+
+
+
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

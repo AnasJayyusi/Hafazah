@@ -1405,7 +1405,7 @@ table {
   background-color: transparent;
 }
 th {
-  text-align: left;
+  text-align: inherit;
 }
 .table {
   width: 100%;

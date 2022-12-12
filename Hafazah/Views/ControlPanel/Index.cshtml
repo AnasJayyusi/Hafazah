@@ -2,39 +2,39 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>Settings</h2>
+<h2>@Resources.GetResource.T("Settings") </h2>
 <hr />
 
 
-<h4>User Settings</h4>
-@Html.ActionLink("Change Password", "Index", "Manage", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+<h4>@Resources.GetResource.T("User Settings") </h4>
+@Html.ActionLink(@Resources.GetResource.T("ChangePassword"), "Index", "Manage", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 
-@Html.ActionLink("Register New User", "Register", "Account", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
-<br />
-<hr />
-
-
-<h4>Registration Settings</h4>
-@Html.ActionLink("Manage Countries Options", "Index", "Countries", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
-<br />
-
-@Html.ActionLink("Manage Education Levels Options", "Index", "EducationLevels", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
-<br />
-
-@Html.ActionLink("Manage Quran Memorizeds Options", "Index", "QuranMemorizeds", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+@Html.ActionLink(@Resources.GetResource.T("RegisterNewUser") , "Register", "Account", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 <hr />
 
-<h4>Program Settings</h4>
-@Html.ActionLink("Manage Paths", "Index", "Paths", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+
+<h4>@Resources.GetResource.T("RegistrationSettings") </h4>
+@Html.ActionLink(@Resources.GetResource.T("ManageCountriesOptions") , "Index", "Countries", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 
-@Html.ActionLink("Manage Levels", "Index", "Levels", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+@Html.ActionLink(@Resources.GetResource.T("ManageEducationLevelsOptions") , "Index", "EducationLevels", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+<br />
+
+@Html.ActionLink(@Resources.GetResource.T("ManageQuranMemorizedsOptions") , "Index", "QuranMemorizeds", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+<br />
+<hr />
+
+<h4>@Resources.GetResource.T("ProgramSettings")</h4>
+@Html.ActionLink(@Resources.GetResource.T("ManagePaths") , "Index", "Paths", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+<br />
+
+@Html.ActionLink(@Resources.GetResource.T("ManageLevels") , "Index", "Levels", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 
 
-@Html.ActionLink("Manage Phases", "Index", "Phases", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+@Html.ActionLink(@Resources.GetResource.T("ManagePhases") , "Index", "Phases", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 
 

@@ -88,6 +88,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Approve.
+        /// </summary>
+        internal static string Approve {
+            get {
+                return ResourceManager.GetString("Approve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {
@@ -196,6 +214,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage Countries Options.
+        /// </summary>
+        internal static string ManageCountriesOptions {
+            get {
+                return ResourceManager.GetString("ManageCountriesOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Education Levels Options.
+        /// </summary>
+        internal static string ManageEducationLevelsOptions {
+            get {
+                return ResourceManager.GetString("ManageEducationLevelsOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Levels.
+        /// </summary>
+        internal static string ManageLevels {
+            get {
+                return ResourceManager.GetString("ManageLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Paths.
+        /// </summary>
+        internal static string ManagePaths {
+            get {
+                return ResourceManager.GetString("ManagePaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Phases.
+        /// </summary>
+        internal static string ManagePhases {
+            get {
+                return ResourceManager.GetString("ManagePhases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Quran Memorizeds Options.
+        /// </summary>
+        internal static string ManageQuranMemorizedsOptions {
+            get {
+                return ResourceManager.GetString("ManageQuranMemorizedsOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
@@ -205,11 +277,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending Requests.
+        /// </summary>
+        internal static string PendingRequests {
+            get {
+                return ResourceManager.GetString("PendingRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone No..
         /// </summary>
         internal static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program Settings.
+        /// </summary>
+        internal static string ProgramSettings {
+            get {
+                return ResourceManager.GetString("ProgramSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered Members.
+        /// </summary>
+        internal static string RegisteredMembers {
+            get {
+                return ResourceManager.GetString("RegisteredMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register New User.
+        /// </summary>
+        internal static string RegisterNewUser {
+            get {
+                return ResourceManager.GetString("RegisterNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Settings.
+        /// </summary>
+        internal static string RegistrationSettings {
+            get {
+                return ResourceManager.GetString("RegistrationSettings", resourceCulture);
             }
         }
         
@@ -273,6 +390,15 @@ namespace Resources {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Settings.
+        /// </summary>
+        internal static string UserSettings {
+            get {
+                return ResourceManager.GetString("UserSettings", resourceCulture);
             }
         }
     }

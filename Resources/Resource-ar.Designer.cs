@@ -88,6 +88,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to موافقة.
+        /// </summary>
+        internal static string Approve {
+            get {
+                return ResourceManager.GetString("Approve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تغيير كلمة السر.
+        /// </summary>
+        internal static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to لوحة التحكم .
         /// </summary>
         internal static string Dashboard {
@@ -196,6 +214,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to إدارة خيارات البلدان.
+        /// </summary>
+        internal static string ManageCountriesOptions {
+            get {
+                return ResourceManager.GetString("ManageCountriesOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إدارة خيارات مستويات التعليم.
+        /// </summary>
+        internal static string ManageEducationLevelsOptions {
+            get {
+                return ResourceManager.GetString("ManageEducationLevelsOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إدارة المستويات.
+        /// </summary>
+        internal static string ManageLevels {
+            get {
+                return ResourceManager.GetString("ManageLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إدارة المسارات.
+        /// </summary>
+        internal static string ManagePaths {
+            get {
+                return ResourceManager.GetString("ManagePaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إدارة المراحل.
+        /// </summary>
+        internal static string ManagePhases {
+            get {
+                return ResourceManager.GetString("ManagePhases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إدارة خيارات حفظ القرآن.
+        /// </summary>
+        internal static string ManageQuranMemorizedsOptions {
+            get {
+                return ResourceManager.GetString("ManageQuranMemorizedsOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to كلمة السر.
         /// </summary>
         internal static string Password {
@@ -205,11 +277,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الطلبات المعلقة.
+        /// </summary>
+        internal static string PendingRequests {
+            get {
+                return ResourceManager.GetString("PendingRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to رقم الهاتف.
         /// </summary>
         internal static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إعدادات البرنامج.
+        /// </summary>
+        internal static string ProgramSettings {
+            get {
+                return ResourceManager.GetString("ProgramSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الاعضاء المسجلين.
+        /// </summary>
+        internal static string RegisteredMembers {
+            get {
+                return ResourceManager.GetString("RegisteredMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تسجيل عضو جديد.
+        /// </summary>
+        internal static string RegisterNewUser {
+            get {
+                return ResourceManager.GetString("RegisterNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إعدادات التسجيل.
+        /// </summary>
+        internal static string RegistrationSettings {
+            get {
+                return ResourceManager.GetString("RegistrationSettings", resourceCulture);
             }
         }
         
@@ -273,6 +390,15 @@ namespace Resources {
         internal static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to إعدادات المستخدم.
+        /// </summary>
+        internal static string UserSettings {
+            get {
+                return ResourceManager.GetString("UserSettings", resourceCulture);
             }
         }
     }

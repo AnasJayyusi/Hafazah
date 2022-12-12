@@ -30,47 +30,47 @@
 
     using (Html.BeginForm("Index", "Members", FormMethod.Get))
     {
-        <text> Show Members Whom </text> @Html.DropDownList("filterMembers", new SelectList(ViewBag.MembersDDLFilter))
-        <text> Search in Phone Number </text>
+        <text>    @Resources.GetResource.T("ShowMembers") </text> @Html.DropDownList("filterMembers", new SelectList(ViewBag.MembersDDLFilter))
+        <text>   @Resources.GetResource.T("SearchPhoneNumber")</text>
         {@Html.TextBox("phoneNumber", null, new { id = "SearchBox", @class = "SearchBox" })}
-    <input type="submit" value="Search" />
+    <input class="btn btn-info" type="submit" value="@Resources.GetResource.T("Search")" />
 }
 <br />
 <br />
 
-<table class="table">
+<table class="table table-striped"  style="text-align:inherit">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayName(@Resources.GetResource.T("FirstName"))
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-
-        <th>
-            @Html.DisplayName("Age")
+            @Html.DisplayName(@Resources.GetResource.T("LastName"))
         </th>
 
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayName(@Resources.GetResource.T("Age"))
+        </th>
+
+        <th>
+            @Html.DisplayName(@Resources.GetResource.T("PhoneNumber"))
         </th>
 
 
-        @if (ViewBag.ShowIsActiveColumn)
+        @if (ViewBag.ShowIsActiveColumn == true)
         {
             <th>
-                Approve
+                @Resources.GetResource.T("Approve")
             </th>
         }
 
-        @if (!ViewBag.ShowIsActiveColumn)
+        @if (ViewBag.ShowIsActiveColumn == false)
         {
             <th>
-                @Html.DisplayNameFor(model => model.IsActive)
+                @Resources.GetResource.T("IsActive")
             </th>
         }
         <th>
-            Actions
+            @Resources.GetResource.T("Actions")
         </th>
         <th></th>
     </tr>
@@ -110,9 +110,9 @@
                 </td>
             }
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink(@Resources.GetResource.T("Edit"), "Edit", new { id = item.Id }) |
+                @Html.ActionLink(@Resources.GetResource.T("Details"), "Details", new { id = item.Id }) |
+                @Html.ActionLink(@Resources.GetResource.T("Delete"), "Delete", new { id = item.Id })
             </td>
         </tr>
     }

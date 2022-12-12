@@ -14,8 +14,6 @@ namespace Hafazah.Common
     {
         // GET: Base
 
-
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
 
