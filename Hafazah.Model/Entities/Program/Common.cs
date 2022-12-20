@@ -21,5 +21,6 @@ namespace Hafazah.Model.Entities.Program
         public int PathId { get; set; }
         public Path Path { get; set; }
         #endregion
+        public bool IsOpenToRegistration { get; set; }
     }
 }

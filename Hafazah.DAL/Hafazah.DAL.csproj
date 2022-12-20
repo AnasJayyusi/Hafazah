@@ -102,6 +102,22 @@
     <Compile Include="Migrations\202211152143476_AddSurahName.Designer.cs">
       <DependentUpon>202211152143476_AddSurahName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212142130347_AddDetailsColumnsForInstructor.cs" />
+    <Compile Include="Migrations\202212142130347_AddDetailsColumnsForInstructor.Designer.cs">
+      <DependentUpon>202212142130347_AddDetailsColumnsForInstructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212192328503_AddIsActiveColumnToInsturactorTable.cs" />
+    <Compile Include="Migrations\202212192328503_AddIsActiveColumnToInsturactorTable.Designer.cs">
+      <DependentUpon>202212192328503_AddIsActiveColumnToInsturactorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212200010206_AddRelationalTables.cs" />
+    <Compile Include="Migrations\202212200010206_AddRelationalTables.Designer.cs">
+      <DependentUpon>202212200010206_AddRelationalTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212200131516_AddIsOpenToTables.cs" />
+    <Compile Include="Migrations\202212200131516_AddIsOpenToTables.Designer.cs">
+      <DependentUpon>202212200131516_AddIsOpenToTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -148,6 +164,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211152143476_AddSurahName.resx">
       <DependentUpon>202211152143476_AddSurahName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212142130347_AddDetailsColumnsForInstructor.resx">
+      <DependentUpon>202212142130347_AddDetailsColumnsForInstructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212192328503_AddIsActiveColumnToInsturactorTable.resx">
+      <DependentUpon>202212192328503_AddIsActiveColumnToInsturactorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212200010206_AddRelationalTables.resx">
+      <DependentUpon>202212200010206_AddRelationalTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212200131516_AddIsOpenToTables.resx">
+      <DependentUpon>202212200131516_AddIsOpenToTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

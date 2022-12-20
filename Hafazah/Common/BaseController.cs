@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Globalization;
 using System.Threading;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 
 namespace Hafazah.Common
 {
     public class BaseController : Controller
     {
-        // GET: Base
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
             object cultureRequest = null;
             filterContext.ActionParameters.TryGetValue("culture", out cultureRequest);
-            var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture.ToString();
+            var currentCulture = Thread.CurrentThread.CurrentCulture.ToString();
 
             // If sessiong was empty so maybe it is First Login  
             if (Session["userCultureInfo"] == null || (cultureRequest != null ? cultureRequest.ToString() != currentCulture : false))

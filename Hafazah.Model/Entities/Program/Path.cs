@@ -17,5 +17,7 @@ namespace Hafazah.Model.Entities.Program
         public List<Phase> Phases { get; set; }
         public List<Level> Levels { get; set; }
         #endregion
+
+        public bool IsOpenToRegistration { get; set; }
     }
 }

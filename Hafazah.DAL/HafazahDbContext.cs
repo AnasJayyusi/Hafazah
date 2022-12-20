@@ -5,6 +5,7 @@ using Hafazah.Model.Entities;
 using Hafazah.Model.Entities.Common;
 using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Program;
+using Hafazah.Model.Entities.Users;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
@@ -45,7 +46,7 @@ namespace Hafazah.DAL
         public virtual DbSet<GlobalValue> GlobalValues { get; set; }
         public virtual DbSet<Localization> Localizations { get; set; }
 
-        public virtual DbSet<Model.Entities.Users.Instructor> Instructors { get; set; }
+        public virtual DbSet<Instructor> Instructors { get; set; }
                 
         public virtual DbSet<Path> Paths { get; set; }
                 

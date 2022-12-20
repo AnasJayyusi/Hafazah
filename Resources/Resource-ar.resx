@@ -125,6 +125,9 @@
     <value>تفعيل </value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="AddNewStudent" xml:space="preserve">
+    <value>إضافة طالب جديد</value>
+  </data>
   <data name="Age" xml:space="preserve">
     <value>العمر</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -132,9 +135,18 @@
   <data name="Approve" xml:space="preserve">
     <value>موافقة</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>الرجوع الى القائمة</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>تغيير كلمة السر</value>
+    <value>تغيير كلمة السر الخاصة بي</value>
     <comment>Settings</comment>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>إضافة</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم </value>
@@ -156,6 +168,15 @@
     <value>تعديل</value>
     <comment>Common</comment>
   </data>
+  <data name="EducationLevel" xml:space="preserve">
+    <value>المستوى التعليمي</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>انثى</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>الإسم الاول</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -164,9 +185,21 @@
     <value>هل نسيت كلمة السر؟</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
+  <data name="Fursan" xml:space="preserve">
+    <value>فرسان</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>الحنس</value>
+  </data>
+  <data name="Hafazah" xml:space="preserve">
+    <value>حفظة</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>الصفحة الرئيسية</value>
     <comment>Views\Shared\_Layout.cshtml</comment>
+  </data>
+  <data name="InstructorMember" xml:space="preserve">
+    <value>عضوية شيخ جديدة</value>
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>مفعل</value>
@@ -176,6 +209,9 @@
     <value>الإسم الاخير</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="LinkInstrcutor" xml:space="preserve">
+    <value>الشيخ</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>تـسجيل الدخول</value>
     <comment>Views\Account\Login.cshtml</comment>
@@ -183,6 +219,9 @@
   <data name="Logout" xml:space="preserve">
     <value>تسجيل الخروج</value>
     <comment>Views\Shared\_LoginPartial.cshtml</comment>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ذكر</value>
   </data>
   <data name="ManageCountriesOptions" xml:space="preserve">
     <value>إدارة خيارات البلدان</value>
@@ -207,6 +246,15 @@
     <value>إدارة خيارات حفظ القرآن</value>
     <comment>Settings</comment>
   </data>
+  <data name="ManageSheikhsMemberships" xml:space="preserve">
+    <value>إدارة عضويات المشايخ</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+  <data name="OtherDetails" xml:space="preserve">
+    <value>معلومات اخرى</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>كلمة السر</value>
     <comment>Views\Account\Login.cshtml</comment>
@@ -222,11 +270,20 @@
     <value>إعدادات البرنامج</value>
     <comment>Settings</comment>
   </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>البرنامج</value>
+  </data>
+  <data name="QuranMemorized" xml:space="preserve">
+    <value>حفظ القراًن</value>
+  </data>
   <data name="RegisteredMembers" xml:space="preserve">
     <value>الاعضاء المسجلين</value>
   </data>
   <data name="RegisterNewUser" xml:space="preserve">
     <value>تسجيل عضو جديد</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>التسجيل</value>
   </data>
   <data name="RegistrationSettings" xml:space="preserve">
     <value>إعدادات التسجيل</value>
@@ -240,6 +297,9 @@
     <value>التسجيل مفتوح الان هل تريد إيقاف عمله</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
     <comment>Common</comment>
@@ -247,6 +307,9 @@
   <data name="SearchPhoneNumber" xml:space="preserve">
     <value>بحث برقم الهاتف</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>الإسم الثاني</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>الإعدادات</value>
@@ -256,12 +319,24 @@
     <value>اظهار الاعضاء فقط الذين هم</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="SorryTheRegistrationClosed" xml:space="preserve">
+    <value>عذرا , التسجيل مغلق </value>
+  </data>
+  <data name="SuggestPassword" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>تم عملية التسجيل بنجاح .. سوف يتم التواصل معك قريبا</value>
+  </data>
+  <data name="ThirdName" xml:space="preserve">
+    <value>الاسم الثالث</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>اسم المستخدم</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
   <data name="UserSettings" xml:space="preserve">
-    <value>إعدادات المستخدم</value>
+    <value>إعدادات المستخدمين </value>
     <comment>Settings</comment>
   </data>
 </root>

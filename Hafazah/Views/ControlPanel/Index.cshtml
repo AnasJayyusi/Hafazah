@@ -6,12 +6,16 @@
 <hr />
 
 
-<h4>@Resources.GetResource.T("User Settings") </h4>
+<h4>@Resources.GetResource.T("UserSettings") </h4>
 @Html.ActionLink(@Resources.GetResource.T("ChangePassword"), "Index", "Manage", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
 
-@Html.ActionLink(@Resources.GetResource.T("RegisterNewUser") , "Register", "Account", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+@Html.ActionLink(@Resources.GetResource.T("ManageSheikhsMemberships") , "Index", "Instructors", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
 <br />
+
+@Html.ActionLink(@Resources.GetResource.T("AddNewStudent") , "Create", "Members", routeValues: null, htmlAttributes: new { @Style = "font-size:large;color:#337ab7" })
+<br />
+
 <hr />
 
 

@@ -16,29 +16,30 @@
         <label>
             @Resources.GetResource.T("RegistrationStatusOn")
         </label>
-        <input type="button" class="btn btn-danger btn-sm" value="  @Resources.GetResource.T("Deactivate")" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+        <input type="button" class="btn btn-danger " value="@Resources.GetResource.T("Deactivate")" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
     }
     else
     {
         <label>
             @Resources.GetResource.T("RegistrationStatusOff")
         </label>
-        <input type="button" class="btn btn-success btn-sm" value=" @Resources.GetResource.T("Active")" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
+        <input type="button" class="btn btn-success" value="@Resources.GetResource.T("Active")" onclick="location.href='@Url.Action("ChangeRegistrationStatus", "Members")'" />
     }
 
     <hr />
 
     using (Html.BeginForm("Index", "Members", FormMethod.Get))
     {
-        <text>    @Resources.GetResource.T("ShowMembers") </text> @Html.DropDownList("filterMembers", new SelectList(ViewBag.MembersDDLFilter))
-        <text>   @Resources.GetResource.T("SearchPhoneNumber")</text>
-        {@Html.TextBox("phoneNumber", null, new { id = "SearchBox", @class = "SearchBox" })}
+        <text>@Resources.GetResource.T("ShowMembers") </text> @Html.DropDownList("filterMembers", new SelectList(ViewBag.MembersDDLFilter), new { id = "ddl", @class = "form-control" })
+        <text>@Resources.GetResource.T("SearchPhoneNumber")</text>
+        {@Html.TextBox("phoneNumber", null, new { id = "SearchBox", @class = "form-control" })}
+        <br />
     <input class="btn btn-info" type="submit" value="@Resources.GetResource.T("Search")" />
 }
 <br />
 <br />
 
-<table class="table table-striped"  style="text-align:inherit">
+<table class="table table-striped" style="text-align:inherit">
     <tr>
         <th>
             @Html.DisplayName(@Resources.GetResource.T("FirstName"))
@@ -105,7 +106,7 @@
             @if (ViewBag.ShowIsActiveColumn)
             {
                 <td>
-                    @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @style = "color:green" })
+                    @Html.ActionLink(@Resources.GetResource.T("Approve"), "Approve", new { id = item.Id }, new { @style = "color:green" })
                     @*|@Html.ActionLink("Decline", "Decline", new { id = item.Id }, new { @style = "color:red" })*@
                 </td>
             }

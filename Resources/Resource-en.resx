@@ -125,6 +125,9 @@
     <value>Active</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="AddNewStudent" xml:space="preserve">
+    <value>Add New Student</value>
+  </data>
   <data name="Age" xml:space="preserve">
     <value>Age</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -132,9 +135,18 @@
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back To List </value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birthdate</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
+    <value>Change My Password</value>
     <comment>Settings</comment>
+  </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>Create New</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -156,6 +168,15 @@
     <value>Edit</value>
     <comment>Common</comment>
   </data>
+  <data name="EducationLevel" xml:space="preserve">
+    <value>Education Level</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -164,9 +185,21 @@
     <value>Forgot Password?</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
+  <data name="Fursan" xml:space="preserve">
+    <value>Fursan</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Hafazah" xml:space="preserve">
+    <value>Hafazah</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
     <comment>Views\Shared\_Layout.cshtml</comment>
+  </data>
+  <data name="InstructorMember" xml:space="preserve">
+    <value>New Instructor Member</value>
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>Is Active</value>
@@ -176,6 +209,9 @@
     <value>Last name</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="LinkInstrcutor" xml:space="preserve">
+    <value>Sheikh</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
     <comment>Views\Account\Login.cshtml</comment>
@@ -183,6 +219,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
     <comment>\Views\Shared\_LoginPartial.cshtml</comment>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
   </data>
   <data name="ManageCountriesOptions" xml:space="preserve">
     <value>Manage Countries Options</value>
@@ -207,6 +246,15 @@
     <value>Manage Quran Memorizeds Options</value>
     <comment>Settings</comment>
   </data>
+  <data name="ManageSheikhsMemberships" xml:space="preserve">
+    <value>Manage Sheikhs Memberships</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>Not Set</value>
+  </data>
+  <data name="OtherDetails" xml:space="preserve">
+    <value>Other Details</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
     <comment>Views\Account\Login.cshtml</comment>
@@ -216,12 +264,18 @@
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>Phone No.</value>
+    <value>Phone Number</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
   <data name="ProgramSettings" xml:space="preserve">
     <value>Program Settings</value>
     <comment>Settings</comment>
+  </data>
+  <data name="ProgramType" xml:space="preserve">
+    <value>Program Type</value>
+  </data>
+  <data name="QuranMemorized" xml:space="preserve">
+    <value>Quran Memorized</value>
   </data>
   <data name="RegisteredMembers" xml:space="preserve">
     <value>Registered Members</value>
@@ -229,6 +283,9 @@
   </data>
   <data name="RegisterNewUser" xml:space="preserve">
     <value>Register New User</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
   </data>
   <data name="RegistrationSettings" xml:space="preserve">
     <value>Registration Settings</value>
@@ -242,6 +299,9 @@
     <value>The Registration status is on Do you want to set it off?</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
     <comment>Common</comment>
@@ -249,6 +309,9 @@
   <data name="SearchPhoneNumber" xml:space="preserve">
     <value>Search in Phone Number</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>Second Name</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -258,12 +321,24 @@
     <value>Show Members Whom</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="SorryTheRegistrationClosed" xml:space="preserve">
+    <value>Sorry The Registration Closed.</value>
+  </data>
+  <data name="SuggestPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Registration completed successfully .. We well contact you soon.</value>
+  </data>
+  <data name="ThirdName" xml:space="preserve">
+    <value>Third Name</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
   <data name="UserSettings" xml:space="preserve">
-    <value>User Settings</value>
+    <value>Users Settings</value>
     <comment>Settings</comment>
   </data>
 </root>

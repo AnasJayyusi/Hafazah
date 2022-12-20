@@ -9,6 +9,7 @@ namespace Hafazah.Model.Enums
 
     public enum ProgramType
     {
+        NotSet=-1,
         Hafazah,
         Fursan
     }

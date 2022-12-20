@@ -1,0 +1,161 @@
+﻿@model Hafazah.Model.Entities.Users.Instructor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Resources.GetResource.T("CreateNew")</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+    <h4>@Resources.GetResource.T("InstructorMember")</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("FirstName"), htmlAttributes: new { @class = "control-label" })
+
+        <div>
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("SecondName"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.SecondName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SecondName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("ThirdName"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.ThirdName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ThirdName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("LastName"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("Gender"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            <select class="form-control valid" data-val="true" data-val-required="The Gender field is required." id="Gender" name="Gender" aria-describedby="Gender-error" aria-invalid="false">
+                <option selected="selected" value="0">@Resources.GetResource.T("Female") </option>
+                <option value="1">@Resources.GetResource.T("Male")</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("BirthDate"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.TextBoxFor(model => model.BirthDate, new { @type = "date", @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("PhoneNumber"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("EducationLevel"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.DropDownList("EducationLevelId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EducationLevelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("Username"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("SuggestPassword"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.SuggestPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SuggestPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("Email"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("QuranMemorized"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.DropDownList("QuranMemorizedId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EducationLevelId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("ProgramType"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            <select class="form-control valid" data-val="true" data-val-required="The ProgramType field is required." id="ProgramType" name="ProgramType" aria-describedby="ProgramType-error" aria-invalid="false">
+                <option value="-1">@Resources.GetResource.T("NotSet") </option>
+                <option selected="selected" value="0">@Resources.GetResource.T("Hafazah") </option>
+                <option value="1">@Resources.GetResource.T("Fursan") </option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label(@Resources.GetResource.T("OtherDetails"), htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.TextAreaFor(model => model.OtherDetails, new { @class = "form-control", @cols = 50, @rows = 5 })
+            @Html.ValidationMessageFor(model => model.OtherDetails, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            <button type="submit" value="Create" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"></path>
+                </svg>
+                @Resources.GetResource.T("Save")
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+<br />
+<br />
+
+<div style="text-align:end">
+    @Html.ActionLink(@Resources.GetResource.T("BackToList"), "Index", null, new { @class = "next" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

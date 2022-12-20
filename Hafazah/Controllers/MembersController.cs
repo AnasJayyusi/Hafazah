@@ -7,7 +7,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 
 namespace Hafazah.Controllers
 {
@@ -131,11 +130,7 @@ namespace Hafazah.Controllers
             {
                 return HttpNotFound();
             }
-
-
             return RedirectToAction("ApproveNewMember", "Account", member);
-            //using (var accountController = new AccountController())
-            //    await accountController.AddNewMember(member.Username, member.Email, member.SuggestPassword="P@ssword");
         }
 
         [Route("Registration")]
@@ -151,7 +146,6 @@ namespace Hafazah.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Submit(Member member)
         {
             if (ModelState.IsValid && !IsUserNameExists(member.Username) && !IsEmailExists(member.Email))
@@ -194,6 +188,7 @@ namespace Hafazah.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Member member = _db.Members.Find(id);
+            ViewBag.InstrcutorId = new SelectList(_db.Instructors, "Id", "LastName", member.InstrcutorId);
             if (member == null)
             {
                 return HttpNotFound();
@@ -203,15 +198,35 @@ namespace Hafazah.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,SecondName,ThirdName,LastName,Gender,BirthDate,Country,Address,EducationLevel,JobTitle,Username,PhoneNumber,Email,QuranMemorized,InterviewDate,KnownFrom,IsActive,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Member member)
+        [Route("EditMember")]
+        public ActionResult Edit(
+            [Bind(Include = "Id,FirstName,SecondName,ThirdName,LastName,Gender,BirthDate,EducationLevelId,JobTitle,PhoneNumber,Email,IsActive,InstrcutorId")] Member member)
         {
-            if (ModelState.IsValid)
+            ViewBag.InstrcutorId = new SelectList(_db.Instructors, "Id", "LastName");
+            try
             {
-                _db.Entry(member).State = EntityState.Modified;
+                // Update Values 
+                Member obj = _db.Members.Find(member.Id);
+                obj.FirstName = member.FirstName;
+                obj.SecondName = member.SecondName;
+                obj.ThirdName = member.ThirdName;
+                obj.LastName = member.LastName;
+                obj.Gender = member.Gender;
+                obj.BirthDate = member.BirthDate;
+                obj.EducationLevelId = member.EducationLevelId;
+                obj.JobTitle = member.JobTitle;
+                obj.PhoneNumber = member.PhoneNumber;
+                obj.IsActive = member.IsActive;
+                obj.InstrcutorId = member.InstrcutorId;
+
+                _db.Entry(obj).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(member);
+            catch (System.Exception)
+            {
+                return View(member);
+            }
         }
 
         public ActionResult Delete(int? id)

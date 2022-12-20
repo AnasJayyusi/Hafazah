@@ -2,6 +2,7 @@
 using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model;
+using Hafazah.Model.Entities.Users;
 using Hafazah.Model.Enums;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -516,6 +517,29 @@ namespace Hafazah.Controllers
                 #endregion
                 await UserManager.AddToRoleAsync(user.Id, Role.Student.ToString());
                 _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
+                _db.SaveChanges();
+                return RedirectToAction("Index", "Members");
+            }
+            return RedirectToAction("SomeErrorHappend", "Member");
+        }
+
+        public async Task<ActionResult> ApproveNewInstructor(Instructor data)
+        {
+            var user = new ApplicationUser { UserName = data.Username, Email = data.Email, PhoneNumber = data.PhoneNumber };
+            var result = await UserManager.CreateAsync(user, data.SuggestPassword);
+            if (result.Succeeded)
+            {
+                #region To Enable Confirmation
+                //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771    
+                // Send an email with this link    
+                // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);    
+                // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);    
+                // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
+                //Assign Role to user Here
+                #endregion
+                await UserManager.AddToRoleAsync(user.Id, Role.Instrcutor.ToString());
+                _db.Instructors.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Members");
             }

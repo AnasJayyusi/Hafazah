@@ -1,4 +1,5 @@
 ﻿using Hafazah.Model.Entities;
+using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Users;
 using Hafazah.Model.Enums;
 using System;
@@ -35,8 +36,6 @@ namespace Hafazah.Model
         [MaxLength(256)]
         public string Address { get; set; }
 
-        [MaxLength(128)]
-        public string EducationLevel { get; set; }
 
         [MaxLength(128)]
         public string JobTitle { get; set; }
@@ -60,7 +59,6 @@ namespace Hafazah.Model
         #endregion
 
         #region More Info
-        public string QuranMemorized { get; set; }
         public DateTime? InterviewDate { get; set; }
         #endregion
 
@@ -87,6 +85,12 @@ namespace Hafazah.Model
         #region RelationShips
         public int? InstrcutorId { get; set; }
         public Instructor Instrcutor { get; set; }
+
+        public int? EducationLevelId { get; set; }
+        public EducationLevel EducationLevel { get; set; }
+
+        public int? QuranMemorizedId { get; set; }
+        public QuranMemorized QuranMemorized { get; set; }
         #endregion
 
         #region Not Mapped Member
