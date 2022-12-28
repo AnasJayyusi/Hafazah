@@ -1,10 +1,13 @@
 ﻿using Hafazah.DAL;
 using Hafazah.Model.Dtos;
+using Hafazah.Model.Entities.DropDownListOptions;
 using Hafazah.Model.Entities.Program;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Web.Helpers;
 using Member = Hafazah.Model.Member;
 
 namespace Hafazah.Services
@@ -25,6 +28,28 @@ namespace Hafazah.Services
                 _db.SaveChanges();
             }
         }
+
+        internal void UpdateMember(Member member)
+        {
+            var originalmemberdata = _db.Members.Find(member.Id);
+
+            originalmemberdata.FirstName=member.FirstName;
+            originalmemberdata.SecondName=member.SecondName;
+            originalmemberdata.ThirdName=member.ThirdName;
+            originalmemberdata.LastName=member.LastName;
+            originalmemberdata.BirthDate=member.BirthDate;
+            originalmemberdata.Address=member.Address;
+            originalmemberdata.JobTitle=member.JobTitle;
+            originalmemberdata.PhoneNumber=member.PhoneNumber;
+            originalmemberdata.Email=member.Email;
+            originalmemberdata.EducationLevelId=member.EducationLevelId;
+            originalmemberdata.QuranMemorizedId=member.QuranMemorizedId;
+            originalmemberdata.CountryId = member.CountryId;
+
+            _db.Members.AddOrUpdate(member);
+            _db.SaveChanges();
+        }
+
 
         internal void SetToken(string username, string token)
         {
@@ -144,29 +169,38 @@ namespace Hafazah.Services
             if (m.SuggestPassword.Length < 6)
                 errors.Add("Password must have at least 6 non letter or digit character");
 
-            if (IsUserNameExists(m.Username.ToLower()))
+            if (IsUsernameToken(m.Username.ToLower()))
                 errors.Add("User already token");
 
 
-            if (IsEmailExists(m.Email.ToLower()))
+            if (IsEmaiAlreadylExists(m.Email.ToLower()))
                 errors.Add("Email already exists");
 
             return errors;
         }
 
-        private bool IsUserNameExists(string username)
+        public bool IsUsernameToken(string username)
         {
             var user = _db.Users
                                 .Where(x => x.UserName.ToLower() == username).FirstOrDefault();
             return user != null;
         }
 
-        private bool IsEmailExists(string email)
+        public bool IsEmaiAlreadylExists(string email)
         {
             var user = _db.Users
                                 .Where(x => x.Email.ToLower() == email).FirstOrDefault();
             return user != null;
         }
+
+
+        public bool IsPhoneNumberAlreadylExists(string email)
+        {
+            var user = _db.Users
+                                .Where(x => x.PhoneNumber.ToLower() == email).FirstOrDefault();
+            return user != null;
+        }
+
 
         #endregion
     }

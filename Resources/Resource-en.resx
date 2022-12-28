@@ -128,9 +128,18 @@
   <data name="AddNewStudent" xml:space="preserve">
     <value>Add New Student</value>
   </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Governorate - District - Village or Neighborhood</value>
+  </data>
   <data name="Age" xml:space="preserve">
     <value>Age</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="AlreadyTaken" xml:space="preserve">
+    <value>Already Taken, please try another username !!!</value>
   </data>
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
@@ -145,8 +154,14 @@
     <value>Change My Password</value>
     <comment>Settings</comment>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country of Residence</value>
+  </data>
   <data name="CreateNew" xml:space="preserve">
     <value>Create New</value>
+  </data>
+  <data name="CurrentLevel" xml:space="preserve">
+    <value>Current Level</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -181,6 +196,9 @@
     <value>First name</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="FirstNameRequired" xml:space="preserve">
+    <value>First Name is required</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot Password?</value>
     <comment>Views\Account\Login.cshtml</comment>
@@ -188,22 +206,40 @@
   <data name="Fursan" xml:space="preserve">
     <value>Fursan</value>
   </data>
+  <data name="FursanVideo" xml:space="preserve">
+    <value>Video about Fursan Program</value>
+  </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
   <data name="Hafazah" xml:space="preserve">
     <value>Hafazah</value>
   </data>
+  <data name="HafazahVideo" xml:space="preserve">
+    <value>Video about Hafazah Program</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
     <comment>Views\Shared\_Layout.cshtml</comment>
   </data>
+  <data name="IncludeWhatsApp" xml:space="preserve">
+    <value>Make sure the number linked with WhatsApp</value>
+  </data>
   <data name="InstructorMember" xml:space="preserve">
     <value>New Instructor Member</value>
+  </data>
+  <data name="InterviewDate" xml:space="preserve">
+    <value>Appropriate date for the interview</value>
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>Is Active</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="KnownFrom" xml:space="preserve">
+    <value>How Did you know about program?</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last name</value>
@@ -259,6 +295,9 @@
     <value>Password</value>
     <comment>Views\Account\Login.cshtml</comment>
   </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
   <data name="PendingRequests" xml:space="preserve">
     <value>Pending Requests</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -266,6 +305,9 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
     <comment>\Views\Members\Index.cshtml</comment>
+  </data>
+  <data name="PleaseFillInfotoJoin" xml:space="preserve">
+    <value>Please Fill Info to Join</value>
   </data>
   <data name="ProgramSettings" xml:space="preserve">
     <value>Program Settings</value>
@@ -299,6 +341,9 @@
     <value>The Registration status is on Do you want to set it off?</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="Required" xml:space="preserve">
+    <value>* Required </value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -324,6 +369,9 @@
   <data name="SorryTheRegistrationClosed" xml:space="preserve">
     <value>Sorry The Registration Closed.</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
   <data name="SuggestPassword" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -336,6 +384,9 @@
   <data name="Username" xml:space="preserve">
     <value>Username</value>
     <comment>Views\Account\Login.cshtml</comment>
+  </data>
+  <data name="UsernameIsAvailable" xml:space="preserve">
+    <value>Username is Available !</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>Users Settings</value>

@@ -63,6 +63,7 @@
     <EmbeddedResource Include="Resource-ar.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource-ar.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resource-en.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -34,7 +34,16 @@
             @RenderBody()
             <hr />
             <footer>
-                @*<p>&copy; @DateTime.Now.Year - Powered By Unk </p>*@
+                <div style="text-align: center">
+                    @Html.ActionLink(
+"English",
+ViewContext.RouteData.Values["action"].ToString(),
+new { culture = "en" }) |
+                    @Html.ActionLink(
+"اللغة العربية",
+ViewContext.RouteData.Values["action"].ToString(),
+new { culture = "ar" })
+                </div>
             </footer>
         </div>
 
@@ -63,7 +72,16 @@
             @RenderBody()
             <hr />
             <footer>
-                @*<p>&copy; @DateTime.Now.Year - Powered By Unk </p>*@
+                <div style="text-align: center">
+                    @Html.ActionLink(
+"English",
+ViewContext.RouteData.Values["action"].ToString(),
+new { culture = "en" }) |
+                    @Html.ActionLink(
+"اللغة العربية",
+ViewContext.RouteData.Values["action"].ToString(),
+new { culture = "ar" })
+                </div>
             </footer>
         </div>
     }

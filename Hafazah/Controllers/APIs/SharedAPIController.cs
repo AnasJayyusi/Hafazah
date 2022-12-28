@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Policy;
 using System.Web.Http;
 
 namespace Hafazah.Controllers.APIs
@@ -21,7 +22,7 @@ namespace Hafazah.Controllers.APIs
 
         #region Login 
 
-      
+
         #endregion
 
         [HttpGet]
@@ -48,6 +49,22 @@ namespace Hafazah.Controllers.APIs
 
                 if (validations.Any())
                     return Content(HttpStatusCode.NotAcceptable, new ValidationError() { ErrorList = validations });
+
+                return Ok(@"'isSucceeded':'true'");
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateProfileInfo")]
+        public IHttpActionResult UpdateStudentProfileInfo(Member member)
+        {
+            try
+            {
+                _svc.UpdateMember(member);
 
                 return Ok(@"'isSucceeded':'true'");
             }
@@ -155,5 +172,24 @@ namespace Hafazah.Controllers.APIs
                 return InternalServerError(ex);
             }
         }
+
+
+        [HttpGet]
+        [Route("IsUserNameExists")]
+        public IHttpActionResult IsUserNameExists(string username)
+        {
+            try
+            {
+                return Ok(_svc.IsUsernameToken(username));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+
+
+
     }
 }

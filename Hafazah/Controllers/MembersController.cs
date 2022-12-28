@@ -1,7 +1,9 @@
 ﻿using Hafazah.Common;
 using Hafazah.DAL;
 using Hafazah.Model;
+using Hafazah.Services;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -139,16 +141,55 @@ namespace Hafazah.Controllers
             var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
 
             if (obj.Value == "true")
+            {
                 ViewBag.IsRegistrationOpen = true;
+                FillingDDLs();
+                SetDefautValuesForValdations();
+            }
             else
                 ViewBag.IsRegistrationOpen = false;
+
+
             return View();
         }
 
+        private void FillingDDLs()
+        {
+            // Filling DDls
+            ViewBag.EducationLevelId = new SelectList(_db.EducationLevels, "Id", "Name");
+            ViewBag.QuranMemorizedId = new SelectList(_db.QuranMemorized, "Id", "Name");
+            ViewBag.CountryId = new SelectList(_db.Countries, "Id", "Name");
+        }
+
+        private void SetDefautValuesForValdations()
+        {
+            // Validation
+            ViewBag.FirstNameMissing = true;
+            ViewBag.LastNameMissing = true;
+            ViewBag.GenderNameMissing = true;
+            ViewBag.CountryIdMissing = true;
+            ViewBag.AddressMissing = true;
+            ViewBag.BirthDateMissing = true;
+            ViewBag.EducationLevelIdMissing = true;
+            ViewBag.JobTitleMissing = true;
+            ViewBag.KnownFromMissing = true;
+            ViewBag.PhoneNumberMissing = true;
+            ViewBag.EmailMissing = true;
+            ViewBag.UsernameMissing = true;
+            ViewBag.SuggestPasswordMissing = true;
+            ViewBag.QuranMemorizedIdMissing = true;
+            ViewBag.InterviewDateMissing = true;
+            ViewBag.ProgramTypeMissing = true;
+            ViewBag.PathMissing = true;
+
+        }
+
         [HttpPost]
+        [Route("Registration")]
         public ActionResult Submit(Member member)
         {
-            if (ModelState.IsValid && !IsUserNameExists(member.Username) && !IsEmailExists(member.Email))
+            SharedServices sharedServices = new SharedServices();
+            if (ModelState.IsValid && !sharedServices.IsUsernameToken(member.Username) && !sharedServices.IsEmaiAlreadylExists(member.Email) && !sharedServices.IsPhoneNumberAlreadylExists(member.PhoneNumber))
             {
                 _db.Members.Add(member);
                 _db.SaveChanges();
@@ -165,18 +206,6 @@ namespace Hafazah.Controllers
         public ActionResult SomeErrorHappend()
         {
             return View();
-        }
-
-        private bool IsUserNameExists(string username)
-        {
-            var user = _db.Users.Where(x => x.UserName.ToLower() == username).FirstOrDefault();
-            return user != null;
-        }
-
-        private bool IsEmailExists(string email)
-        {
-            var user = _db.Users.Where(x => x.Email.ToLower() == email).FirstOrDefault();
-            return user != null;
         }
 
 
@@ -252,6 +281,51 @@ namespace Hafazah.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // DDLs
+
+
+        [HttpGet]
+        public JsonResult GetHafazahProgram()
+        {
+            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Hafazah).ToList();
+            return Json(programs, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetFursanProgram()
+        {
+            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Fursan).ToList();
+            return Json(programs, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult IsUsernameToken(string username)
+        {
+            SharedServices sharedServices = new SharedServices();
+            var res= sharedServices.IsUsernameToken(username);
+            return Json(res);
+        }
+
+        [HttpPost]
+        public JsonResult IsEmailAlreadyExists(string email)
+        {
+            SharedServices sharedServices = new SharedServices();
+            var res = sharedServices.IsEmaiAlreadylExists(email);
+            return Json(res);
+        }
+
+
+        [HttpPost]
+        public JsonResult IsPhoneNumberAlreadyExists(string phonenumber)
+        {
+            SharedServices sharedServices = new SharedServices();
+            var res = sharedServices.IsPhoneNumberAlreadylExists(phonenumber);
+            return Json(res);
+        }
+
+
+
 
         protected override void Dispose(bool disposing)
         {

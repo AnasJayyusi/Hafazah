@@ -26,17 +26,18 @@ namespace Hafazah.Model
         [MaxLength(128)]
         public string LastName { get; set; }
 
+        [Required]
         public Gender Gender { get; set; }
 
-        public DateTime? BirthDate { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
 
-        [MaxLength(128)]
-        public string Country { get; set; }
-
+        [Required]
         [MaxLength(256)]
         public string Address { get; set; }
 
 
+        [Required]
         [MaxLength(128)]
         public string JobTitle { get; set; }
 
@@ -50,9 +51,11 @@ namespace Hafazah.Model
         [DataType(DataType.Password)]
         public string SuggestPassword { get; set; }
 
+        [Required]
         [MaxLength(50)]
         public string PhoneNumber { get; set; }
 
+        [Required]
         [EmailAddress]
         [MaxLength(128)]
         public string Email { get; set; }
@@ -60,12 +63,17 @@ namespace Hafazah.Model
 
         #region More Info
         public DateTime? InterviewDate { get; set; }
+
+        [Required]
+        public TimeEnum PreferenceTime { get; set; }
         #endregion
 
+        [Required]
         [MaxLength(256)]
         public string KnownFrom { get; set; }
 
         #region Releated To The Program
+        [Required]
         public ProgramType ProgramType { get; set; }
         public string CurrentPath { get; set; }
         public int? CurrentLevel { get; set; }
@@ -77,7 +85,6 @@ namespace Hafazah.Model
 
         #region  Not Showing ON UI
         public bool IsActive { get; set; }
-
         public string NotificationToken { get; set; }
         public string ProfilePictureBase64 { get; set; }
         #endregion
@@ -86,11 +93,17 @@ namespace Hafazah.Model
         public int? InstrcutorId { get; set; }
         public Instructor Instrcutor { get; set; }
 
-        public int? EducationLevelId { get; set; }
+        [Required]
+        public int EducationLevelId { get; set; }
         public EducationLevel EducationLevel { get; set; }
 
-        public int? QuranMemorizedId { get; set; }
+        [Required]
+        public int QuranMemorizedId { get; set; }
         public QuranMemorized QuranMemorized { get; set; }
+
+        [Required]
+        public int CountryId { get; set; }
+        public Country Country { get; set; }
         #endregion
 
         #region Not Mapped Member
@@ -100,11 +113,8 @@ namespace Hafazah.Model
             {
                 int age = 0;
                 DateTime now = DateTime.Today;
-                if (BirthDate.HasValue)
-                {
-                    age = now.Year - BirthDate.Value.Year;
-                    if (BirthDate > now.AddYears(-age)) age--;
-                }
+                age = now.Year - BirthDate.Year;
+                if (BirthDate > now.AddYears(-age)) age--;
                 return age;
             }
         }

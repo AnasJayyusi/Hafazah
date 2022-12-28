@@ -7,180 +7,409 @@
 
 <h2>@Resources.GetResource.T("Registration")</h2>
 
+
+
+
 @using (Html.BeginForm())
 {
     if (ViewBag.IsRegistrationOpen != null && ViewBag.IsRegistrationOpen == true)
     {
+
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Please Fill Info to Join</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("FirstName"), htmlAttributes: new { @class = "control-label" })
-                <div >
-                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        <div class="flex-container">
+            <div class="flex-child magenta">
+                <div>
+
+                    <h4>@Resources.GetResource.T("PleaseFillInfotoJoin")</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("FirstName"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.FirstNameMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.FirstName, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("SecondName"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.SecondName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("ThirdName"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.ThirdName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("LastName"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.LastNameMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.LastName, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Gender"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            <select class="form-control valid" data-val="true" data-val-required="The Gender field is required." id="Gender" name="Gender" aria-describedby="Gender-error" aria-invalid="false">
+                                <option selected="selected" value="1">@Resources.GetResource.T("Male")</option>
+                                <option value="0">@Resources.GetResource.T("Female") </option>
+                            </select>
+                            @if (ViewBag.GenderNameMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.Gender, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Country"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control" })
+                            @if (ViewBag.CountryIdMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.CountryId, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Address"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = @Resources.GetResource.T("AddressPlaceHolder") } })
+                            @if (ViewBag.AddressMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.Address, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("BirthDate"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.TextBoxFor(model => model.BirthDate, new { @type = "date", @class = "form-control datepicker" })
+                            @if (ViewBag.BirthDateMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.BirthDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("EducationLevel"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("EducationLevelId", null, htmlAttributes: new { @class = "form-control" })
+                            @if (ViewBag.EducationLevelIdMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.EducationLevelId, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("JobTitle"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.JobTitleMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.JobTitle, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("KnownFrom"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.KnownFrom, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.KnownFromMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.KnownFrom, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("PhoneNumber"), htmlAttributes: new { @class = "control-label" })
+                        <label style="color:gray;font-style:italic;font-size:xx-small;">♦ @Resources.GetResource.T("IncludeWhatsApp")</label>
+                        <div>
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.PhoneNumberMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Email"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.EmailMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.Email, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Username"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            <label id="lblAvailable" style="color: green; display: none "> @Resources.GetResource.T("UsernameIsAvailable")</label>
+                            <label id="lblTaken" style="color: red; display: none"> @Resources.GetResource.T("AlreadyTaken") </label>
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "usernameinput", @class = "form-control", onfocusout = "checkUserExists()" } })
+                            @if (ViewBag.UsernameMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.Username, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("SuggestPassword"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.SuggestPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @if (ViewBag.SuggestPasswordMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.SuggestPassword, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("QuranMemorized"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.DropDownList("QuranMemorizedId", null, htmlAttributes: new { @class = "form-control" })
+                            @if (ViewBag.QuranMemorizedIdMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.QuranMemorizedId, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("InterviewDate"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.TextBoxFor(model => model.InterviewDate, new { @type = "date", @class = "form-control datepicker" })
+                            @if (ViewBag.InterviewDateMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("ProgramType"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            <select onchange="onProgramTypeChange()" class="form-control valid" data-val="true" id="ddlProgramType" name="ProgramType" aria-invalid="false">
+                                <option selected="selected" value="-1">@Resources.GetResource.T("NotSet") </option>
+                                <option value="0">@Resources.GetResource.T("Hafazah") </option>
+                                <option value="1">@Resources.GetResource.T("Fursan") </option>
+                            </select>
+                            @if (ViewBag.ProgramTypeMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label(@Resources.GetResource.T("Path"), htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            <select onchange="onProgramTypeChange()" class="form-control valid" data-val="true" id="ddlPath" name="Path" aria-invalid="false">
+                            </select>
+                            @if (ViewBag.PathMissing == true)
+                            {
+                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                            <button type="submit" value="Submit" class="btn btn-primary btn-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
+                                </svg>
+                                @Resources.GetResource.T("Submit")
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("SecondName"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.SecondName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SecondName, "", new { @class = "text-danger" })
+            <div>
+
+                <div class="flex-child green">
+                    <p style="font-style: oblique;font-weight: bold;">@Resources.GetResource.T("HafazahVideo")</p>
+                    <iframe width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/NmREcAuCJio"
+                            frameborder="0"
+                            allowfullscreen></iframe>
+
+
+                    <p style="font-style: oblique;font-weight: bold;">@Resources.GetResource.T("FursanVideo")</p>
+                    <iframe width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/HQVYzuY_HqY"
+                            frameborder="0"
+                            allowfullscreen></iframe>
+
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("ThirdName"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.ThirdName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ThirdName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("LastName"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("Gender"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EnumDropDownListFor(model => model.Gender, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("BirthDate"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("Country"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("Address"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("EducationLevel"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.EducationLevel, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.EducationLevel, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("JobTitle"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("Username"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("SuggestPassword"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.SuggestPassword, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SuggestPassword, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("PhoneNumber"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("Email"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("QuranMemorized"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.QuranMemorized, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.QuranMemorized, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("InterviewDate"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.InterviewDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("IntKnownFromerviewDate"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.KnownFrom, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.KnownFrom, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("ProgramType"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EnumDropDownListFor(model => model.ProgramType, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ProgramType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label(@Resources.GetResource.T("CurrentPath"), htmlAttributes: new { @class = "control-label" })
-                <div>
-                    @Html.EditorFor(model => model.CurrentPath, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CurrentPath, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Submit" class="btn btn-default" />
-                </div>
-            </div>
         </div>
+
     }
     else
     {
+        <div style="text-align:center">
+            <p style="font-style: oblique;font-weight: bold;">@Resources.GetResource.T("HafazahVideo")</p>
+            <iframe width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/NmREcAuCJio"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+
+
+            <p style="font-style: oblique;font-weight: bold;">@Resources.GetResource.T("FursanVideo")</p>
+            <iframe width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/HQVYzuY_HqY"
+                    frameborder="0"
+                    allowfullscreen></iframe>
+
+        </div>
+
         <h2>@Resources.GetResource.T("SorryTheRegistrationClosed")</h2>
     }
 }
+
+
+<script type="text/javascript">
+    function onProgramTypeChange(button) {
+        var e = document.getElementById("ddlProgramType");
+        var value = e.value;
+        var text = e.options[e.selectedIndex].text;
+
+        if (value == 0) // حفظة
+        {
+            $("#ddlPath").empty();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetHafazahProgram", "Members")',
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    for (var i = 0; i < r.length; i++) {
+                        $('#ddlPath').append($('<option>', {
+                            value:r[i].Id,
+                            text: r[i].Name
+                        }));
+                    }
+                }
+            });
+        }
+        else if (value == 1) // فرسان
+        {
+            $("#ddlPath").empty();
+             $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetFursanProgram", "Members")',
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                 success: function (r) {
+                     $('#ddlPath').val
+                     for (var i = 0; i < r.length; i++) {
+                         $('#ddlPath').append($('<option>', {
+                             value: r[i].Id,
+                             text: r[i].Name
+                         }));
+                     }
+
+                }
+            });
+        }
+    };
+    function checkUserExists() {
+        var e = document.getElementById("usernameinput");
+        var username = e.value;
+        debugger
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IsUsernameToken", "Members")',
+                data: JSON.stringify({ "username": username }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    debugger
+                    if (r == true) {
+                        $("#lblTaken").show();
+                        $("#lblAvailable").hide();
+                    }
+                    else {
+                        $("#lblTaken").hide();
+                        $("#lblAvailable").show();
+                    }
+
+
+
+                }
+            });
+    }
+
+
+     function checkEmailExists() {
+        var e = document.getElementById("usernameinput");
+        var username = e.value;
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IsUsernameToken", "Members")',
+                data: JSON.stringify({ "username": username }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                 
+                    debugger
+                    if (r == true ) {
+                        $("#lblTaken").show();
+                        $("#lblAvailable").hide();
+                    }
+                    else if (r == false) {
+                        $("#lblTaken").hide();
+                        $("#lblAvailable").show();
+                    }
+
+                    if (username == "" || username == null || username == String.empty) {
+                        $("#lblTaken").hide();
+                        $("#lblAvailable").hide();
+                    }
+
+                  
+                }
+            });
+    }
+</script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

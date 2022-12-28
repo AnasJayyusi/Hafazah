@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.Serialization;
 using System.Threading;
 using System.Web.Mvc;
 
@@ -11,6 +12,12 @@ namespace Hafazah.Common
             object cultureRequest = null;
             filterContext.ActionParameters.TryGetValue("culture", out cultureRequest);
             var currentCulture = Thread.CurrentThread.CurrentCulture.ToString();
+
+            if (filterContext.HttpContext.Request.RawUrl.Contains("en"))
+                cultureRequest = "en";
+            else
+                cultureRequest = "ar";
+
 
             // If sessiong was empty so maybe it is First Login  
             if (Session["userCultureInfo"] == null || (cultureRequest != null ? cultureRequest.ToString() != currentCulture : false))
@@ -44,5 +51,6 @@ namespace Hafazah.Common
             else
                 return RedirectToAction("Login", "Account");
         }
+
     }
 }

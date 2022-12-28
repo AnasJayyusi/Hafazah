@@ -118,6 +118,14 @@
     <Compile Include="Migrations\202212200131516_AddIsOpenToTables.Designer.cs">
       <DependentUpon>202212200131516_AddIsOpenToTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212252101540_ModifyCountryTableArabicEnglsih.cs" />
+    <Compile Include="Migrations\202212252101540_ModifyCountryTableArabicEnglsih.Designer.cs">
+      <DependentUpon>202212252101540_ModifyCountryTableArabicEnglsih.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212252129111_SetAllColumnsRequiredInMemberTable.cs" />
+    <Compile Include="Migrations\202212252129111_SetAllColumnsRequiredInMemberTable.Designer.cs">
+      <DependentUpon>202212252129111_SetAllColumnsRequiredInMemberTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212200131516_AddIsOpenToTables.resx">
       <DependentUpon>202212200131516_AddIsOpenToTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212252101540_ModifyCountryTableArabicEnglsih.resx">
+      <DependentUpon>202212252101540_ModifyCountryTableArabicEnglsih.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212252129111_SetAllColumnsRequiredInMemberTable.resx">
+      <DependentUpon>202212252129111_SetAllColumnsRequiredInMemberTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

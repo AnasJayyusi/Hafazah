@@ -9,7 +9,7 @@ namespace Hafazah.Model.Enums
 
     public enum ProgramType
     {
-        NotSet=-1,
+        NotSet = -1,
         Hafazah,
         Fursan
     }
@@ -34,7 +34,7 @@ namespace Hafazah.Model.Enums
     }
 
 
-    enum ErrorCode : ushort
+    public enum ErrorCode : ushort
     {
         None = 0,
         Unknown = 1,
@@ -43,6 +43,11 @@ namespace Hafazah.Model.Enums
     }
 
 
+    public enum TimeEnum
+    {
+        Morning,
+        Evening
+    }
 
 
 
