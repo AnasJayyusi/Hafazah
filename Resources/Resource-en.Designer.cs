@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Morning .
+        /// </summary>
+        internal static string AM {
+            get {
+                return ResourceManager.GetString("AM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approve.
         /// </summary>
         internal static string Approve {
@@ -187,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Wave Number.
+        /// </summary>
+        internal static string CurrentWaveNumber {
+            get {
+                return ResourceManager.GetString("CurrentWaveNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dashboard.
         /// </summary>
         internal static string Dashboard {
@@ -246,6 +264,15 @@ namespace Resources {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email already used.
+        /// </summary>
+        internal static string EmailAlreadyUsed {
+            get {
+                return ResourceManager.GetString("EmailAlreadyUsed", resourceCulture);
             }
         }
         
@@ -547,6 +574,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone number is already used.
+        /// </summary>
+        internal static string PhoneAlreadyUsed {
+            get {
+                return ResourceManager.GetString("PhoneAlreadyUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone Number.
         /// </summary>
         internal static string PhoneNumber {
@@ -561,6 +597,15 @@ namespace Resources {
         internal static string PleaseFillInfotoJoin {
             get {
                 return ResourceManager.GetString("PleaseFillInfotoJoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evening.
+        /// </summary>
+        internal static string PM {
+            get {
+                return ResourceManager.GetString("PM", resourceCulture);
             }
         }
         
@@ -700,6 +745,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Should be at Least 6 digits.
+        /// </summary>
+        internal static string ShouldBeAtLeast6Digits {
+            get {
+                return ResourceManager.GetString("ShouldBeAtLeast6Digits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Members Whom.
         /// </summary>
         internal static string ShowMembers {
@@ -777,6 +831,15 @@ namespace Resources {
         internal static string UserSettings {
             get {
                 return ResourceManager.GetString("UserSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wave - sequencing.
+        /// </summary>
+        internal static string WaveNumber {
+            get {
+                return ResourceManager.GetString("WaveNumber", resourceCulture);
             }
         }
     }

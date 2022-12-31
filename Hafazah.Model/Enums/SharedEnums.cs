@@ -38,8 +38,9 @@ namespace Hafazah.Model.Enums
     {
         None = 0,
         Unknown = 1,
-        ConnectionLost = 100,
-        OutlierReading = 200
+        ConnectionLost = 2,
+        MemberNotExists=3,
+        
     }
 
 

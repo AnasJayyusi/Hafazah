@@ -1,5 +1,6 @@
 ﻿using Hafazah.Model.Entities;
 using Hafazah.Model.Entities.DropDownListOptions;
+using Hafazah.Model.Entities.Program;
 using Hafazah.Model.Entities.Users;
 using Hafazah.Model.Enums;
 using System;
@@ -62,20 +63,18 @@ namespace Hafazah.Model
         #endregion
 
         #region More Info
-        public DateTime? InterviewDate { get; set; }
 
         [Required]
         public TimeEnum PreferenceTime { get; set; }
-        #endregion
 
         [Required]
         [MaxLength(256)]
         public string KnownFrom { get; set; }
 
+        public string WaveNumber { get; set; }
+        #endregion
+
         #region Releated To The Program
-        [Required]
-        public ProgramType ProgramType { get; set; }
-        public string CurrentPath { get; set; }
         public int? CurrentLevel { get; set; }
         public int? WarningCounter { get; set; }
         [DefaultValue(0)]
@@ -104,6 +103,14 @@ namespace Hafazah.Model
         [Required]
         public int CountryId { get; set; }
         public Country Country { get; set; }
+
+
+        [Required]
+        public ProgramType ProgramType { get; set; }
+
+        [Required]
+        public int PathId { get; set; }
+        public Path Path { get; set; }
         #endregion
 
         #region Not Mapped Member
@@ -118,6 +125,10 @@ namespace Hafazah.Model
                 return age;
             }
         }
+
+        [NotMapped]
+        public string BirthDateAsString { get; set; }
+
         [NotMapped]
         public Role Role { get; set; }
         #endregion

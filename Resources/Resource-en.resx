@@ -141,6 +141,9 @@
   <data name="AlreadyTaken" xml:space="preserve">
     <value>Already Taken, please try another username !!!</value>
   </data>
+  <data name="AM" xml:space="preserve">
+    <value>Morning </value>
+  </data>
   <data name="Approve" xml:space="preserve">
     <value>Approve</value>
   </data>
@@ -162,6 +165,9 @@
   </data>
   <data name="CurrentLevel" xml:space="preserve">
     <value>Current Level</value>
+  </data>
+  <data name="CurrentWaveNumber" xml:space="preserve">
+    <value>Current Wave Number</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -188,6 +194,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="EmailAlreadyUsed" xml:space="preserve">
+    <value>Email already used</value>
   </data>
   <data name="Female" xml:space="preserve">
     <value>Female</value>
@@ -302,12 +311,18 @@
     <value>Pending Requests</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
+  <data name="PhoneAlreadyUsed" xml:space="preserve">
+    <value>Phone number is already used</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone Number</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
   <data name="PleaseFillInfotoJoin" xml:space="preserve">
     <value>Please Fill Info to Join</value>
+  </data>
+  <data name="PM" xml:space="preserve">
+    <value>Evening</value>
   </data>
   <data name="ProgramSettings" xml:space="preserve">
     <value>Program Settings</value>
@@ -362,6 +377,9 @@
     <value>Settings</value>
     <comment>Views\Shared\_LoginPartial.cshtml</comment>
   </data>
+  <data name="ShouldBeAtLeast6Digits" xml:space="preserve">
+    <value>Should be at Least 6 digits</value>
+  </data>
   <data name="ShowMembers" xml:space="preserve">
     <value>Show Members Whom</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -391,5 +409,8 @@
   <data name="UserSettings" xml:space="preserve">
     <value>Users Settings</value>
     <comment>Settings</comment>
+  </data>
+  <data name="WaveNumber" xml:space="preserve">
+    <value>Wave - sequencing</value>
   </data>
 </root>

@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="Dtos\CustomError.cs" />
     <Compile Include="Dtos\DropDownListOptionsDto.cs" />
+    <Compile Include="Dtos\MemberProfileInfo.cs" />
     <Compile Include="Entities\Accounts\AccountViewModels.cs" />
     <Compile Include="Entities\Accounts\ManageViewModels.cs" />
     <Compile Include="Entities\Common\GlobalValue.cs" />

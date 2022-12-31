@@ -3,7 +3,6 @@ using Hafazah.DAL;
 using Hafazah.Model;
 using Hafazah.Services;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -16,6 +15,7 @@ namespace Hafazah.Controllers
     {
         private HafazahDbContext _db = new HafazahDbContext();
 
+        #region Index  (Dashboard)
         [HttpGet]
         public ActionResult ChangeRegistrationStatus()
         {
@@ -26,6 +26,14 @@ namespace Hafazah.Controllers
                 obj.Value = "true";
             _db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public JsonResult UpdateWaveNumber(string wavenumber)
+        {
+            var obj = _db.GlobalValues.Single(x => x.Key == "WaveNumber");
+            obj.Value = wavenumber;
+            _db.SaveChanges();
+            return Json(true);
         }
 
         // GET: Members
@@ -72,12 +80,18 @@ namespace Hafazah.Controllers
         {
             if (ViewBag.IsAdmin)
             {
-                var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+                var registrationStatus = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
 
-                if (obj.Value == "true")
+                if (registrationStatus.Value == "true")
                     ViewBag.IsRegistrationOpen = true;
+
+
+                var waveNumber = _db.GlobalValues.Single(x => x.Key == "WaveNumber");
+                ViewBag.WaveNumber = waveNumber.Value;
             }
         }
+
+
 
         [Route("UnAuthorized")]
         public ActionResult UnAuthorized()
@@ -132,83 +146,14 @@ namespace Hafazah.Controllers
             {
                 return HttpNotFound();
             }
+
             return RedirectToAction("ApproveNewMember", "Account", member);
         }
-
-        [Route("Registration")]
-        public ActionResult Create()
-        {
-            var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
-
-            if (obj.Value == "true")
-            {
-                ViewBag.IsRegistrationOpen = true;
-                FillingDDLs();
-                SetDefautValuesForValdations();
-            }
-            else
-                ViewBag.IsRegistrationOpen = false;
+        #endregion
 
 
-            return View();
-        }
 
-        private void FillingDDLs()
-        {
-            // Filling DDls
-            ViewBag.EducationLevelId = new SelectList(_db.EducationLevels, "Id", "Name");
-            ViewBag.QuranMemorizedId = new SelectList(_db.QuranMemorized, "Id", "Name");
-            ViewBag.CountryId = new SelectList(_db.Countries, "Id", "Name");
-        }
-
-        private void SetDefautValuesForValdations()
-        {
-            // Validation
-            ViewBag.FirstNameMissing = true;
-            ViewBag.LastNameMissing = true;
-            ViewBag.GenderNameMissing = true;
-            ViewBag.CountryIdMissing = true;
-            ViewBag.AddressMissing = true;
-            ViewBag.BirthDateMissing = true;
-            ViewBag.EducationLevelIdMissing = true;
-            ViewBag.JobTitleMissing = true;
-            ViewBag.KnownFromMissing = true;
-            ViewBag.PhoneNumberMissing = true;
-            ViewBag.EmailMissing = true;
-            ViewBag.UsernameMissing = true;
-            ViewBag.SuggestPasswordMissing = true;
-            ViewBag.QuranMemorizedIdMissing = true;
-            ViewBag.InterviewDateMissing = true;
-            ViewBag.ProgramTypeMissing = true;
-            ViewBag.PathMissing = true;
-
-        }
-
-        [HttpPost]
-        [Route("Registration")]
-        public ActionResult Submit(Member member)
-        {
-            SharedServices sharedServices = new SharedServices();
-            if (ModelState.IsValid && !sharedServices.IsUsernameToken(member.Username) && !sharedServices.IsEmaiAlreadylExists(member.Email) && !sharedServices.IsPhoneNumberAlreadylExists(member.PhoneNumber))
-            {
-                _db.Members.Add(member);
-                _db.SaveChanges();
-                return RedirectToAction("ThankYou");
-            }
-            return View();
-        }
-
-        public ActionResult ThankYou()
-        {
-            return View();
-        }
-
-        public ActionResult SomeErrorHappend()
-        {
-            return View();
-        }
-
-
+        #region Edit Page
         [Route("EditMember")]
         public ActionResult Edit(int? id)
         {
@@ -258,6 +203,10 @@ namespace Hafazah.Controllers
             }
         }
 
+        #endregion
+
+        #region Delete Action
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -281,21 +230,91 @@ namespace Hafazah.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        #region Create Page 
+
+        [Route("Registration")]
+        public ActionResult Create()
+        {
+            var obj = _db.GlobalValues.Single(x => x.Key == "ChangeRegistrationStatus");
+
+            if (obj.Value == "true")
+            {
+                ViewBag.IsRegistrationOpen = true;
+                FillingDDLs();
+                SetDefautValuesForValidations();
+            }
+            else
+                ViewBag.IsRegistrationOpen = false;
+
+            return View();
+        }
+
+        [HttpPost]
+        [Route("Registration")]
+        public ActionResult Submit(Member member)
+        {
+            if (member.PathId <= 0 || member.ProgramType == Model.Enums.ProgramType.NotSet)
+                return RedirectToAction("Create");
+
+            SharedServices sharedServices = new SharedServices();
+            if (ModelState.IsValid && !sharedServices.IsUsernameToken(member.Username) && !sharedServices.IsEmaiAlreadylExists(member.Email) && !sharedServices.IsPhoneNumberAlreadylExists(member.PhoneNumber))
+            {
+                _db.Members.Add(member);
+                _db.SaveChanges();
+                return RedirectToAction("ThankYou");
+            }
+            return RedirectToAction("SomeErrorHappend");
+        }
+
+        private void FillingDDLs()
+        {
+            // Filling DDls
+            ViewBag.EducationLevelId = new SelectList(_db.EducationLevels, "Id", "Name");
+            ViewBag.QuranMemorizedId = new SelectList(_db.QuranMemorized, "Id", "Name");
+            if (IsEn)
+                ViewBag.CountryId = new SelectList(_db.Countries, "Id", "NameEn");
+            else
+                ViewBag.CountryId = new SelectList(_db.Countries, "Id", "NameAr");
+
+        }
+
+        private void SetDefautValuesForValidations()
+        {
+            // Validation
+            ViewBag.FirstNameMissing = true;
+            ViewBag.LastNameMissing = true;
+            ViewBag.GenderNameMissing = true;
+            ViewBag.CountryIdMissing = true;
+            ViewBag.AddressMissing = true;
+            ViewBag.BirthDateMissing = true;
+            ViewBag.EducationLevelIdMissing = true;
+            ViewBag.JobTitleMissing = true;
+            ViewBag.KnownFromMissing = true;
+            ViewBag.PhoneNumberMissing = true;
+            ViewBag.EmailMissing = true;
+            ViewBag.UsernameMissing = true;
+            ViewBag.SuggestPasswordMissing = true;
+            ViewBag.QuranMemorizedIdMissing = true;
+            ViewBag.InterviewDateMissing = true;
+            ViewBag.ProgramTypeMissing = true;
+            ViewBag.PathMissing = true;
+
+        }
 
         // DDLs
-
-
         [HttpGet]
         public JsonResult GetHafazahProgram()
         {
-            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Hafazah).ToList();
+            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Hafazah && x.IsOpenToRegistration).ToList();
             return Json(programs, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetFursanProgram()
         {
-            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Fursan).ToList();
+            var programs = _db.Paths.Where(x => x.ProgramType == Model.Enums.ProgramType.Fursan && x.IsOpenToRegistration).ToList();
             return Json(programs, JsonRequestBehavior.AllowGet);
         }
 
@@ -303,7 +322,7 @@ namespace Hafazah.Controllers
         public JsonResult IsUsernameToken(string username)
         {
             SharedServices sharedServices = new SharedServices();
-            var res= sharedServices.IsUsernameToken(username);
+            var res = sharedServices.IsUsernameToken(username);
             return Json(res);
         }
 
@@ -324,8 +343,21 @@ namespace Hafazah.Controllers
             return Json(res);
         }
 
+        #endregion
+
+        #region Helpers
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
+
+        public ActionResult SomeErrorHappend()
+        {
+            return View();
+        }
 
 
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

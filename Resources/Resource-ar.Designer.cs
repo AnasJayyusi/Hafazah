@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to صباحاً.
+        /// </summary>
+        internal static string AM {
+            get {
+                return ResourceManager.GetString("AM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to موافقة.
         /// </summary>
         internal static string Approve {
@@ -174,6 +183,15 @@ namespace Resources {
         internal static string CreateNew {
             get {
                 return ResourceManager.GetString("CreateNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to رقم الدفعة الحالي.
+        /// </summary>
+        internal static string CurrentWaveNumber {
+            get {
+                return ResourceManager.GetString("CurrentWaveNumber", resourceCulture);
             }
         }
         
@@ -237,6 +255,15 @@ namespace Resources {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to البريد الالكتروني مستخدم سابقاً.
+        /// </summary>
+        internal static string EmailAlreadyUsed {
+            get {
+                return ResourceManager.GetString("EmailAlreadyUsed", resourceCulture);
             }
         }
         
@@ -538,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to رقم الهاتف مستخدم سابقاً.
+        /// </summary>
+        internal static string PhoneAlreadyUsed {
+            get {
+                return ResourceManager.GetString("PhoneAlreadyUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to رقم الهاتف.
         /// </summary>
         internal static string PhoneNumber {
@@ -547,11 +583,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to يرجى ملء المعلومات للانضمام.
+        ///   Looks up a localized string similar to يرجى ملء جميع المعلومات للانضمام.
         /// </summary>
         internal static string PleaseFillInfotoJoin {
             get {
                 return ResourceManager.GetString("PleaseFillInfotoJoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مساءً.
+        /// </summary>
+        internal static string PM {
+            get {
+                return ResourceManager.GetString("PM", resourceCulture);
             }
         }
         
@@ -691,6 +736,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to يجب ان تكون كلمة المرور على الاٌقل 6 خانات .
+        /// </summary>
+        internal static string ShouldBeAtLeast6Digits {
+            get {
+                return ResourceManager.GetString("ShouldBeAtLeast6Digits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اظهار الاعضاء فقط الذين هم.
         /// </summary>
         internal static string ShowMembers {
@@ -772,11 +826,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to الدفعة - التسلسل.
         /// </summary>
-        internal static string x {
+        internal static string WaveNumber {
             get {
-                return ResourceManager.GetString("x", resourceCulture);
+                return ResourceManager.GetString("WaveNumber", resourceCulture);
             }
         }
     }

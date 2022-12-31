@@ -126,6 +126,14 @@
     <Compile Include="Migrations\202212252129111_SetAllColumnsRequiredInMemberTable.Designer.cs">
       <DependentUpon>202212252129111_SetAllColumnsRequiredInMemberTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212311650236_AddWaveNumberColumnToMember.cs" />
+    <Compile Include="Migrations\202212311650236_AddWaveNumberColumnToMember.Designer.cs">
+      <DependentUpon>202212311650236_AddWaveNumberColumnToMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212311741195_AddPathIdToMemberTable.cs" />
+    <Compile Include="Migrations\202212311741195_AddPathIdToMemberTable.Designer.cs">
+      <DependentUpon>202212311741195_AddPathIdToMemberTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -190,6 +198,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212252129111_SetAllColumnsRequiredInMemberTable.resx">
       <DependentUpon>202212252129111_SetAllColumnsRequiredInMemberTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212311650236_AddWaveNumberColumnToMember.resx">
+      <DependentUpon>202212311650236_AddWaveNumberColumnToMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212311741195_AddPathIdToMemberTable.resx">
+      <DependentUpon>202212311741195_AddPathIdToMemberTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

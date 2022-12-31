@@ -1,6 +1,7 @@
 ﻿using Hafazah.Model;
 using Hafazah.Model.Dtos;
 using Hafazah.Model.Entities.Program;
+using Hafazah.Model.Enums;
 using Hafazah.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Security.Policy;
+using System.Web.Helpers;
 using System.Web.Http;
 
 namespace Hafazah.Controllers.APIs
@@ -45,7 +47,7 @@ namespace Hafazah.Controllers.APIs
         {
             try
             {
-                _svc.AddNewMember(member, out List<string> validations);
+                _svc.AddMember(member, out List<string> validations);
 
                 if (validations.Any())
                     return Content(HttpStatusCode.NotAcceptable, new ValidationError() { ErrorList = validations });
@@ -59,14 +61,16 @@ namespace Hafazah.Controllers.APIs
         }
 
         [HttpPost]
-        [Route("UpdateProfileInfo")]
-        public IHttpActionResult UpdateStudentProfileInfo(Member member)
+        [Route("UpdateStudentProfileInfo")]
+        public IHttpActionResult UpdateStudentProfileInfo(MemberProfileInfo memberProfileInfo)
         {
             try
             {
-                _svc.UpdateMember(member);
-
+                if (_svc.UpdateMember(memberProfileInfo))
                 return Ok(@"'isSucceeded':'true'");
+
+                return Content(HttpStatusCode.NotAcceptable, ErrorCode.MemberNotExists.ToString());
+
             }
             catch (Exception ex)
             {
@@ -188,6 +192,52 @@ namespace Hafazah.Controllers.APIs
             }
         }
 
+
+        [HttpGet]
+        [Route("IsEmailAlreadyUsed")]
+        public IHttpActionResult IsEmailAlreadyUsed(string email)
+        {
+            try
+            {
+                return Ok(_svc.IsEmaiAlreadylExists(email));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("IsPhoneNumberAlreadyUsed")]
+        public IHttpActionResult IsPhoneNumberAlreadyUsed(string phonenumber)
+        {
+            try
+            {
+                return Ok(_svc.IsPhoneNumberAlreadylExists(phonenumber));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+
+        #region Core API
+
+        //[HttpGet]
+        //[Route("GetUserProgram")]
+        //public IHttpActionResult GetUserProgram(string username)
+        //{
+        //    try
+        //    {
+        //        return Ok(_svc.GetUserProgram(username));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+        //}
+        #endregion
 
 
 

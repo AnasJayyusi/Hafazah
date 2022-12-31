@@ -141,6 +141,9 @@
   <data name="AlreadyTaken" xml:space="preserve">
     <value> غير متوفر ، يرجى تجربة اسم مستخدم آخر !!!</value>
   </data>
+  <data name="AM" xml:space="preserve">
+    <value>صباحاً</value>
+  </data>
   <data name="Approve" xml:space="preserve">
     <value>موافقة</value>
   </data>
@@ -159,6 +162,9 @@
   </data>
   <data name="CreateNew" xml:space="preserve">
     <value>إضافة</value>
+  </data>
+  <data name="CurrentWaveNumber" xml:space="preserve">
+    <value>رقم الدفعة الحالي</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>لوحة التحكم </value>
@@ -185,6 +191,9 @@
   </data>
   <data name="Email" xml:space="preserve">
     <value>البريد الإلكتروني</value>
+  </data>
+  <data name="EmailAlreadyUsed" xml:space="preserve">
+    <value>البريد الالكتروني مستخدم سابقاً</value>
   </data>
   <data name="Female" xml:space="preserve">
     <value>انثى</value>
@@ -298,12 +307,18 @@
   <data name="PendingRequests" xml:space="preserve">
     <value>الطلبات المعلقة</value>
   </data>
+  <data name="PhoneAlreadyUsed" xml:space="preserve">
+    <value>رقم الهاتف مستخدم سابقاً</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>رقم الهاتف</value>
     <comment>\Views\Members\Index.cshtml</comment>
   </data>
   <data name="PleaseFillInfotoJoin" xml:space="preserve">
-    <value>يرجى ملء المعلومات للانضمام</value>
+    <value>يرجى ملء جميع المعلومات للانضمام</value>
+  </data>
+  <data name="PM" xml:space="preserve">
+    <value>مساءً</value>
   </data>
   <data name="ProgramSettings" xml:space="preserve">
     <value>إعدادات البرنامج</value>
@@ -357,6 +372,9 @@
     <value>الإعدادات</value>
     <comment>Views\Shared\_LoginPartial.cshtml</comment>
   </data>
+  <data name="ShouldBeAtLeast6Digits" xml:space="preserve">
+    <value>يجب ان تكون كلمة المرور على الاٌقل 6 خانات </value>
+  </data>
   <data name="ShowMembers" xml:space="preserve">
     <value>اظهار الاعضاء فقط الذين هم</value>
     <comment>\Views\Members\Index.cshtml</comment>
@@ -387,7 +405,7 @@
     <value>إعدادات المستخدمين </value>
     <comment>Settings</comment>
   </data>
-  <data name="x" xml:space="preserve">
-    <value />
+  <data name="WaveNumber" xml:space="preserve">
+    <value>الدفعة - التسلسل</value>
   </data>
 </root>

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Hafazah.Common;
+using Hafazah.DAL;
+using Hafazah.Model.Entities.Program;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Hafazah.Common;
-using Hafazah.DAL;
-using Hafazah.Model.Entities.Program;
 
 namespace Hafazah.Controllers
 {
@@ -48,7 +44,7 @@ namespace Hafazah.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Duration,TotalNumber,RequiredWorkingDays,RequiredPagesToSubmit,Description,ProgramType,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Path path)
+        public ActionResult Create([Bind(Include = "Id,Name,Duration,TotalNumber,RequiredWorkingDays,RequiredPagesToSubmit,Description,ProgramType,IsOpenToRegistration")] Path path)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +76,7 @@ namespace Hafazah.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Duration,TotalNumber,RequiredWorkingDays,RequiredPagesToSubmit,Description,ProgramType,CreatedDate,UpdateDate,CreatedBy,UpdatedBy,IsDeleted")] Path path)
+        public ActionResult Edit([Bind(Include = "Id,Name,Duration,TotalNumber,RequiredWorkingDays,RequiredPagesToSubmit,Description,ProgramType,IsOpenToRegistration")] Path path)
         {
             if (ModelState.IsValid)
             {

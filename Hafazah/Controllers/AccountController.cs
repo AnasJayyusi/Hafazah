@@ -8,10 +8,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Data.Entity;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -516,7 +514,9 @@ namespace Hafazah.Controllers
                 //Assign Role to user Here
                 #endregion
                 await UserManager.AddToRoleAsync(user.Id, Role.Student.ToString());
-                _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower()).IsActive = true;
+                var member = _db.Members.Single(x => x.Username.ToLower() == data.Username.ToLower());
+                member.IsActive = true;
+                member.WaveNumber = GetStudentWaveNumber();
                 _db.SaveChanges();
                 return RedirectToAction("Index", "Members");
             }
@@ -559,6 +559,17 @@ namespace Hafazah.Controllers
             body = body.Replace("{ConfirmationLink}", callbackUrl);
             body = body.Replace("{UserName}", model.Email);
             bool IsSendEmail = SendEmail.EmailSend(model.Email, "Confirm your account", body, true);
+        }
+        #endregion
+
+
+        #region Helpers
+        private string GetStudentWaveNumber()
+        {
+            string wavenumber = _db.GlobalValues.Single(x => x.Key == "WaveNumber").Value;
+            int count = _db.Members.Count(p => p.WaveNumber.StartsWith(wavenumber)) + 1;
+
+            return $"{wavenumber}-{count.ToString("D3")}";
         }
         #endregion
     }

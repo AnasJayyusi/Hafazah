@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Runtime.Serialization;
 using System.Threading;
 using System.Web.Mvc;
 
@@ -7,6 +6,7 @@ namespace Hafazah.Common
 {
     public class BaseController : Controller
     {
+        public bool IsEn;
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             object cultureRequest = null;
@@ -40,6 +40,10 @@ namespace Hafazah.Common
                 Thread.CurrentThread.CurrentCulture = cultureInfo;
                 base.OnActionExecuting(filterContext);
             }
+
+            if (cultureRequest.Equals("en"))
+                IsEn = true;
+
         }
 
         public ActionResult RedirectToLocalized()
@@ -51,6 +55,8 @@ namespace Hafazah.Common
             else
                 return RedirectToAction("Login", "Account");
         }
+
+        
 
     }
 }

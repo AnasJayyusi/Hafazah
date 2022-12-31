@@ -63,7 +63,7 @@
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("Gender"), htmlAttributes: new { @class = "control-label" })
                         <div>
-                            <select class="form-control valid" data-val="true" data-val-required="The Gender field is required." id="Gender" name="Gender" aria-describedby="Gender-error" aria-invalid="false">
+                            <select class="form-control valid" data-val="true" id="Gender" name="Gender">
                                 <option selected="selected" value="1">@Resources.GetResource.T("Male")</option>
                                 <option value="0">@Resources.GetResource.T("Female") </option>
                             </select>
@@ -146,7 +146,8 @@
                         @Html.Label(@Resources.GetResource.T("PhoneNumber"), htmlAttributes: new { @class = "control-label" })
                         <label style="color:gray;font-style:italic;font-size:xx-small;">♦ @Resources.GetResource.T("IncludeWhatsApp")</label>
                         <div>
-                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            <label id="lblPhoneAlreadyUsed" style="color: red; display: none"> @Resources.GetResource.T("PhoneAlreadyUsed") </label>
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { id = "phoneNumberInput", @class = "form-control", onfocusout = "checkPhoneNumberExists()" } })
                             @if (ViewBag.PhoneNumberMissing == true)
                             {
                                 @Html.ValidationMessageFor(m => m.PhoneNumber, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
@@ -157,7 +158,8 @@
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("Email"), htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            <label id="lblEmailAlreadyUsed" style="color: red; display: none"> @Resources.GetResource.T("EmailAlreadyUsed") </label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "emailInput", @class = "form-control", onfocusout = "checkEmailExists()" } })
                             @if (ViewBag.EmailMissing == true)
                             {
                                 @Html.ValidationMessageFor(m => m.Email, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
@@ -171,7 +173,7 @@
                         <div>
                             <label id="lblAvailable" style="color: green; display: none "> @Resources.GetResource.T("UsernameIsAvailable")</label>
                             <label id="lblTaken" style="color: red; display: none"> @Resources.GetResource.T("AlreadyTaken") </label>
-                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "usernameinput", @class = "form-control", onfocusout = "checkUserExists()" } })
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "usernameInput", @class = "form-control", onfocusout = "checkUserExists()", autocomplete = "false" } })
                             @if (ViewBag.UsernameMissing == true)
                             {
                                 @Html.ValidationMessageFor(m => m.Username, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
@@ -182,7 +184,8 @@
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("SuggestPassword"), htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.EditorFor(model => model.SuggestPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            <label id="lblpasswordWarning" style="color: rebeccapurple; display: none"> @Resources.GetResource.T("ShouldBeAtLeast6Digits") </label>
+                            @Html.EditorFor(model => model.SuggestPassword, new { htmlAttributes = new { id = "passwordInput", @class = "form-control", onfocusout = "checkPassword()" } })
                             @if (ViewBag.SuggestPasswordMissing == true)
                             {
                                 @Html.ValidationMessageFor(m => m.SuggestPassword, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
@@ -204,13 +207,18 @@
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("InterviewDate"), htmlAttributes: new { @class = "control-label" })
                         <div>
-                            @Html.TextBoxFor(model => model.InterviewDate, new { @type = "date", @class = "form-control datepicker" })
+                            <select class="form-control valid" data-val="true" id="PreferenceTime" name="PreferenceTime">
+                                <option value="0">@Resources.GetResource.T("PM") </option>
+                                <option selected="selected" value="1">@Resources.GetResource.T("AM")</option>
+                            </select>
                             @if (ViewBag.InterviewDateMissing == true)
                             {
-                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(m => m.PreferenceTime, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
                             }
                         </div>
                     </div>
+
+
 
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("ProgramType"), htmlAttributes: new { @class = "control-label" })
@@ -222,7 +230,7 @@
                             </select>
                             @if (ViewBag.ProgramTypeMissing == true)
                             {
-                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(m => m.ProgramType, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
                             }
                         </div>
                     </div>
@@ -231,18 +239,18 @@
                     <div class="form-group">
                         @Html.Label(@Resources.GetResource.T("Path"), htmlAttributes: new { @class = "control-label" })
                         <div>
-                            <select onchange="onProgramTypeChange()" class="form-control valid" data-val="true" id="ddlPath" name="Path" aria-invalid="false">
+                            <select onchange="onPathSelect()" class="form-control valid" data-val="true" id="ddlPath" name="PathId" aria-invalid="false">
                             </select>
                             @if (ViewBag.PathMissing == true)
                             {
-                                @Html.ValidationMessageFor(m => m.InterviewDate, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(m => m.PathId, @Resources.GetResource.T("Required"), new { @class = "text-danger" })
                             }
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div>
-                            <button type="submit" value="Submit" class="btn btn-primary btn-lg">
+                            <button id="submitBtn" disabled type="submit" value="Submit" class="btn btn-primary btn-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                                     <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z" />
                                 </svg>
@@ -349,10 +357,16 @@
             });
         }
     };
+
     function checkUserExists() {
-        var e = document.getElementById("usernameinput");
+        var e = document.getElementById("usernameInput");
         var username = e.value;
-        debugger
+
+        if (username.length == 0) {
+            $("#lblTaken").hide();
+            $("#lblAvailable").hide();
+        }
+
             $.ajax({
                 type: "POST",
                 url: '@Url.Action("IsUsernameToken", "Members")',
@@ -360,7 +374,6 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                    debugger
                     if (r == true) {
                         $("#lblTaken").show();
                         $("#lblAvailable").hide();
@@ -376,37 +389,62 @@
             });
     }
 
-
-     function checkEmailExists() {
-        var e = document.getElementById("usernameinput");
-        var username = e.value;
-
+    function checkEmailExists() {
+        var e = document.getElementById("emailInput");
+        var email = e.value;
             $.ajax({
                 type: "POST",
-                url: '@Url.Action("IsUsernameToken", "Members")',
-                data: JSON.stringify({ "username": username }),
+                url: '@Url.Action("IsEmailAlreadyExists", "Members")',
+                data: JSON.stringify({ "email": email }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (r) {
-                 
                     debugger
-                    if (r == true ) {
-                        $("#lblTaken").show();
-                        $("#lblAvailable").hide();
+                    if (r == true) {
+                        $("#lblEmailAlreadyUsed").show();
                     }
-                    else if (r == false) {
-                        $("#lblTaken").hide();
-                        $("#lblAvailable").show();
+                    else {
+                        $("#lblEmailAlreadyUsed").hide();
                     }
-
-                    if (username == "" || username == null || username == String.empty) {
-                        $("#lblTaken").hide();
-                        $("#lblAvailable").hide();
-                    }
-
-                  
                 }
             });
+    }
+
+    function checkPhoneNumberExists() {
+        var e = document.getElementById("phoneNumberInput");
+        var phonenumber = e.value;
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IsPhoneNumberAlreadylExists", "Members")',
+                data: JSON.stringify({ "phonenumber": phonenumber }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    debugger
+                    if (r == true) {
+                        $("#lblPhoneAlreadyUsed").show();
+                    }
+                    else {
+                        $("#lblPhoneAlreadyUsed").hide();
+                    }
+                }
+            });
+    }
+
+    function checkPassword() {
+        var e = document.getElementById("passwordInput");
+        var password = e.value;
+        if (password.length < 6)
+            $("#lblpasswordWarning").show();
+        else
+            $("#lblpasswordWarning").hide();
+
+
+    }
+
+
+    function onPathSelect() {
+        $('#submitBtn').removeAttr("disabled");
     }
 </script>
 
