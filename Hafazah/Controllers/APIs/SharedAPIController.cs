@@ -8,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Security.Policy;
-using System.Web.Helpers;
 using System.Web.Http;
 
 namespace Hafazah.Controllers.APIs
@@ -21,11 +19,6 @@ namespace Hafazah.Controllers.APIs
         {
             _svc = new SharedServices();
         }
-
-        #region Login 
-
-
-        #endregion
 
         [HttpGet]
         [Route("GetRegistrationStatus")]
@@ -67,7 +60,7 @@ namespace Hafazah.Controllers.APIs
             try
             {
                 if (_svc.UpdateMember(memberProfileInfo))
-                return Ok(@"'isSucceeded':'true'");
+                    return Ok(@"'isSucceeded':'true'");
 
                 return Content(HttpStatusCode.NotAcceptable, ErrorCode.MemberNotExists.ToString());
 
@@ -224,19 +217,35 @@ namespace Hafazah.Controllers.APIs
 
         #region Core API
 
-        //[HttpGet]
-        //[Route("GetUserProgram")]
-        //public IHttpActionResult GetUserProgram(string username)
-        //{
-        //    try
-        //    {
-        //        return Ok(_svc.GetUserProgram(username));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+        [HttpGet]
+        [Route("GetUserProgram")]
+        public IHttpActionResult GetUserProgram(string username)
+        {
+            try
+            {
+
+                return Ok(_svc.GetUserProgram(username));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+
+        [HttpGet]
+        [Route("GetHomeWorks")]
+        public IHttpActionResult GetHomeWorks(ProgramType programType, int selectedNumber)
+        {
+            try
+            {
+                return Ok(_svc.GetHomeWorks(programType, selectedNumber));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
         #endregion
 
 

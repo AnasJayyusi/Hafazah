@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Member = Hafazah.Model.Member;
+using System.Data.Entity;
 
 namespace Hafazah.Services
 {
@@ -54,7 +55,6 @@ namespace Hafazah.Services
             }
             return false;
         }
-
 
         internal void SetToken(string username, string token)
         {
@@ -147,6 +147,49 @@ namespace Hafazah.Services
             return "User Not Exists";
         }
 
+        internal bool IsUsernameToken(string username)
+        {
+            var user = _db.Users
+                                .Where(x => x.UserName.ToLower() == username).FirstOrDefault();
+            return user != null;
+        }
+
+        internal bool IsEmaiAlreadylExists(string email)
+        {
+            var user = _db.Users
+                                .Where(x => x.Email.ToLower() == email).FirstOrDefault();
+            return user != null;
+        }
+
+        internal bool IsPhoneNumberAlreadylExists(string email)
+        {
+            var user = _db.Users
+                                .Where(x => x.PhoneNumber.ToLower() == email).FirstOrDefault();
+            return user != null;
+        }
+
+        internal dynamic GetUserProgram(string username)
+        {
+            // Get User Path 
+            var m = _db.Members.Single(x => x.Username.ToLower() == username.ToLower());
+            int pId = m.PathId;
+
+            // Get Stages / Level based on user 
+            if (m.ProgramType == Model.Enums.ProgramType.Hafazah)
+                return _db.Paths.Include(x => x.Phases).Where(x => x.Id == pId);
+            else
+                return _db.Paths.Include(x => x.Levels).Where(x => x.Id == pId);
+        }
+
+        internal dynamic GetHomeWorks(Model.Enums.ProgramType programType, int selectedNumber)
+        {
+            // Get Stages / Level based on user 
+            if (programType == Model.Enums.ProgramType.Hafazah)
+                return _db.PhaseHomeworks.Where(x => x.PhaseId == selectedNumber).OrderBy(x=>x.OrderNumber);
+            else
+                return _db.LevelHomeworks.Where(x => x.LevelId == selectedNumber).OrderBy(x => x.OrderNumber);
+        }
+
         #region Helpers
         // Validations
         private List<string> GetValidationsErrors(Member m)
@@ -184,27 +227,7 @@ namespace Hafazah.Services
             return errors;
         }
 
-        public bool IsUsernameToken(string username)
-        {
-            var user = _db.Users
-                                .Where(x => x.UserName.ToLower() == username).FirstOrDefault();
-            return user != null;
-        }
 
-        public bool IsEmaiAlreadylExists(string email)
-        {
-            var user = _db.Users
-                                .Where(x => x.Email.ToLower() == email).FirstOrDefault();
-            return user != null;
-        }
-
-
-        public bool IsPhoneNumberAlreadylExists(string email)
-        {
-            var user = _db.Users
-                                .Where(x => x.PhoneNumber.ToLower() == email).FirstOrDefault();
-            return user != null;
-        }
 
 
         #endregion
